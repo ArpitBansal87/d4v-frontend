@@ -1,0 +1,44 @@
+<!-- TODO: 
+  1. Validation
+  2. Styling -->
+
+<form [formGroup]="registrationForm" class="container registeration-container group" >
+  <div class="row registeration-container-element">
+    <mat-form-field>
+      <input matInput placeholder ="UserName" formControlName="userName">
+    </mat-form-field>
+  </div>
+  <div class="row registeration-container-element">
+    <mat-form-field>
+      <input type="password" matInput placeholder ="Password" formControlName="password">
+    </mat-form-field>
+  </div>
+  <div class="row registeration-container-element">
+    <mat-form-field>
+      <input matInput placeholder ="First Name" formControlName="firstName">
+    </mat-form-field>
+  </div>
+  <div class="row registeration-container-element">
+    <mat-form-field>
+      <input matInput placeholder ="Last Name" formControlName="lastName">
+    </mat-form-field>
+  </div>
+  <div class="row registeration-container-element">
+    <mat-form-field>
+      <input matInput placeholder ="Email" formControlName="email">
+    </mat-form-field>
+    <span *ngIf="email.invalid && email.touched">
+      Your email does not look right
+    </span>
+  </div>
+  <div class="row registeration-container-element">
+    <mat-form-field>
+      <mat-select  formControlName="bloodType" placeholder="BloodType" color="primary">
+          <mat-option color="primary" *ngFor="let type of bloodTypes" [value]="type">{{type}}</mat-option>
+      </mat-select >
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" [disabled]="registrationForm.invalid" 
+    (click)="registerUser()">Register</button>
+  <a href="\login">Sign In</a>
+</form>

@@ -1,0 +1,20 @@
+<nav>
+  <ul>
+    <li>
+      <a routerLink="login" 
+        [class.activated]="currentUrl == '/login' ||  currentUrl == '/register'">
+        <i class="material-icons">account_box</i>
+      </a>
+    </li>
+    <li>
+      <a routerLink="users" [class.activated]="currentUrl == '/users'">
+        <i class="material-icons">supervised_user_circle</i>
+      </a>
+    </li>
+    <li>
+      <a routerLink="posts" [class.activated]="currentUrl == '/posts'">
+        <i class="material-icons">message</i>
+      </a>
+    </li>
+  </ul>
+</nav>

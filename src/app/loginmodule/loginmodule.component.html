@@ -1,0 +1,21 @@
+<p>
+  loginmodule works!
+</p>
+<form class="login-module" #userForm="ngForm">
+  <div>
+    <label>Username: </label>
+    <input  type="text" class="form-control" id="userNameField" required [(ngModel)]="model.username" name="userNameField" />
+  </div>
+  <div>
+    <label>Password: </label>
+    <input type="password" class="form-control" id="passwordField" required [(ngModel)]="model.password" name="passwordField" />
+  </div>
+  <div>
+     <button type="submit" class="btn btn-success" (click)="onSubmit(model)">Submit</button>
+  </div>
+  <div>
+     <a href="/register" >Register</a>
+  </div>
+</form>
+<p>usr name and PAssword: {{model.username}} &&&& {{model.password}}</p>
+<p ng-show="isRoleVisible()"> user details: test  </p>
