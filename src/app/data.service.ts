@@ -3,8 +3,10 @@ import { HttpClient,HttpHeaders, HttpErrorResponse } from '@angular/common/http'
 import { Observable,throwError } from 'rxjs';
 import { loginModel } from './user-model-class';
 import { userDetailsClass } from './user-details-model-class';
+import { UserDetails } from './core/user-details';
 import { catchError, retry, map } from 'rxjs/operators';
 import {LoginModelResponseClass} from './login-model-response-class';
+import {responseFormat} from './core/response-format-class';
 
 
 import { Http, Headers, Request, RequestOptions } from '@angular/http';
@@ -22,7 +24,15 @@ const httpOptions = {
 
 export class DataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { console.log("inside constructor");}
+
+  // responseObject: new responseFormat((01,"","","","");
+
+  $userDetails: any;
+
+  isUserLoggedIn(){
+    return true;
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -39,6 +49,9 @@ export class DataService {
     return throwError(
       'Something bad happened; please try again later.');
   };
+
+  
+
   getUsers() {
     return this.http.get('http://localhost:3000/api/UsersDetails');
   }
@@ -47,13 +60,24 @@ export class DataService {
     return this.http.get('https://jsonplaceholder.typicode.com/users/'+userId);
   }
 
+  getUserDetails(){
+    return this.$userDetails;
+  }
+
   getPosts() {
     return this.http.get('https://jsonplaceholder.typicode.com/posts');
   }
 
   loginUser(user:loginModel):Observable<any>{
     return this.http.post('http://localhost:3000/api/credentials/login',
-     user, httpOptions).pipe(map(response => response));
+     user, httpOptions).pipe(
+      map(response => response),
+      catchError((err, caught) => {
+        console.error("Login failed");
+        return throwError(
+          'Something bad happened; please try again later.')
+      })
+    );
   }
 
   registerUser(registerForm:any):Observable<any>{
@@ -62,9 +86,14 @@ export class DataService {
   }
 
   getCustomerDetails(user:LoginModelResponseClass):Observable<any>{
-    return this.http.get('http://localhost:3000/api/credentials/'
-        +user.userId+'?access_token='+user.id)
-    .pipe(map(response => response));
-  }
+    
+      return this.http.get('http://localhost:3000/api/credentials/'
+          +user.userId+'?access_token='+user.id)
+      .pipe(map(response => {
+        this.$userDetails = response;
+        return response;
+      }));
+    
+  }  
 
  }

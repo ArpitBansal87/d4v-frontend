@@ -4,6 +4,7 @@ import { loginModel } from '../user-model-class'
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import {Router} from "@angular/router";
+import { UserDetails} from '../core/user-details'
 
 
 @Component({
@@ -14,14 +15,14 @@ import {Router} from "@angular/router";
 export class LoginmoduleComponent implements OnInit {
 
   constructor(private data: DataService, private router: Router) { }
-  model = new loginModel("testFieldModal","tesPAssModel");
+  model = new loginModel("test1","test1");
   $loginResponse: any;
-  $userDetails: any;
+  $userDetails: UserDetails;
   ngOnInit() {
   }
 
   onSubmit(){
-    let userModelClassExample = new loginModel("testUserNAme", "testPassword");
+    let userModelClassExample = new loginModel("test1", "test1");
     console.log("testValue "+this+" value ");
 
     this.data.loginUser(this.model)
@@ -36,6 +37,7 @@ export class LoginmoduleComponent implements OnInit {
           this.$userDetails = data;
           if(this.$userDetails != null){
             console.log("test line");
+            this.router.navigate(['home']);
           }
         });
       })

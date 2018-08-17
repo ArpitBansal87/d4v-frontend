@@ -6,7 +6,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { PostsComponent } from './posts/posts.component';
 import { DetailsComponent } from './details/details.component';
 
 
@@ -29,7 +28,6 @@ import { MatChipsModule } from '@angular/material/chips';
   declarations: [
     AppComponent,
     SidebarComponent,
-    PostsComponent,
     DetailsComponent,
     HomeComponent,
     LoginmoduleComponent,
