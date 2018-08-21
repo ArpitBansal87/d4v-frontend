@@ -16,6 +16,9 @@
   <div>
      <a href="/register" >Register</a>
   </div>
+  <div>
+    <span (click)="logoutUser()">logout</span>
+  </div>
 </form>
 <p>usr name and PAssword: {{model.username}} &&&& {{model.password}}</p>
 <p ng-show="isRoleVisible()"> user details: test  </p>

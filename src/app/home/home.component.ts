@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService} from '../data.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +9,11 @@ import { DataService} from '../data.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, private auth: AuthService) { }
 
   model: any;
   ngOnInit() {
-    this.model = this.data.getUserDetails();
+    this.model = this.auth.getCurrentUser();
   }
 
 }

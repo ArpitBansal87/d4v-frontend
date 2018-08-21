@@ -5,6 +5,7 @@ import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import {Router} from "@angular/router";
 import { UserDetails} from '../core/user-details'
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { UserDetails} from '../core/user-details'
 })
 export class LoginmoduleComponent implements OnInit {
 
-  constructor(private data: DataService, private router: Router) { }
+  constructor(private data: DataService, private router: Router,private auth: AuthService) { }
   model = new loginModel("test1","test1");
   $loginResponse: any;
   $userDetails: UserDetails;
@@ -29,22 +30,26 @@ export class LoginmoduleComponent implements OnInit {
       .subscribe( data => {
         this.$loginResponse = data;
         if(data != null){
-          console.log("test");
+          console.log("test user logged in");
+          this.auth.setToken(data.id);
+          this.auth.setLoggedIn(true)
+          this.data.getCustomerDetails(this.$loginResponse).subscribe(data => {
+            this.$userDetails = data;
+            if(this.$userDetails != null){
+              console.log("set the value for user details object");
+              this.auth.setUser(this.$userDetails);
+              this.router.navigate(['home']);
+            }
+          });
         }
         else
           console.log("else  part");
-        this.data.getCustomerDetails(this.$loginResponse).subscribe(data => {
-          this.$userDetails = data;
-          if(this.$userDetails != null){
-            console.log("test line");
-            this.router.navigate(['home']);
-          }
-        });
+        
       })
   }
 
-  isRoleVisible(){
-    console.log("inside isRoleVisible");
-    return(this.$userDetails.role === 'undefined');
+  logoutUser(){
+    this.data.logoutUser();
+    this.auth.logout();
   }
 }

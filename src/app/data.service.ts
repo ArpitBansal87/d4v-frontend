@@ -96,4 +96,10 @@ export class DataService {
     
   }  
 
+  logoutUser(){
+
+    return this.http.get('http://localhost:3000/api/credentials/logout');
+
+  }
+
  }
