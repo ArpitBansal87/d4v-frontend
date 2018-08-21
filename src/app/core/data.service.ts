@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable,throwError } from 'rxjs';
-import { loginModel } from './user-model-class';
-import { userDetailsClass } from './user-details-model-class';
-import { UserDetails } from './core/user-details';
+import { loginModel } from './typeFiles/user-model-class';
 import { catchError, retry, map } from 'rxjs/operators';
-import {LoginModelResponseClass} from './login-model-response-class';
-import {responseFormat} from './core/response-format-class';
+import {LoginModelResponseClass} from './typeFiles/login-model-response-class';
+
 
 
 import { Http, Headers, Request, RequestOptions } from '@angular/http';

@@ -4,7 +4,7 @@ import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
 import { LoginmoduleComponent} from './loginmodule/loginmodule.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
   {

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators,FormBuilder, FormGroup } from '@angular/forms';
-import { DataService } from '../data.service';
+import { DataService } from '../core/data.service';
 import {Router} from "@angular/router";
 
-import { RegisterationDetails } from '../registeration-details'
+import { RegisterationDetails } from '../core/typeFiles/registeration-details'
 
 @Component({
   selector: 'app-register',

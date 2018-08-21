@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {UserDetails} from "./core/user-details";
+import {UserDetails} from "./typeFiles/user-details";
 import {isNullOrUndefined} from "util";
 import {Observable, Subject} from "rxjs";
 
