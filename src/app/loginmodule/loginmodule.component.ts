@@ -28,9 +28,15 @@ export class LoginmoduleComponent implements OnInit {
       password: ['',[Validators.required]]
     })
     this.loginForm.valueChanges.subscribe(console.log)
+
+    if (sessionStorage.getItem('isUserLoggedIn') === 'true'){
+      console.log("inside logged in ")
+      if(this.cookie.get('isLoggedIn') === 'true')
+        this.router.navigate(['\home'])
+    }
   }
 
-  onSubmit(){
+  submitLoginDetails(){
     this.data.loginUser(this.loginForm.value)
       .subscribe( data => {
         if(data != null){
@@ -38,7 +44,6 @@ export class LoginmoduleComponent implements OnInit {
           this.auth.setToken(data.id);
           this.auth.setLoggedIn(true)
           this.data.getCustomerDetails(data).subscribe(data => {
-            
             if(data != null){
               console.log("set the value for user details object");
               this.auth.setUser(data);
@@ -46,9 +51,6 @@ export class LoginmoduleComponent implements OnInit {
             }
           });
         }
-        else
-          console.log("else  part");
-        
       })
   }
 
