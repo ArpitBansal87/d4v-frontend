@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,15 +9,24 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  currentUrl: string;
+  currentUrl: string
+  loggedIn: boolean
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private auth: AuthService) {
     router.events.subscribe(
       (_: NavigationEnd) => this.currentUrl = _.url
     )
+    this.auth.isUserAvailable.subscribe(isLoggedIn => {
+      this.loggedIn = isLoggedIn
+      console.log("change in lofin status")
+    })
+    
    }
 
   ngOnInit() {
   }
 
+  logoutUser(){
+    this.auth.logout()
+  }
 }

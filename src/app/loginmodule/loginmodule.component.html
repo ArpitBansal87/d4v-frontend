@@ -1,7 +1,3 @@
-<p>
-  loginmodule works!
-</p>
-
 <form [formGroup]="loginForm" class="container login-container group" >
   <div class="row login-container-element">
     <mat-form-field>
@@ -13,30 +9,7 @@
       <input type="password" matInput placeholder ="Password" formControlName="password">
     </mat-form-field>
   </div>
-  
   <button mat-raised-button color="primary" [disabled]="loginForm.invalid" 
-    (click)="onSubmit()">Sign In</button>
-  <a href="\login">Sign In</a>
+    (click)="submitLoginDetails()">Sign In</button>
+  <a href="\register">Register</a>
 </form>
-
-<!-- <form class="login-module" #userForm="ngForm">
-  <div>
-    <label>Username: </label>
-    <input  type="text" class="form-control" id="userNameField" required [(ngModel)]="model.username" name="userNameField" />
-  </div>
-  <div>
-    <label>Password: </label>
-    <input type="password" class="form-control" id="passwordField" required [(ngModel)]="model.password" name="passwordField" />
-  </div>
-  <div>
-     <button type="submit" class="btn btn-success" (click)="onSubmit(model)">Submit</button>
-  </div>
-  <div>
-     <a href="/register" >Register</a>
-  </div>
-  <div>
-    <span (click)="logoutUser()">logout</span>
-  </div>
-</form> -->
-<!-- <p>usr name and PAssword: {{model.username}} &&&& {{model.password}}</p> -->
-<p ng-show="isRoleVisible()"> user details: test  </p>
