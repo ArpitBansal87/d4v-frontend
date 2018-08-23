@@ -1,13 +1,13 @@
 <nav>
   <ul>
     <li [hidden]="loggedIn">
-      <a routerLink="login" [class.activated]="currentUrl == '/login' ||  currentUrl == '/register'">
+      <a routerLink="login" [class.activated]="currentUrl == '/login' ||  currentUrl == '/register' || currentUrl == '/'">
         <i class="material-icons">account_box</i>
       </a>
     </li>
     <li [hidden]="!loggedIn">
       <a (click)="logoutUser()" routerLink="">
-        <i class="material-icons">delete_outline</i>
+        <i class="material-icons">power_settings_new</i>
       </a>
     </li>
     <li>

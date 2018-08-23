@@ -13,7 +13,7 @@ import { RegisterationDetails } from '../core/typeFiles/registeration-details'
 export class RegisterComponent implements OnInit {
 
   registrationForm: FormGroup; 
-  bloodTypes = ['A+',
+  bloodGroup = ['A+',
   'A-',
   'B+',
   'B-',
@@ -22,8 +22,6 @@ export class RegisterComponent implements OnInit {
   'O+',
   'O-' ];
   
-  model = new RegisterationDetails("test","tes","tes","tes","tes");
-
   constructor(private fb: FormBuilder,private data: DataService, private router: Router) { }
 
   ngOnInit() {
@@ -36,9 +34,9 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.email
       ]],
-      bloodType: ['AB-',[Validators.required]]
+      bloodGroup: ['AB-',[Validators.required]]
     })
-    this.registrationForm.valueChanges.subscribe(console.log)
+    
   }
   get userName(){
     return this.registrationForm.get('userName');
@@ -67,12 +65,7 @@ export class RegisterComponent implements OnInit {
   registerUser(){
     console.log("test line inside registeruser");
     console.log(this.registrationForm.value);
-    this.model = new RegisterationDetails(this.registrationForm.value.username,
-    this.registrationForm.value.password,
-    this.registrationForm.value.bloodType,
-    this.registrationForm.value.email,
-    'test');
-    this.data.registerUser(this.model).subscribe( data => {
+    this.data.registerUser(this.registrationForm.value).subscribe( data => {
       console.log("register call placed");
       if(data.id != 'undefined'){
         console.log("registration successfull");

@@ -6,8 +6,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { DetailsComponent } from './details/details.component';
-
 
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +28,6 @@ import { RequestHomeComponent } from './request-home/request-home.component'
   declarations: [
     AppComponent,
     SidebarComponent,
-    DetailsComponent,
     HomeComponent,
     LoginmoduleComponent,
     RegisterComponent,

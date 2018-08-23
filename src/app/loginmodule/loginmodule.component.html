@@ -1,15 +1,17 @@
 <form [formGroup]="loginForm" class="container login-container group" >
-  <div class="row login-container-element">
+  <div class="row centeralign login-container-element">
     <mat-form-field>
       <input matInput placeholder ="UserName" formControlName="username">
     </mat-form-field>
   </div>
-  <div class="row login-container-element">
+  <div class="row centeralign login-container-element">
     <mat-form-field>
       <input type="password" matInput placeholder ="Password" formControlName="password">
     </mat-form-field>
   </div>
-  <button mat-raised-button color="primary" [disabled]="loginForm.invalid" 
-    (click)="submitLoginDetails()">Sign In</button>
-  <a href="\register">Register</a>
+  <div class="row centeralign login-container-element">
+    <button mat-raised-button color="primary" [disabled]="loginForm.invalid" 
+      (click)="submitLoginDetails()" class="x1-right">Sign In</button>
+    <a routerLink="/register">Register</a>
+  </div>
 </form>
