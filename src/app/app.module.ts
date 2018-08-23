@@ -21,6 +21,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { CookieService } from 'ngx-cookie-service';
 import { RequestHomeComponent } from './request-home/request-home.component'
+import { OnlyNumber } from './core/directives/onlyNumber';
 
 
 
@@ -31,7 +32,8 @@ import { RequestHomeComponent } from './request-home/request-home.component'
     HomeComponent,
     LoginmoduleComponent,
     RegisterComponent,
-    RequestHomeComponent
+    RequestHomeComponent,
+    OnlyNumber
   ],
   imports: [
     BrowserModule,

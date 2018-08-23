@@ -13,7 +13,7 @@ import { RegisterationDetails } from '../core/typeFiles/registeration-details'
 export class RegisterComponent implements OnInit {
 
   registrationForm: FormGroup; 
-  bloodGroup = ['A+',
+  bloodGroups = ['A+',
   'A-',
   'B+',
   'B-',
@@ -26,20 +26,24 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
-      userName: ['',[Validators.required]],
+      username: ['',[Validators.required]],
       password: ['',[Validators.required]],
       firstName: ['',[Validators.required]],
+      
       lastName: ['',[Validators.required]],
       email: ['', [
         Validators.required,
         Validators.email
       ]],
-      bloodGroup: ['AB-',[Validators.required]]
+      bloodGroup: ['AB-',[Validators.required]],
+      areaCode: ['',[Validators.required]],
+      contactNo: ['',[Validators.required]]
     })
     
+    this.registrationForm.valueChanges.subscribe(console.log)
   }
-  get userName(){
-    return this.registrationForm.get('userName');
+  get username(){
+    return this.registrationForm.get('username');
   }
 
   get password(){
@@ -50,6 +54,10 @@ export class RegisterComponent implements OnInit {
     return this.registrationForm.get('firstName');
   }
 
+  // get middleName(){
+  //   return this.registrationForm.get('middleName');
+  // }
+
   get lastName(){
     return this.registrationForm.get('lastName');
   }
@@ -58,10 +66,17 @@ export class RegisterComponent implements OnInit {
     return this.registrationForm.get('email');
   }
 
-  get bloodType(){
-    return this.registrationForm.get('bloodType');
+  get bloodGroup(){
+    return this.registrationForm.get('bloodGroup');
   }
 
+  get areaCode(){
+    return this.registrationForm.get('areaCode');
+  }
+
+  get contactNo(){
+    return this.registrationForm.get('contactNo');
+  }
   registerUser(){
     console.log("test line inside registeruser");
     console.log(this.registrationForm.value);
