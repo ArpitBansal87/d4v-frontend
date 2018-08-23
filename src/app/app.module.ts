@@ -6,8 +6,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { DetailsComponent } from './details/details.component';
-
 
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +21,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { CookieService } from 'ngx-cookie-service';
 import { RequestHomeComponent } from './request-home/request-home.component'
+import { OnlyNumber } from './core/directives/onlyNumber';
 
 
 
@@ -30,11 +29,11 @@ import { RequestHomeComponent } from './request-home/request-home.component'
   declarations: [
     AppComponent,
     SidebarComponent,
-    DetailsComponent,
     HomeComponent,
     LoginmoduleComponent,
     RegisterComponent,
-    RequestHomeComponent
+    RequestHomeComponent,
+    OnlyNumber
   ],
   imports: [
     BrowserModule,

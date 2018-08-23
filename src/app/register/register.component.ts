@@ -13,7 +13,7 @@ import { RegisterationDetails } from '../core/typeFiles/registeration-details'
 export class RegisterComponent implements OnInit {
 
   registrationForm: FormGroup; 
-  bloodTypes = ['A+',
+  bloodGroups = ['A+',
   'A-',
   'B+',
   'B-',
@@ -22,26 +22,28 @@ export class RegisterComponent implements OnInit {
   'O+',
   'O-' ];
   
-  model = new RegisterationDetails("test","tes","tes","tes","tes");
-
   constructor(private fb: FormBuilder,private data: DataService, private router: Router) { }
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
-      userName: ['',[Validators.required]],
+      username: ['',[Validators.required]],
       password: ['',[Validators.required]],
       firstName: ['',[Validators.required]],
+      
       lastName: ['',[Validators.required]],
       email: ['', [
         Validators.required,
         Validators.email
       ]],
-      bloodType: ['AB-',[Validators.required]]
+      bloodGroup: ['AB-',[Validators.required]],
+      areaCode: ['',[Validators.required]],
+      contactNo: ['',[Validators.required]]
     })
+    
     this.registrationForm.valueChanges.subscribe(console.log)
   }
-  get userName(){
-    return this.registrationForm.get('userName');
+  get username(){
+    return this.registrationForm.get('username');
   }
 
   get password(){
@@ -52,6 +54,10 @@ export class RegisterComponent implements OnInit {
     return this.registrationForm.get('firstName');
   }
 
+  // get middleName(){
+  //   return this.registrationForm.get('middleName');
+  // }
+
   get lastName(){
     return this.registrationForm.get('lastName');
   }
@@ -60,19 +66,21 @@ export class RegisterComponent implements OnInit {
     return this.registrationForm.get('email');
   }
 
-  get bloodType(){
-    return this.registrationForm.get('bloodType');
+  get bloodGroup(){
+    return this.registrationForm.get('bloodGroup');
   }
 
+  get areaCode(){
+    return this.registrationForm.get('areaCode');
+  }
+
+  get contactNo(){
+    return this.registrationForm.get('contactNo');
+  }
   registerUser(){
     console.log("test line inside registeruser");
     console.log(this.registrationForm.value);
-    this.model = new RegisterationDetails(this.registrationForm.value.username,
-    this.registrationForm.value.password,
-    this.registrationForm.value.bloodType,
-    this.registrationForm.value.email,
-    'test');
-    this.data.registerUser(this.model).subscribe( data => {
+    this.data.registerUser(this.registrationForm.value).subscribe( data => {
       console.log("register call placed");
       if(data.id != 'undefined'){
         console.log("registration successfull");

@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
     )
     this.auth.isUserAvailable.subscribe(isLoggedIn => {
       this.loggedIn = isLoggedIn
-      console.log("change in lofin status")
+      console.log("change in login status: " + this.loggedIn)
     })
     
    }
