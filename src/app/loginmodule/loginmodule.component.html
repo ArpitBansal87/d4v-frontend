@@ -15,3 +15,8 @@
     <a routerLink="/register">Register</a>
   </div>
 </form>
+<div *ngIf="testBoolean"> test</div>
+<div class="alertMessage" *ngIf="wasRegistrationSuccess" [@wasRegistrationSuccess]>
+  <p>User Registration was successfull.<br> 
+  Email sent for confirmation of details. Kindly click on the link.</p>
+</div>

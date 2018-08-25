@@ -22,9 +22,7 @@ const httpOptions = {
 
 export class DataService {
 
-  constructor(private http: HttpClient) { console.log("inside constructor");}
-
-  // responseObject: new responseFormat((01,"","","","");
+  constructor(private http: HttpClient) { }
 
   $userDetails: any;
 
@@ -48,8 +46,6 @@ export class DataService {
       'Something bad happened; please try again later.');
   };
 
-  
-
   getUsers() {
     return this.http.get('http://localhost:3000/api/UsersDetails');
   }
@@ -60,10 +56,6 @@ export class DataService {
 
   getUserDetails(){
     return this.$userDetails;
-  }
-
-  getPosts() {
-    return this.http.get('https://jsonplaceholder.typicode.com/posts');
   }
 
   loginUser(user:loginModel):Observable<any>{
