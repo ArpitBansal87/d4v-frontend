@@ -78,12 +78,9 @@ export class RegisterComponent implements OnInit {
     return this.registrationForm.get('contactNo');
   }
   registerUser(){
-    console.log("test line inside registeruser");
-    console.log(this.registrationForm.value);
     this.data.registerUser(this.registrationForm.value).subscribe( data => {
-      console.log("register call placed");
       if(data.id != 'undefined'){
-        console.log("registration successfull");
+        this.router.navigate(['login/success']);
       }
       else 
         console.log("registration unsuccessfull");

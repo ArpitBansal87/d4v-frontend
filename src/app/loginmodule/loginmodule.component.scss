@@ -1,0 +1,9 @@
+.alertMessage {
+    position: absolute;
+    top:20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(240, 226, 206);
+    padding: 10px;
+    max-width: auto;
+}

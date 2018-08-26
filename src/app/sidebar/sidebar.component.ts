@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../core/auth.service';
+import { DataService } from '../core/data.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,7 +13,7 @@ export class SidebarComponent implements OnInit {
   currentUrl: string
   loggedIn: boolean
 
-  constructor(private router: Router, private auth: AuthService) {
+  constructor(private router: Router, private auth: AuthService, private data: DataService) {
     router.events.subscribe(
       (_: NavigationEnd) => this.currentUrl = _.url
     )
@@ -28,5 +29,6 @@ export class SidebarComponent implements OnInit {
 
   logoutUser(){
     this.auth.logout()
+    this.data.logoutUser()
   }
 }
