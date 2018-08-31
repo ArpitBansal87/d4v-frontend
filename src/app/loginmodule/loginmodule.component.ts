@@ -38,8 +38,7 @@ export class LoginmoduleComponent implements OnInit {
   model:any;
   wasRegistrationSuccess: boolean = false
   private sub: any
-  goals = ['My first life goal', 'I want to climb a mountain', 'Go ice skiing'];
-
+  
   constructor(private data: DataService, 
               private router: Router,
               private auth: AuthService,
@@ -98,7 +97,5 @@ export class LoginmoduleComponent implements OnInit {
         }
       })
   }
-  removeItem(i) {
-    this.goals.splice(i, 1);
-  }
+  
 }

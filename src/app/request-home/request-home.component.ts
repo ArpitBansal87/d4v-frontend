@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../core/data.service';
+import { BloodRequest } from '../core/typeFiles/blood-request';
 
 @Component({
   selector: 'app-request-home',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestHomeComponent implements OnInit {
 
-  constructor() { }
+  private bloodRequestList: BloodRequest[] = []
+  
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.data.getBloodRequestList().subscribe( dataResponse => {
+      console.log(dataResponse.toString)
+      let requestList = dataResponse as BloodRequest[]
+      console.log(requestList)
+      return this.bloodRequestList;
+    })
   }
 
 }
