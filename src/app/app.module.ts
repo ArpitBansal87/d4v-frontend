@@ -22,6 +22,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { CookieService } from 'ngx-cookie-service';
 import { RequestHomeComponent } from './request-home/request-home.component'
 import { OnlyNumber } from './core/directives/onlyNumber';
+import { InfoBarComponent } from './info-bar/info-bar.component';
 
 
 
@@ -33,7 +34,8 @@ import { OnlyNumber } from './core/directives/onlyNumber';
     LoginmoduleComponent,
     RegisterComponent,
     RequestHomeComponent,
-    OnlyNumber
+    OnlyNumber,
+    InfoBarComponent
   ],
   imports: [
     BrowserModule,
