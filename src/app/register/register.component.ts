@@ -4,6 +4,7 @@ import { DataService } from '../core/data.service';
 import {Router} from "@angular/router";
 
 import { RegisterationDetails } from '../core/typeFiles/registeration-details'
+import { constants } from '../core/directives/constants';
 
 @Component({
   selector: 'app-register',
@@ -13,15 +14,8 @@ import { RegisterationDetails } from '../core/typeFiles/registeration-details'
 export class RegisterComponent implements OnInit {
 
   registrationForm: FormGroup; 
-  bloodGroups = ['A+',
-  'A-',
-  'B+',
-  'B-',
-  'AB+',
-  'AB-',
-  'O+',
-  'O-' ];
-  
+  bloodGroups = constants.bloodGroups
+    
   constructor(private fb: FormBuilder,private data: DataService, private router: Router) { }
 
   ngOnInit() {

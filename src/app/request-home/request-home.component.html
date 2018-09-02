@@ -2,3 +2,16 @@
   request-home works!
   {{requestList}}
 </p>
+
+<form [formGroup]="addRequestForm" class="container add-request-container group" (submit) = addData()>
+  <div class="row registeration-container-element">
+    <mat-form-field>
+      <input matInput placeholder ="UserName" formControlName="unitsRequired">
+    </mat-form-field>
+  </div>
+  <div class="row registeration-container-element">
+    <mat-form-field>
+      <input matInput placeholder ="UserName" formControlName="purpose">
+    </mat-form-field>
+  </div>
+</form>
