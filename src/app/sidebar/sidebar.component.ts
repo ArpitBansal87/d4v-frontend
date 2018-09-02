@@ -21,6 +21,8 @@ export class SidebarComponent implements OnInit {
       this.loggedIn = isLoggedIn
     })
     
+    this.loggedIn = this.auth.isLoggedIn;
+
    }
 
   ngOnInit() {
@@ -29,5 +31,10 @@ export class SidebarComponent implements OnInit {
   logoutUser(){
     this.auth.logout()
     this.data.logoutUser()
+    this.loggedIn = this.auth.isLoggedIn
+  }
+
+    setLoggedInUser(){
+
   }
 }
