@@ -1,17 +1,92 @@
 <p>
-  request-home works!
-  {{requestList}}
+  request-home works! {{requestList}}
 </p>
 
-<form [formGroup]="addRequestForm" class="container add-request-container group" (submit) = addData()>
-  <div class="row registeration-container-element">
+<form [formGroup]="addRequestForm" class="container add-request-container group" (submit)=addData()>
+  <div class="row bloodRequest-container-element">
     <mat-form-field>
-      <input matInput placeholder ="UserName" formControlName="unitsRequired">
+      <input matInput placeholder="Units Required" 
+      formControlName="unitsRequired">
     </mat-form-field>
   </div>
-  <div class="row registeration-container-element">
+  <div class="row bloodRequest-container-element">
+    
     <mat-form-field>
-      <input matInput placeholder ="UserName" formControlName="purpose">
+      <input matInput placeholder="blood Type" 
+      formControlName="bloodType">
     </mat-form-field>
   </div>
+  <div class="row bloodRequest-container-element">
+    <mat-form-field>
+      <input matInput placeholder="Purpose"
+       formControlName="purpose">
+    </mat-form-field>
+  </div>
+  <div class="row bloodRequest-container-element">
+    <mat-form-field>
+      <input matInput placeholder="Patient's Name" 
+      formControlName="patientName">
+    </mat-form-field>
+  </div>
+  <div class="row bloodRequest-container-element">
+    <mat-form-field>
+      <input matInput placeholder="Required By"
+       formControlName="requiredBy">
+    </mat-form-field>
+  </div>
+  <div class="row bloodRequest-container-element">
+    <mat-form-field formGroupName="attenderDetails" >
+      <input matInput placeholder="Attender's Phone"
+       formControlName="attenderPhone">
+    </mat-form-field>
+  </div>
+  <div class="row bloodRequest-container-element">
+    <mat-form-field formGroupName="attenderDetails">
+      <input matInput placeholder="Attender's Name"
+       formControlName="attenderName">
+    </mat-form-field>
+  </div>
+  <div class="row bloodRequest-container-element">
+    <mat-form-field formGroupName="hospitalDetails">
+      <input matInput placeholder="Address Line 1"
+       formControlName="addressLine1">
+    </mat-form-field>
+  </div>
+  <div class="row bloodRequest-container-element">
+    <mat-form-field formGroupName="hospitalDetails">
+      <input matInput placeholder="Address Line 2"
+       formControlName="addressLine2">
+    </mat-form-field>
+  </div>
+  <div class="row bloodRequest-container-element">
+    <mat-form-field formGroupName="hospitalDetails">
+      <input matInput placeholder="Address Line 3"
+       formControlName="addressLine3">
+    </mat-form-field>
+  </div>
+  <div class="row bloodRequest-container-element">
+    <mat-form-field formGroupName="hospitalDetails">
+      <input matInput placeholder="City"
+       formControlName="city">
+    </mat-form-field>
+  </div>
+  <div class="row bloodRequest-container-element">
+    <mat-form-field formGroupName="hospitalDetails">
+      <input matInput placeholder="PinCode"
+       formControlName="pincode">
+    </mat-form-field>
+  </div>
+  <div class="row bloodRequest-container-element">
+    <mat-form-field formGroupName="hospitalDetails">
+      <input matInput placeholder="State"
+       formControlName="state">
+    </mat-form-field>
+  </div>
+  <div class="row bloodRequest-container-element">
+    <mat-form-field formGroupName="hospitalDetails">
+      <input matInput placeholder="Country"
+       formControlName="country">
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" type="submit">Register</button>
 </form>

@@ -44,4 +44,8 @@ export class RequestHomeComponent implements OnInit {
       })
     })
   }
+
+  addData(){
+    console.log(this.addRequestForm.value)
+  }
 }
