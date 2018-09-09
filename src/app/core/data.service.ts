@@ -8,6 +8,7 @@ import {LoginModelResponseClass} from './typeFiles/login-model-response-class';
 
 
 import { Http, Headers, Request, RequestOptions } from '@angular/http';
+import { BloodRequest } from './typeFiles/blood-request';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -25,7 +26,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   $userDetails: any;
-
+  
   isUserLoggedIn(){
     return true;
   }
@@ -90,6 +91,22 @@ export class DataService {
 
     return this.http.get('http://localhost:3000/api/credentials/logout');
 
+  }
+
+  
+  getBloodRequestList(): Observable<any>{
+    return this.http.get('http://localhost:3000/api/bloodRequests')
+  }
+
+  addBloodRequest(addRequestForm:any):Observable<any>{
+    return this.http.post('http://localhost:3000/api/bloodRequests'
+    ,addRequestForm,httpOptions).pipe(map(response => {
+      return response;
+    }));
+  }
+
+  getBloodRequest(){
+    return this.http.get('http://localhost:3000/api/bloodRequests')
   }
 
  }

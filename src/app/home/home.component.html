@@ -1,4 +1,7 @@
+<div class="informationBar" *ngIf='isUserLoggedIn'>
+  <app-info-bar></app-info-bar>
+</div>
 <section class="container home-component-section">
-  home section works
   <p>UserDetails: {{model.role}}</p>
+  <app-request-home></app-request-home>
 </section>

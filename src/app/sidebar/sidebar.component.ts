@@ -19,9 +19,10 @@ export class SidebarComponent implements OnInit {
     )
     this.auth.isUserAvailable.subscribe(isLoggedIn => {
       this.loggedIn = isLoggedIn
-      console.log("change in login status: " + this.loggedIn)
     })
     
+    this.loggedIn = this.auth.isLoggedIn;
+
    }
 
   ngOnInit() {
@@ -30,5 +31,10 @@ export class SidebarComponent implements OnInit {
   logoutUser(){
     this.auth.logout()
     this.data.logoutUser()
+    this.loggedIn = this.auth.isLoggedIn
+  }
+
+    setLoggedInUser(){
+
   }
 }
