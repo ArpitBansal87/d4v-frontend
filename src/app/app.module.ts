@@ -23,8 +23,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { RequestHomeComponent } from './request-home/request-home.component'
 import { OnlyNumber } from './core/directives/onlyNumber';
 import { InfoBarComponent } from './info-bar/info-bar.component';
-
-
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule,MatMomentDateModule  } from '@coachcare/datepicker';
+import { BloodReqeustFormComponent } from './blood-reqeust-form/blood-reqeust-form.component'
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { InfoBarComponent } from './info-bar/info-bar.component';
     RegisterComponent,
     RequestHomeComponent,
     OnlyNumber,
-    InfoBarComponent
+    InfoBarComponent,
+    BloodReqeustFormComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,10 @@ import { InfoBarComponent } from './info-bar/info-bar.component';
     MatButtonModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMomentDateModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
