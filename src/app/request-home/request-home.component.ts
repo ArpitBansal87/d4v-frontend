@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../core/data.service';
 import { BloodRequest } from '../core/typeFiles/blood-request';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { constants } from '../core/directives/constants';
 
 @Component({
   selector: 'app-request-home',
@@ -12,15 +13,15 @@ export class RequestHomeComponent implements OnInit {
 
   private bloodRequestList: BloodRequest[] = []
   addRequestForm: FormGroup
+  bloodGroups = constants.bloodGroups
+  currentDate = new Date()
   
   constructor(private data: DataService, private formBuilderObject: FormBuilder,) { }
 
   ngOnInit() {
     this.data.getBloodRequestList().subscribe( dataResponse => {
-      console.log(dataResponse)
-      let requestList = dataResponse as BloodRequest[]
-      console.log(requestList)
-      return this.bloodRequestList;
+      this.bloodRequestList = dataResponse as BloodRequest[]
+      console.log("inside getBloodRequestList")
     })
 
     this.addRequestForm = this.formBuilderObject.group({
@@ -46,6 +47,10 @@ export class RequestHomeComponent implements OnInit {
   }
 
   addData(){
-    console.log(this.addRequestForm.value)
+    this.addRequestForm.value.requiredBy = this.addRequestForm.value.requiredBy.toDate()
+    this.addRequestForm.value.createdBy = "test"
+    this.data.addBloodRequest(this.addRequestForm.value).subscribe(data =>{
+      console.log("test line: "+data)
+    })
   }
 }

@@ -98,4 +98,15 @@ export class DataService {
     return this.http.get('http://localhost:3000/api/bloodRequests')
   }
 
+  addBloodRequest(addRequestForm:any):Observable<any>{
+    return this.http.post('http://localhost:3000/api/bloodRequests'
+    ,addRequestForm,httpOptions).pipe(map(response => {
+      return response;
+    }));
+  }
+
+  getBloodRequest(){
+    return this.http.get('http://localhost:3000/api/bloodRequests')
+  }
+
  }
