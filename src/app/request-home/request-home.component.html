@@ -1,94 +1,11 @@
 <p>
   request-home works! {{bloodRequestList}} test line
 </p>
-
-<form id="requestForm" [formGroup]="addRequestForm" class="container add-request-container group" style="display:none;" (submit)=addData()>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field>
-      <input matInput placeholder="Units Required" 
-      formControlName="unitsRequired" required>
-    </mat-form-field>
-  </div>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field>
-      <mat-select  formControlName="bloodType" placeholder="BloodType" color="primary" >
-          <mat-option color="primary" *ngFor="let type of bloodGroups" [value]="type">{{type}}</mat-option>
-      </mat-select >
-    </mat-form-field>
-  </div>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field>
-      <input matInput placeholder="Purpose"
-       formControlName="purpose">
-    </mat-form-field>
-  </div>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field>
-      <input matInput placeholder="Patient's Name" 
-      formControlName="patientName">
-    </mat-form-field>
-  </div>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field>
-      <input matInput [min]="currentDate" [matDatepicker]="myDatepicker"  placeholder="Required by"
-      formControlName="requiredBy">
-      <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-      <mat-datepicker type="datetime" #myDatepicker></mat-datepicker>
-    </mat-form-field>
-  </div>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="attenderDetails" >
-      <input matInput placeholder="Attender's Phone"
-       formControlName="attenderPhone" required>
-    </mat-form-field>
-  </div>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="attenderDetails">
-      <input matInput placeholder="Attender's Name"
-       formControlName="attenderName" required>
-    </mat-form-field>
-  </div>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="Address Line 1"
-       formControlName="addressLine1" required>
-    </mat-form-field>
-  </div>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="Address Line 2"
-       formControlName="addressLine2">
-    </mat-form-field>
-  </div>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="Address Line 3"
-       formControlName="addressLine3">
-    </mat-form-field>
-  </div>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="City"
-       formControlName="city" required>
-    </mat-form-field>
-  </div>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="PinCode"
-       formControlName="pincode" required>
-    </mat-form-field>
-  </div>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="State"
-       formControlName="state" required>
-    </mat-form-field>
-  </div>
-  <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="Country"
-       formControlName="country" required>
-    </mat-form-field>
-  </div>
-  <button mat-raised-button color="primary" type="submit">Register</button>
-</form>
+<ul>
+  <li *ngFor="let requestItem of bloodRequestList">
+    <span>{{ requestItem.bloodType }}</span>
+    <!-- <span>{{ requestItem.requiredBy }}</span> -->
+  </li>
+</ul>
+<span (click)="showBRform()">add blood requrest + </span>
+<app-blood-reqeust-form *ngIf="isNewFormVisible"></app-blood-reqeust-form>

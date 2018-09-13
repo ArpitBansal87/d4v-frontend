@@ -5,6 +5,9 @@ export class UserDetails {
         public contactNo: string,
         public role: string,
         public areaCode: string,
-        public email: string
+        public email: string,
+        public firstName: string,
+        public id: string,
+        public lastName: string
       ) {  }
 }
