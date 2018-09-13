@@ -84,15 +84,11 @@ export class DataService {
         this.$userDetails = response;
         return response;
       }));
-    
   }  
 
   logoutUser(){
-
     return this.http.get('http://localhost:3000/api/credentials/logout');
-
   }
-
   
   getBloodRequestList(): Observable<any>{
     return this.http.get('http://localhost:3000/api/bloodRequests')
