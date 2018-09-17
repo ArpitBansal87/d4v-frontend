@@ -1,10 +1,18 @@
-<p>
-  request-home works! {{bloodRequestList}} test line
-</p>
 <ul>
   <li *ngFor="let requestItem of bloodRequestList">
-    <span>{{ requestItem.bloodType }}</span>
-    <!-- <span>{{ requestItem.requiredBy }}</span> -->
+    <div><span>{{ requestItem.bloodType }}</span></div>
+    <div><span>{{ requestItem.unitsRequired }}</span></div>
+    <div><span>{{ requestItem.purpose }}</span></div>
+    <div><span>{{ requestItem.patientName }}</span></div>
+    <div><span>{{ requestItem.requiredBy }}</span></div>
+    <div><span>{{ requestItem.hospitalName }}</span></div>
+    <div><span>{{ requestItem.hospitalAddressLine1 }}</span></div>
+    <div><span>{{ requestItem.hospitalAddressLine2 }}</span></div>
+    <div><span>{{ requestItem.hospitalAddressLine3 }}</span></div>
+    <div><span>{{ requestItem.hospitalCity }}</span></div>
+    <div><span>{{ requestItem.hospitalPincode }}</span></div>
+    <div><span>{{ requestItem.hospitalState }}</span></div>
+    <app-blood-reqeust-form [dataValue] = "requestItem"></app-blood-reqeust-form>
   </li>
 </ul>
 <span (click)="showBRform()">add blood requrest + </span>
