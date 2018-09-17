@@ -65,8 +65,8 @@ export class DataService {
       map(response => response),
       catchError((err, caught) => {
         console.error("Login failed");
-        return throwError(
-          'Something bad happened; please try again later.')
+        let errorVariable = err.error
+        return throwError(errorVariable)
       })
     );
   }

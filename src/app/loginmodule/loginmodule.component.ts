@@ -84,18 +84,24 @@ export class LoginmoduleComponent implements OnInit {
 
   submitLoginDetails(){
     this.data.loginUser(this.loginForm.value)
-      .subscribe( data => {
-        if(data != null){
-          this.auth.setToken(data.id);
-          this.auth.setLoggedIn(true)
-          this.data.getCustomerDetails(data).subscribe(data => {
-            if(data != null){
-              this.auth.setUser(data);
-              this.router.navigate(['home']);
-            }
-          });
+      .subscribe( 
+        data => {
+          if(data != null){
+            this.auth.setToken(data.id);
+            this.auth.setLoggedIn(true)
+            this.data.getCustomerDetails(data).subscribe(data => {
+              if(data != null){
+                this.auth.setUser(data);
+                this.router.navigate(['home']);
+              }
+            });
+          }
+        },
+        error => {
+          console.log("error")
+          console.log(error)
         }
-      })
+      )
   }
   
 }
