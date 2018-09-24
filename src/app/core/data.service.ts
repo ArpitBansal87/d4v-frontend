@@ -47,10 +47,6 @@ export class DataService {
       'Something bad happened; please try again later.');
   };
 
-  getUsers() {
-    return this.http.get('http://localhost:3000/api/UsersDetails');
-  }
-
   getUser(userId) {
     return this.http.get('https://jsonplaceholder.typicode.com/users/'+userId);
   }
