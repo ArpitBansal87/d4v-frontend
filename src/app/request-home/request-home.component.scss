@@ -1,0 +1,12 @@
+ul.blood-request-list{
+    display: inline;
+    li.blood-request-list-element{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        div.request-element{
+            label.req-elmenet-label{
+                font-weight: 700;
+            }
+        }
+    }
+}

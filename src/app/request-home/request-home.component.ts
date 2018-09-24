@@ -15,6 +15,7 @@ export class RequestHomeComponent implements OnInit {
 
   private bloodRequestList: BloodRequest[] = []
   isNewFormVisible = false
+  openforEdit= false
   
   constructor(private data: DataService, private formBuilderObject: FormBuilder, private auth: AuthService) { }
 
@@ -27,7 +28,8 @@ export class RequestHomeComponent implements OnInit {
   }
   
   showBRform(){
-    this.isNewFormVisible = !this.isNewFormVisible
+    this.openforEdit = !this.openforEdit
   }
+
 
 }
