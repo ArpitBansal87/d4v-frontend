@@ -1,6 +1,3 @@
-<p>
-  blood-reqeust-form works!
-</p>
 <form id="requestForm" [formGroup]="addRequestForm" class="container add-request-container group" (submit)=addData()>
   <div class="row bloodRequest-container-element">
     <mat-form-field>
@@ -44,10 +41,10 @@
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
-      <mat-form-field>
-        <input matInput placeholder="Hospital Name" formControlName="hospitalName" required>
-      </mat-form-field>
-    </div>
+    <mat-form-field>
+      <input matInput placeholder="Hospital Name" formControlName="hospitalName" required>
+    </mat-form-field>
+  </div>
   <div class="row bloodRequest-container-element">
     <mat-form-field>
       <input matInput placeholder="Address Line 1" formControlName="hospitalAddressLine1" required>
@@ -80,6 +77,6 @@
   </div>
 
   <div class="button">
-    <button mat-raised-button color="primary" type="submit">Register</button>
+    <button mat-raised-button color="primary" type="submit">Add</button>
   </div>
 </form>

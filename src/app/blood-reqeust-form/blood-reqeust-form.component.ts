@@ -1,15 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Directive, ViewContainerRef } from '@angular/core';
 import { AuthService } from './../core/auth.service';
 import { DataService } from '../core/data.service';
 import { BloodRequest } from '../core/typeFiles/blood-request';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { constants } from '../core/directives/constants';
 import { UserDetails } from '../core/typeFiles/user-details';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blood-reqeust-form',
   templateUrl: './blood-reqeust-form.component.html',
   styleUrls: ['./blood-reqeust-form.component.scss']
+})
+
+@Directive({
+  selector: '[blood-requests]'
 })
 export class BloodReqeustFormComponent implements OnInit {
 
@@ -22,7 +27,8 @@ export class BloodReqeustFormComponent implements OnInit {
   isRequestFormVisible = true
   
   constructor(private data: DataService, private formBuilderObject: FormBuilder, 
-    private auth: AuthService) { }
+    private auth: AuthService, public viewContainerRef: ViewContainerRef,
+    private router: Router) { }
 
   ngOnInit() {
     if(this.dataValue == undefined){
@@ -33,7 +39,7 @@ export class BloodReqeustFormComponent implements OnInit {
         '',1,'','',mintime,
         '',false,'', 9999999999,
         '','','','',
-        '','','','',''
+        '','','','','','','',''
       )
     }
     this.addRequestForm = this.formBuilderObject.group({
@@ -59,11 +65,12 @@ export class BloodReqeustFormComponent implements OnInit {
 
   addData() {
     this.addRequestForm.value.requiredBy = this.addRequestForm.value.requiredBy.toDate()
-    let usrdet: UserDetails = this.auth.getCurrentUser();
+    let usrdet: UserDetails = this.auth.getCurrentUser()
     this.addRequestForm.value.createdByName = usrdet.firstName + " " + usrdet.lastName
     this.addRequestForm.value.createdById = usrdet.id
     this.data.addBloodRequest(this.addRequestForm.value).subscribe(data => {
       console.log("test line: " + data)
+      this.router.navigate(['\home'])
     },
     error => {
       console.log(error)

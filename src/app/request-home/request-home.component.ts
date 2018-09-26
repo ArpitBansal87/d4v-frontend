@@ -16,6 +16,7 @@ export class RequestHomeComponent implements OnInit {
   private bloodRequestList: BloodRequest[] = []
   isNewFormVisible = false
   openforEdit= false
+  formData:BloodRequest
   
   constructor(private data: DataService, private formBuilderObject: FormBuilder, private auth: AuthService) { }
 
@@ -26,10 +27,14 @@ export class RequestHomeComponent implements OnInit {
       console.log("inside getBloodRequestList")
     })
   }
-  
-  showBRform(){
-    this.openforEdit = !this.openforEdit
+ 
+  showBRform(dataFormValue,indexValue){
+    console.log("this is the value for edit current form: "+indexValue)
+    if(indexValue == -1)
+      this.formData = <BloodRequest>{}
+    else
+      this.formData = dataFormValue
+    this.isNewFormVisible = !this.isNewFormVisible
   }
-
 
 }
