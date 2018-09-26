@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
       contactNo: ['',[Validators.required]]
     })
     
-    this.registrationForm.valueChanges.subscribe(console.log)
+    //this.registrationForm.valueChanges.subscribe(console.log)
   }
   get username(){
     return this.registrationForm.get('username');

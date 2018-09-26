@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginmoduleComponent } from './loginmodule/loginmodule.component';
 import { RegisterComponent } from './register/register.component';
 
+import { MatIconModule} from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -53,7 +54,8 @@ import { BloodReqeustFormComponent } from './blood-reqeust-form/blood-reqeust-fo
     MatChipsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatIconModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

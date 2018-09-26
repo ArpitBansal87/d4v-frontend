@@ -1,96 +1,82 @@
-<p>
-  blood-reqeust-form works!
-</p>
-<form id="requestForm" [formGroup]="addRequestForm" 
-  class="container add-request-container group" (submit)=addData()>
+<form id="requestForm" [formGroup]="addRequestForm" class="container add-request-container group" (submit)=addData()>
   <div class="row bloodRequest-container-element">
     <mat-form-field>
-      <input matInput placeholder="Units Required" 
-      formControlName="unitsRequired" required>
+      <input matInput placeholder="Units Required" formControlName="unitsRequired" required>
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
     <mat-form-field>
-      <mat-select  formControlName="bloodType" placeholder="BloodType" color="primary" >
-          <mat-option color="primary" *ngFor="let type of bloodGroups" [value]="type">{{type}}</mat-option>
-      </mat-select >
+      <mat-select formControlName="bloodType" placeholder="BloodType" color="primary">
+        <mat-option color="primary" *ngFor="let type of bloodGroups" [value]="type">{{type}}</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
     <mat-form-field>
-      <input matInput placeholder="Purpose"
-       formControlName="purpose">
+      <input matInput placeholder="Purpose" formControlName="purpose">
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
     <mat-form-field>
-      <input matInput placeholder="Patient's Name" 
-      formControlName="patientName">
+      <input matInput placeholder="Patient's Name" formControlName="patientName">
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
     <mat-form-field>
-      <input matInput [min]="currentDate" [matDatepicker]="myDatepicker"  placeholder="Required by"
-      formControlName="requiredBy">
+      <input matInput [min]="currentDate" [matDatepicker]="myDatepicker" placeholder="Required by" formControlName="requiredBy">
       <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
       <mat-datepicker type="datetime" #myDatepicker></mat-datepicker>
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="attenderDetails" >
-      <input matInput placeholder="Attender's Phone"
-       formControlName="attenderPhone" required>
+    <!-- <mat-form-field formGroupName="attenderDetails"> -->
+    <mat-form-field>
+      <input matInput placeholder="Attender's Phone" formControlName="attenderPhone" required>
+      <!-- </mat-form-field> -->
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="attenderDetails">
-      <input matInput placeholder="Attender's Name"
-       formControlName="attenderName" required>
+    <mat-form-field>
+      <input matInput placeholder="Attender's Name" formControlName="attenderName" required>
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="Address Line 1"
-       formControlName="addressLine1" required>
+    <mat-form-field>
+      <input matInput placeholder="Hospital Name" formControlName="hospitalName" required>
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="Address Line 2"
-       formControlName="addressLine2">
+    <mat-form-field>
+      <input matInput placeholder="Address Line 1" formControlName="hospitalAddressLine1" required>
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="Address Line 3"
-       formControlName="addressLine3">
+    <mat-form-field>
+      <input matInput placeholder="Address Line 2" formControlName="hospitalAddressLine2">
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="City"
-       formControlName="city" required>
+    <mat-form-field>
+      <input matInput placeholder="Address Line 3" formControlName="hospitalAddressLine3">
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="PinCode"
-       formControlName="pincode" required>
+    <mat-form-field>
+      <input matInput placeholder="City" formControlName="hospitalCity" required>
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="State"
-       formControlName="state" required>
+    <mat-form-field>
+      <input matInput placeholder="PinCode" formControlName="hospitalPincode" required>
     </mat-form-field>
   </div>
   <div class="row bloodRequest-container-element">
-    <mat-form-field formGroupName="hospitalDetails">
-      <input matInput placeholder="Country"
-       formControlName="country" required>
+    <mat-form-field>
+      <input matInput placeholder="State" formControlName="hospitalState" required>
     </mat-form-field>
   </div>
+
   <div class="button">
-    <button mat-raised-button color="primary" type="submit">Register</button>
+    <button mat-raised-button color="primary" type="submit">Add</button>
   </div>
 </form>

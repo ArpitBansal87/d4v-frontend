@@ -1,6 +1,3 @@
-import { HospitalDetailsFormat } from "./hospital-details-format";
-import { AttenderDetails } from "./attender-details";
-
 export class BloodRequest {
 
     constructor(
@@ -9,12 +6,26 @@ export class BloodRequest {
         public purpose: string,
         public patientName: string,      
         public requiredBy: Date,      
-        public hospitalDetails: HospitalDetailsFormat,
         public status: string,
-        public attenderDetails: AttenderDetails,
-        public isRequestVerified: boolean
-        // public moderatorsInvolved
+        public isRequestVerified: boolean,
+        public attenderName: string,
+        public attenderPhone: number,
+        public hospitalName: string,
+        public hospitalAddressLine1: string,
+        public hospitalAddressLine2: string,
+        public hospitalAddressLine3: string,
+        public hospitalCity:string,
+        public hospitalState:string,
+        public hospitalPincode: string,
+        public createdByName:string,
+        public createdById: string,
+        public moderatorsInvolved: string,
+        public id: string,
+        public changeId: string
         
       ) {  }
-
+    
+    createEmpty(){
+        return this
+    }
 }
