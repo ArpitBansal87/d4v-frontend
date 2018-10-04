@@ -20,8 +20,8 @@
       <label class="req-elmenet-label">Required by: </label>
       <span>{{ requestItem.requiredBy }}</span>
     </div>
-    <label>Hospital Details: </label>
     <div class="request-element-hospitalName request-element" id="request-element-{{i}}">
+      <label>Hospital Details: </label>
       <label class="req-elmenet-label">Name: </label>
       <span>{{ requestItem.hospitalName }}</span>
     </div>
@@ -43,17 +43,17 @@
       <label class="req-elmenet-label">State: </label>
       <span>{{ requestItem.hospitalState }}</span>
     </div>
-    <div (click)="showBRform(requestItem,i)">
+    <div (click)="showBRform(requestItem,i)" data-toggle="modal" data-target="#bloodRequestModal">
       <mat-icon>create</mat-icon>
     </div>
   </li>
 </ul>
 <div class="button">
-  <button mat-mini-fab color="primary" type="button" (click)="showBRform(formData,-1)" title="Add a blood Request">
+  <button mat-mini-fab color="primary" type="button" (click)="showBRform(formData,-1)" 
+    title="Add a blood Request" data-toggle="modal" data-target="#bloodRequestModal">
     <mat-icon aria-label="Add a Blood Request">add</mat-icon>
   </button>
 </div>
-<!-- <span (click)="showBRform()">add blood requrest + </span> -->
 <div class="addRequest">
-  <app-blood-reqeust-form [dataValue]="formData" *ngIf="isNewFormVisible"></app-blood-reqeust-form>
+  <app-blood-reqeust-form [dataValue]="formData" (removeEvent)="removeDialog()" *ngIf="isNewFormVisible"></app-blood-reqeust-form>
 </div>
