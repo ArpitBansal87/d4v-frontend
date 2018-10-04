@@ -37,4 +37,9 @@ export class RequestHomeComponent implements OnInit {
     this.isNewFormVisible = !this.isNewFormVisible
   }
 
+  removeDialog(){
+    console.log("inside remove dialog function")
+    this.isNewFormVisible = false
+  }
+
 }

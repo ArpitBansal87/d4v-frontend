@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Directive, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Input, Directive, ViewContainerRef, Output, EventEmitter } from '@angular/core';
 import { AuthService } from './../core/auth.service';
 import { DataService } from '../core/data.service';
 import { BloodRequest } from '../core/typeFiles/blood-request';
@@ -20,6 +20,8 @@ export class BloodReqeustFormComponent implements OnInit {
 
   @Input ()
   dataValue:BloodRequest;
+  @Output () 
+  removeEvent = new EventEmitter();
   
   addRequestForm: FormGroup
   bloodGroups = constants.bloodGroups
@@ -29,6 +31,16 @@ export class BloodReqeustFormComponent implements OnInit {
   constructor(private data: DataService, private formBuilderObject: FormBuilder, 
     private auth: AuthService, public viewContainerRef: ViewContainerRef,
     private router: Router) { }
+
+  ngOnChange(){
+    this.setDataFormValue();
+  }
+
+  removeFunction($event){
+    if($event.target.attributes.role != undefined)
+      if($event.target.attributes.role.value == 'dialog')
+      this.removeEvent.emit()
+  }
 
   ngOnInit() {
     if(this.dataValue == undefined){
@@ -42,6 +54,10 @@ export class BloodReqeustFormComponent implements OnInit {
         '','','','','','','',''
       )
     }
+    this.setDataFormValue();  
+  }
+
+  setDataFormValue():void{
     this.addRequestForm = this.formBuilderObject.group({
       bloodType: [this.dataValue.bloodType, [Validators.required, Validators.maxLength(3)]],
       unitsRequired: [this.dataValue.unitsRequired, [Validators.required, Validators.min(1)]],
