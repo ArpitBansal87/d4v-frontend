@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
   model: any
   ngOnInit() {
     this.model = this.auth.getCurrentUser();
-    console.log(this.auth.isLoggedIn);
     this.isUserLoggedIn = this.auth.isLoggedIn
   }
 

@@ -97,6 +97,20 @@ export class DataService {
     }));
   }
 
+  editBloodRequest(editRequestForm:any):Observable<any>{
+    let requestId = editRequestForm.id
+    delete editRequestForm.id
+    return this.http.put('http://localhost:3000/api/bloodRequests/'+requestId
+    ,editRequestForm,httpOptions).pipe(map(response => {
+      return response;
+    }),
+    catchError((err,caught) =>{
+      console.error("Edit request failed")
+      let errorVariable = err.error
+      return throwError(errorVariable)
+    }));
+  }
+
   getBloodRequest(){
     return this.http.get('http://localhost:3000/api/bloodRequests')
   }
