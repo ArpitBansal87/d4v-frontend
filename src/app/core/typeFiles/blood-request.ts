@@ -19,7 +19,7 @@ export class BloodRequest {
         public hospitalPincode: string,
         public createdByName:string,
         public createdById: string,
-        public moderatorsInvolved: string,
+        public moderatorsInvolved: [string],
         public id: string,
         public changeId: string
         

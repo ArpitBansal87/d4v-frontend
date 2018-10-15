@@ -7,6 +7,10 @@ body {
      background: #F2F2F2 !important;
      font-family: 'Montserrat', sans-serif;
      height: 100vh;
+     
+    div.modal-backdrop{
+        z-index: 980;
+    }
 }
 
 #container {

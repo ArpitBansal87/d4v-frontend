@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../core/data.service';
 import { BloodRequest } from '../core/typeFiles/blood-request';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { constants } from '../core/directives/constants';
-import { UserDetails } from '../core/typeFiles/user-details';
 
 @Component({
   selector: 'app-request-home',
@@ -23,13 +21,10 @@ export class RequestHomeComponent implements OnInit {
   ngOnInit() {
     this.data.getBloodRequestList().subscribe( dataResponse => {
       this.bloodRequestList = dataResponse as BloodRequest[]
-      let testVar = this.auth.getCurrentUser()
-      console.log("inside getBloodRequestList")
     })
   }
- 
+
   showBRform(dataFormValue,indexValue){
-    console.log("this is the value for edit current form: "+indexValue)
     if(indexValue == -1)
       this.formData = <BloodRequest>{}
     else
@@ -38,8 +33,10 @@ export class RequestHomeComponent implements OnInit {
   }
 
   removeDialog(){
-    console.log("inside remove dialog function")
-    this.isNewFormVisible = false
+    this.data.getBloodRequestList().subscribe( dataResponse => {
+      this.bloodRequestList = dataResponse as BloodRequest[]
+      this.isNewFormVisible = false;
+    })
   }
 
 }

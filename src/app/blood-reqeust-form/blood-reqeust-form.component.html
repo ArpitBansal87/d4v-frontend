@@ -1,17 +1,16 @@
 <!-- Modal -->
-<div class="modal fade" id="bloodRequestModal" tabindex="-1" 
-  role="dialog" aria-labelledby="bloodRequestModal" aria-hidden="true" style="padding-right:0px;"
-  (click)="removeFunction($event)">
+<div class="modal" id="bloodRequestModal" tabindex="-1" role="dialog" aria-labelledby="bloodRequestModal"
+  aria-hidden="true" style="padding-right:0px;" (click)="removeFunction($event)">
   <div class="modal-dialog" role="document" style="max-width:860px;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="bloodRequestModalTitle">Blood Request</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button #closebutton type="button" class="close" (click)="initiateClose()" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form id="requestForm" [formGroup]="addRequestForm" class="container add-request-container group" (submit)=addData()>
+        <form id="requestForm" [formGroup]="addRequestForm" class="container add-request-container group" >
           <div class="row bloodRequest-container-element">
             <mat-form-field>
               <input matInput placeholder="Units Required" formControlName="unitsRequired" required>
@@ -36,7 +35,7 @@
           </div>
           <div class="row bloodRequest-container-element">
             <mat-form-field>
-              <input matInput [min]="currentDate" [matDatepicker]="myDatepicker" placeholder="Required by"
+              <input matInput [min]="minDateValue" [matDatepicker]="myDatepicker" placeholder="Required by"
                 formControlName="requiredBy">
               <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
               <mat-datepicker type="datetime" #myDatepicker></mat-datepicker>
@@ -89,13 +88,16 @@
               <input matInput placeholder="State" formControlName="hospitalState" required>
             </mat-form-field>
           </div>
-          
+          <div class="button" *ngIf="!isEditRequest">
+            <button mat-raised-button color="primary" type="button" (click)="addData()">Add</button>
+          </div>
+          <div class="button" *ngIf="isEditRequest">
+            <button mat-raised-button color="primary" type="button" (click)="submitEditedData()">Update</button>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
-        <div class="button">
-            <button mat-raised-button color="primary" type="submit">Add</button>
-          </div>
+
       </div>
     </div>
   </div>
