@@ -6,10 +6,6 @@ import { catchError, retry, map } from 'rxjs/operators';
 import {LoginModelResponseClass} from './typeFiles/login-model-response-class';
 
 
-
-import { Http, Headers, Request, RequestOptions } from '@angular/http';
-import { BloodRequest } from './typeFiles/blood-request';
-
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -74,7 +70,7 @@ export class DataService {
 
   getCustomerDetails(user:LoginModelResponseClass):Observable<any>{
     
-      return this.http.get('http://localhost:3000/api/credentials/'
+      return this.http.get('https://d4vbackend.herokuapp.com/api/credentials/'
           +user.userId+'?access_token='+user.id)
       .pipe(map(response => {
         this.$userDetails = response;
