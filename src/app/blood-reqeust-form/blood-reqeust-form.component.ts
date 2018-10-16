@@ -13,16 +13,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./blood-reqeust-form.component.scss']
 })
 
-@Directive({
-  selector: '[blood-requests]'
-})
 export class BloodReqeustFormComponent implements OnInit, OnDestroy {
 
-  @Input ()
-  dataValue:BloodRequest
+  @Input()
+  public dataValue:BloodRequest;
 
   @Output () 
-  removeEvent = new EventEmitter()
+  public removeEvent = new EventEmitter()
   
   addRequestForm: FormGroup
   bloodGroups = constants.bloodGroups

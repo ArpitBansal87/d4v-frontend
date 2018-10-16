@@ -48,7 +48,7 @@ export class DataService {
   };
 
   getUser(userId) {
-    return this.http.get('https://jsonplaceholder.typicode.com/users/'+userId);
+    return this.http.get('https://d4vbackend.herokuapp.com/api/'+userId);
   }
 
   getUserDetails(){
@@ -56,7 +56,7 @@ export class DataService {
   }
 
   loginUser(user:loginModel):Observable<any>{
-    return this.http.post('http://localhost:3000/api/credentials/login',
+    return this.http.post('https://d4vbackend.herokuapp.com/api/credentials/login',
      user, httpOptions).pipe(
       map(response => response),
       catchError((err, caught) => {
@@ -68,7 +68,7 @@ export class DataService {
   }
 
   registerUser(registerForm:any):Observable<any>{
-    return this.http.post('http://localhost:3000/api/credentials',
+    return this.http.post('https://d4vbackend.herokuapp.com/api/credentials',
     registerForm, httpOptions).pipe(map(response => response));
   }
 
@@ -83,15 +83,15 @@ export class DataService {
   }  
 
   logoutUser(){
-    return this.http.get('http://localhost:3000/api/credentials/logout');
+    return this.http.get('https://d4vbackend.herokuapp.com/api/credentials/logout');
   }
   
   getBloodRequestList(): Observable<any>{
-    return this.http.get('http://localhost:3000/api/bloodRequests')
+    return this.http.get('https://d4vbackend.herokuapp.com/api/bloodRequests')
   }
 
   addBloodRequest(addRequestForm:any):Observable<any>{
-    return this.http.post('http://localhost:3000/api/bloodRequests'
+    return this.http.post('https://d4vbackend.herokuapp.com/api/bloodRequests'
     ,addRequestForm,httpOptions).pipe(map(response => {
       return response;
     }));
@@ -100,7 +100,7 @@ export class DataService {
   editBloodRequest(editRequestForm:any):Observable<any>{
     let requestId = editRequestForm.id
     delete editRequestForm.id
-    return this.http.put('http://localhost:3000/api/bloodRequests/'+requestId
+    return this.http.put('https://d4vbackend.herokuapp.com/api/bloodRequests/'+requestId
     ,editRequestForm,httpOptions).pipe(map(response => {
       return response;
     }),
@@ -112,7 +112,7 @@ export class DataService {
   }
 
   getBloodRequest(){
-    return this.http.get('http://localhost:3000/api/bloodRequests')
+    return this.http.get('https://d4vbackend.herokuapp.com/api/bloodRequests')
   }
 
  }

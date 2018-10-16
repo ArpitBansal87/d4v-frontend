@@ -11,10 +11,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RequestHomeComponent implements OnInit {
 
-  private bloodRequestList: BloodRequest[] = []
+  public bloodRequestList: BloodRequest[] = []
   isNewFormVisible = false
   openforEdit= false
-  formData:BloodRequest
+  public formData:BloodRequest
   
   constructor(private data: DataService, private formBuilderObject: FormBuilder, private auth: AuthService) { }
 
