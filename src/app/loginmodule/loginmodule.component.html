@@ -19,3 +19,6 @@
   <p>User Registration was successfull.<br> 
   Email sent for confirmation of details. Kindly click on the link.</p>
 </div>
+<div class="alertMessage" *ngIf="wasLoginFailure" [@wasLoginFailure]>
+  <p>Incorrect Credentials provided.</p>
+</div>

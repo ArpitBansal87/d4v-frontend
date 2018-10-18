@@ -56,7 +56,6 @@ export class DataService {
      user, httpOptions).pipe(
       map(response => response),
       catchError((err, caught) => {
-        console.error("Login failed");
         let errorVariable = err.error
         return throwError(errorVariable)
       })
@@ -101,7 +100,6 @@ export class DataService {
       return response;
     }),
     catchError((err,caught) =>{
-      console.error("Edit request failed")
       let errorVariable = err.error
       return throwError(errorVariable)
     }));

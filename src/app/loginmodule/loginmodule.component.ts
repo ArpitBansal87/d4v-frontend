@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { loginModel } from '../core/typeFiles/user-model-class'
 import { DataService } from '../core/data.service';
 import {Router, ActivatedRoute} from "@angular/router";
-import { UserDetails} from '../core/typeFiles/user-details'
 import { AuthService } from '../core/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
@@ -29,14 +27,31 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
           style({opacity: 0, transform: 'translate(-50%,-75%)',     offset: 1}),
         ]))
       ])
+    ]),
+    trigger('wasLoginFailure', [
+      transition(':enter', [        
+        animate('1s ease-in', keyframes([
+          style({opacity: 0, transform: 'translate(-50%,-75%)', offset: 0}),
+          style({opacity: .5, transform: 'translate(-50%,35px)',  offset: 0.3}),
+          style({opacity: 1, transform: 'translate(-50%,0)',     offset: 1.0}),
+        ]))
+      ]),
+      transition(':leave', [
+        animate('1s ease-in', keyframes([
+          style({opacity: 1, transform: 'translate(-50%,0)', offset: 0}),
+          style({opacity: .5, transform: 'translate(-50%,35px)',  offset: 0.3}),
+          style({opacity: 0, transform: 'translate(-50%,-75%)',     offset: 1}),
+        ]))
+      ])
     ])
   ]
 })
 export class LoginmoduleComponent implements OnInit {
 
   loginForm:FormGroup
-  model:any;
+  model:any
   wasRegistrationSuccess: boolean = false
+  wasLoginFailure: boolean = false
   private sub: any
   
   constructor(private data: DataService, 
@@ -51,8 +66,6 @@ export class LoginmoduleComponent implements OnInit {
       username: ['',[Validators.required]],
       password: ['',[Validators.required]]
     })
-    // this.loginForm.valueChanges.subscribe(console.log)
-
     if (sessionStorage.getItem('isUserLoggedIn') === 'true'){
       
       if(this.cookie.get('isLoggedIn') === 'true')
@@ -98,8 +111,10 @@ export class LoginmoduleComponent implements OnInit {
           }
         },
         error => {
-          console.log("error")
-          console.log(error)
+          this.wasLoginFailure = true
+          setTimeout(() => {
+            this.wasLoginFailure = false
+          },3000)
         }
       )
   }
