@@ -4,7 +4,7 @@ import { Observable,throwError } from 'rxjs';
 import { loginModel } from './typeFiles/user-model-class';
 import { catchError, retry, map } from 'rxjs/operators';
 import {LoginModelResponseClass} from './typeFiles/login-model-response-class';
-
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -44,7 +44,7 @@ export class DataService {
   };
 
   getUser(userId) {
-    return this.http.get('https://d4vbackend.herokuapp.com/api/'+userId);
+    return this.http.get(environment.serverUrl +userId);
   }
 
   getUserDetails(){
@@ -52,7 +52,7 @@ export class DataService {
   }
 
   loginUser(user:loginModel):Observable<any>{
-    return this.http.post('https://d4vbackend.herokuapp.com/api/credentials/login',
+    return this.http.post(environment.serverUrl +'credentials/login',
      user, httpOptions).pipe(
       map(response => response),
       catchError((err, caught) => {
@@ -63,13 +63,13 @@ export class DataService {
   }
 
   registerUser(registerForm:any):Observable<any>{
-    return this.http.post('https://d4vbackend.herokuapp.com/api/credentials',
+    return this.http.post(environment.serverUrl +'credentials',
     registerForm, httpOptions).pipe(map(response => response));
   }
 
   getCustomerDetails(user:LoginModelResponseClass):Observable<any>{
     
-      return this.http.get('https://d4vbackend.herokuapp.com/api/credentials/'
+      return this.http.get(environment.serverUrl +'credentials/'
           +user.userId+'?access_token='+user.id)
       .pipe(map(response => {
         this.$userDetails = response;
@@ -78,15 +78,15 @@ export class DataService {
   }  
 
   logoutUser(){
-    return this.http.get('https://d4vbackend.herokuapp.com/api/credentials/logout');
+    return this.http.get(environment.serverUrl +'credentials/logout');
   }
   
   getBloodRequestList(): Observable<any>{
-    return this.http.get('https://d4vbackend.herokuapp.com/api/bloodRequests')
+    return this.http.get(environment.serverUrl +'bloodRequests')
   }
 
   addBloodRequest(addRequestForm:any):Observable<any>{
-    return this.http.post('https://d4vbackend.herokuapp.com/api/bloodRequests'
+    return this.http.post(environment.serverUrl +'bloodRequests'
     ,addRequestForm,httpOptions).pipe(map(response => {
       return response;
     }));
@@ -95,7 +95,7 @@ export class DataService {
   editBloodRequest(editRequestForm:any):Observable<any>{
     let requestId = editRequestForm.id
     delete editRequestForm.id
-    return this.http.put('https://d4vbackend.herokuapp.com/api/bloodRequests/'+requestId
+    return this.http.put(environment.serverUrl +'bloodRequests/'+requestId
     ,editRequestForm,httpOptions).pipe(map(response => {
       return response;
     }),
@@ -106,7 +106,7 @@ export class DataService {
   }
 
   getBloodRequest(){
-    return this.http.get('https://d4vbackend.herokuapp.com/api/bloodRequests')
+    return this.http.get(environment.serverUrl +'bloodRequests')
   }
 
  }
