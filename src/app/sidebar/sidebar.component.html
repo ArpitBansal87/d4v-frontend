@@ -1,11 +1,16 @@
 <nav>
   <ul>
+      <li [hidden]="!loggedIn">
+      <a routerLink="home" [class.activated]="currentUrl == '/home'">
+        <mat-icon>home</mat-icon>
+      </a>
+    </li>
     <li [hidden]="loggedIn">
-      <a routerLink="login" [class.activated]="currentUrl == '/login' ||  currentUrl == '/register' || currentUrl == '/'">
+      <a routerLink="login" [class.activated]="currentUrl == '/login'">
         <i class="material-icons">account_box</i>
       </a>
     </li>
-    <li [hidden]="!loggedIn">
+    <li [hidden]="!loggedIn" class="logout-link">
       <a (click)="logoutUser()" routerLink="">
         <i class="material-icons">power_settings_new</i>
       </a>
@@ -13,11 +18,6 @@
     <li>
       <a routerLink="users" [class.activated]="currentUrl == '/users'">
         <i class="material-icons">supervised_user_circle</i>
-      </a>
-    </li>
-    <li>
-      <a routerLink="home" [class.activated]="currentUrl == '/home'">
-        <i class="material-icons">message</i>
       </a>
     </li>
     <li>

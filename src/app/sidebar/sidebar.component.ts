@@ -15,26 +15,29 @@ export class SidebarComponent implements OnInit {
 
   constructor(private router: Router, private auth: AuthService, private data: DataService) {
     router.events.subscribe(
-      (_: NavigationEnd) => this.currentUrl = _.url
+      (_: NavigationEnd) => {
+        if (_.url != undefined)
+          this.currentUrl = _.url;
+      }
     )
     this.auth.isUserAvailable.subscribe(isLoggedIn => {
       this.loggedIn = isLoggedIn
     })
-    
+
     this.loggedIn = this.auth.isLoggedIn;
 
-   }
+  }
 
   ngOnInit() {
   }
 
-  logoutUser(){
+  logoutUser() {
     this.auth.logout()
     this.data.logoutUser()
     this.loggedIn = this.auth.isLoggedIn
   }
 
-    setLoggedInUser(){
+  setLoggedInUser() {
 
   }
 }
