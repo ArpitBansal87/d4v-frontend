@@ -59,9 +59,6 @@ export class AuthService {
   logout(){
 
     this.onAuthChange$.next(null);
-    // we need also request logout to the server api
-    // localStorage.removeItem("currentUser");
-    // localStorage.removeItem("accessToken");
     this.cookie.delete('current')
     this.cookie.delete('accessToken')
     this.setLoggedIn(false)
