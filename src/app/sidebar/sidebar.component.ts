@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../core/auth.service';
-import { DataService } from '../core/data.service';
+import { CredentialsService } from '../core/dataServices/credentials.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,28 +13,31 @@ export class SidebarComponent implements OnInit {
   currentUrl: string
   loggedIn: boolean
 
-  constructor(private router: Router, private auth: AuthService, private data: DataService) {
+  constructor(private router: Router, private auth: AuthService, private dataService: CredentialsService) {
     router.events.subscribe(
-      (_: NavigationEnd) => this.currentUrl = _.url
+      (_: NavigationEnd) => {
+        if (_.url != undefined)
+          this.currentUrl = _.url;
+      }
     )
     this.auth.isUserAvailable.subscribe(isLoggedIn => {
       this.loggedIn = isLoggedIn
     })
-    
+
     this.loggedIn = this.auth.isLoggedIn;
 
-   }
+  }
 
   ngOnInit() {
   }
 
-  logoutUser(){
+  logoutUser() {
     this.auth.logout()
-    this.data.logoutUser()
+    this.dataService.logoutUser()
     this.loggedIn = this.auth.isLoggedIn
   }
 
-    setLoggedInUser(){
+  setLoggedInUser() {
 
   }
 }
