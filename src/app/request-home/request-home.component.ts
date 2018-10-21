@@ -3,7 +3,6 @@ import { AuthService } from './../core/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { BloodRequest } from '../core/typeFiles/blood-request';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CountResponse } from '../core/typeFiles/returnFormat/count-response';
 
 @Component({
   selector: 'app-request-home',
@@ -24,10 +23,6 @@ export class RequestHomeComponent implements OnInit {
     this.dataService.getBloodRequestList().subscribe( dataResponse => {
       this.bloodRequestList = dataResponse as BloodRequest[]
     })
-    this.dataService.getTotalBloodRequestsCount().subscribe(jsonResponse => {
-      let countResponseObj: CountResponse = jsonResponse as CountResponse
-      this.totalBloodRequests = countResponseObj.count
-    })
   }
 
   showBRform(dataFormValue,indexValue){
@@ -39,9 +34,10 @@ export class RequestHomeComponent implements OnInit {
   }
 
   removeDialog(){
+    
     this.dataService.getBloodRequestList().subscribe( dataResponse => {
       this.bloodRequestList = dataResponse as BloodRequest[]
-      this.isNewFormVisible = false;
+      this.isNewFormVisible = false;    
     })
   }
 

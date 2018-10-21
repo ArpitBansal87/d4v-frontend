@@ -1,4 +1,3 @@
-<h2> Total Request ({{ totalBloodRequests }})</h2>
 <ul class="blood-request-list">
   <li class="blood-request-list-element" *ngFor="let requestItem of bloodRequestList; index as i">
     <div class="request-element-bloodType request-element " id="request-element-bloodType-{{i}}">
@@ -52,7 +51,7 @@
 </ul>
 <div class="button">
   <button mat-mini-fab color="primary" type="button" (click)="showBRform(formData,-1)" 
-    title="Add a blood Request" data-toggle="modal" data-target="#bloodRequestModal" data-backdrop="false">
+    title="Add a blood Request" data-toggle="modal" data-target="#bloodRequestModal">
     <mat-icon aria-label="Add a Blood Request">add</mat-icon>
   </button>
 </div>

@@ -33,6 +33,7 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   removeFunction($event) {
+    
     if ($event.target.attributes.role != undefined)
       if ($event.target.attributes.role.value == 'dialog'
         || $event.target.attributes.role.value == 'closeModal')
@@ -41,7 +42,7 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
 
   initiateClose() {
     this.removeEvent.emit();
-    console.log("inside intitiate close ")
+    
   }
 
   ngOnInit() {
@@ -54,7 +55,7 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
         '', 1, '', '', mintime,
         '', false, '', 9999999999,
         '', '', '', '',
-        '', '', '', '', '', [''], '', ''
+        '', '', '', '', '', [''], ''
       )
     }
     else {
@@ -65,7 +66,7 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log("inside ng on destroy");
+    
   }
 
   setDataFormValue(): void {
@@ -88,7 +89,6 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
       createdByName: [this.dataValue.createdByName, [Validators.required]],
       createdById: [this.dataValue.createdById, [Validators.required]],
       moderatorsInvolved: [this.dataValue.moderatorsInvolved, []],
-      id: [this.dataValue.id, []],
       changeId: [this.dataValue.changeId, []]
     })
   }
@@ -104,11 +104,11 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
       error => {
         console.log(error)
       })
+    this.triggerClick()
   }
 
   submitEditedData() {
     this.dataService.editBloodRequest(this.addRequestForm.value).subscribe(data => {
-      console.log("request Edited test line 1")
       this.triggerClick()
     }
       , error => {
@@ -118,9 +118,9 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
 
   @ViewChild('closebutton') closeButton: ElementRef;
   triggerClick() {
-    debugger;
+    
     let el: HTMLElement = this.closeButton.nativeElement as HTMLElement
     el.click()
-    console.log("inside trigger click")
+    
   }
 }

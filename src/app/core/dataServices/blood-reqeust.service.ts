@@ -41,7 +41,8 @@ export class BloodReqeustService {
     return this.http.get(environment.serverUrl +'bloodRequests')
   }
 
-  getTotalBloodRequestsCount(){
-    return this.http.get(environment.serverUrl + 'bloodRequests' + '/count')
+  getTotalBloodRequestsCount(filterValue){
+    let whereClause = (filterValue.length == 0)?'':'?where={"status":{"neq":"Edit"}}'
+    return this.http.get(environment.serverUrl + 'bloodRequests' + '/count'+whereClause)
   }
 }
