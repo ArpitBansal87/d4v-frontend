@@ -1,8 +1,9 @@
+import { BloodReqeustService } from './../core/dataServices/blood-reqeust.service';
 import { AuthService } from './../core/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../core/data.service';
 import { BloodRequest } from '../core/typeFiles/blood-request';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CountResponse } from '../core/typeFiles/returnFormat/count-response';
 
 @Component({
   selector: 'app-request-home',
@@ -12,15 +13,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RequestHomeComponent implements OnInit {
 
   public bloodRequestList: BloodRequest[] = []
+  public totalBloodRequests: number
   isNewFormVisible = false
   openforEdit= false
   public formData:BloodRequest
   
-  constructor(private data: DataService, private formBuilderObject: FormBuilder, private auth: AuthService) { }
+  constructor(private dataService: BloodReqeustService, private formBuilderObject: FormBuilder, private auth: AuthService) { }
 
   ngOnInit() {
-    this.data.getBloodRequestList().subscribe( dataResponse => {
+    this.dataService.getBloodRequestList().subscribe( dataResponse => {
       this.bloodRequestList = dataResponse as BloodRequest[]
+    })
+    this.dataService.getTotalBloodRequestsCount().subscribe(jsonResponse => {
+      let countResponseObj: CountResponse = jsonResponse as CountResponse
+      this.totalBloodRequests = countResponseObj.count
     })
   }
 
@@ -33,7 +39,7 @@ export class RequestHomeComponent implements OnInit {
   }
 
   removeDialog(){
-    this.data.getBloodRequestList().subscribe( dataResponse => {
+    this.dataService.getBloodRequestList().subscribe( dataResponse => {
       this.bloodRequestList = dataResponse as BloodRequest[]
       this.isNewFormVisible = false;
     })

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators,FormBuilder, FormGroup } from '@angular/forms';
-import { DataService } from '../core/data.service';
 import {Router} from "@angular/router";
 
-import { RegisterationDetails } from '../core/typeFiles/registeration-details'
 import { constants } from '../core/directives/constants';
+import { CredentialsService } from '../core/dataServices/credentials.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +15,7 @@ export class RegisterComponent implements OnInit {
   registrationForm: FormGroup; 
   bloodGroups = constants.bloodGroups
     
-  constructor(private fb: FormBuilder,private data: DataService, private router: Router) { }
+  constructor(private fb: FormBuilder,private dataService: CredentialsService, private router: Router) { }
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
@@ -72,7 +71,7 @@ export class RegisterComponent implements OnInit {
     return this.registrationForm.get('contactNo');
   }
   registerUser(){
-    this.data.registerUser(this.registrationForm.value).subscribe( data => {
+    this.dataService.registerUser(this.registrationForm.value).subscribe( data => {
       if(data.id != 'undefined'){
         this.router.navigate(['login/success']);
       }

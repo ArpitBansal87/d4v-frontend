@@ -1,3 +1,4 @@
+import { BloodReqeustService } from './core/dataServices/blood-reqeust.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
@@ -27,6 +28,8 @@ import { InfoBarComponent } from './info-bar/info-bar.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule,MatMomentDateModule  } from '@coachcare/datepicker';
 import { BloodReqeustFormComponent } from './blood-reqeust-form/blood-reqeust-form.component'
+import { CredentialsService } from './core/dataServices/credentials.service';
+import { requestConstants } from './core/dataServices/requestConstants';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,7 @@ import { BloodReqeustFormComponent } from './blood-reqeust-form/blood-reqeust-fo
     MatMomentDateModule,
     MatIconModule
   ],
-  providers: [CookieService],
+  providers: [CookieService,CredentialsService,BloodReqeustService, requestConstants],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

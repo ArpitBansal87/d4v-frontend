@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../core/data.service';
 import { AuthService } from '../core/auth.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { AuthService } from '../core/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private data: DataService, private auth: AuthService) { }
+  constructor(private auth: AuthService) { }
   isUserLoggedIn: boolean = false
   model: any
   ngOnInit() {

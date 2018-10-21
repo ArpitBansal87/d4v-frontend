@@ -1,6 +1,7 @@
+import { CredentialsService } from './../core/dataServices/credentials.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { DataService } from '../core/data.service';
+
 import {Router, ActivatedRoute} from "@angular/router";
 import { AuthService } from '../core/auth.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -54,7 +55,7 @@ export class LoginmoduleComponent implements OnInit {
   wasLoginFailure: boolean = false
   private sub: any
   
-  constructor(private data: DataService, 
+  constructor(private dataService: CredentialsService, 
               private router: Router,
               private auth: AuthService,
               private activeRoute: ActivatedRoute,
@@ -96,13 +97,13 @@ export class LoginmoduleComponent implements OnInit {
   }
 
   submitLoginDetails(){
-    this.data.loginUser(this.loginForm.value)
+    this.dataService.loginUser(this.loginForm.value)
       .subscribe( 
         data => {
           if(data != null){
             this.auth.setToken(data.id);
             this.auth.setLoggedIn(true)
-            this.data.getCustomerDetails(data).subscribe(data => {
+            this.dataService.getCustomerDetails(data).subscribe(data => {
               if(data != null){
                 this.auth.setUser(data);
                 this.router.navigate(['home']);

@@ -1,7 +1,7 @@
-import {Injectable, Output, EventEmitter} from '@angular/core';
-import {UserDetails} from "./typeFiles/user-details";
-import {isNullOrUndefined} from "util";
-import {Observable, Subject} from "rxjs";
+import { Injectable, Output, EventEmitter } from '@angular/core';
+import { UserDetails } from "./typeFiles/user-details";
+import { isNullOrUndefined } from "util";
+import { Subject } from "rxjs";
 import { CookieService } from 'ngx-cookie-service'
 
 @Injectable({
@@ -29,7 +29,6 @@ export class AuthService {
     console.log("current user setup")
     this.onAuthChange$.next(user)
     let userString = JSON.stringify(user)
-    // localStorage.setItem("currentUser", userString);
     this.cookie.set('userSession',userString)
     sessionStorage.setItem('isUserLoggedIn', 'true')
     this.isUserAvailable.emit(true)
@@ -37,7 +36,6 @@ export class AuthService {
   }
 
   getCurrentUser(): UserDetails {
-    // let userString = localStorage.getItem("currentUser");
     let userString = this.cookie.get('userSession')
     if (!isNullOrUndefined(userString)) {
       let user: UserDetails = JSON.parse(userString);
