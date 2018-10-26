@@ -110,17 +110,16 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
   submitEditedData() {
     this.dataService.editBloodRequest(this.addRequestForm.value).subscribe(data => {
       this.triggerClick()
-    }
-      , error => {
+      }, 
+      error => {
         console.log('Error Value: ' + error)
       })
   }
 
   @ViewChild('closebutton') closeButton: ElementRef;
   triggerClick() {
-    
     let el: HTMLElement = this.closeButton.nativeElement as HTMLElement
     el.click()
-    
   }
+
 }
