@@ -1,57 +1,53 @@
-<ul class="blood-request-list">
-  <li class="blood-request-list-element" *ngFor="let requestItem of bloodRequestList; index as i">
-    <div class="request-element-bloodType request-element " id="request-element-bloodType-{{i}}">
-      <label class="req-elmenet-label">Blood type: </label>
-      <span>{{ requestItem.bloodType }}</span>
+<ul class="blood-request-list row">
+  <li class="blood-request-list-element col-sm-5 mx-sm-2" *ngFor="let requestItem of bloodRequestList; index as i">
+    <div class="bloodRequest-patient-info">
+      <span class="request-element-patientName request-element " id="request-element-patientName-{{i}}">
+        {{ requestItem.patientName }}
+      </span>
+      <span class="bloodRequest-verbiage-suffers"> </span>
+      <span class="bloodRequest-verbiage-needs"> needs </span>
+      <span class="request-element-unitsRequired request-element" id="request-element-unitsRequired-{{i}}">
+        {{ requestItem.unitsRequired }}
+      </span>
+      <span class="bloodRequest-verbiage-units"> units of </span>
+      <span class="request-element-bloodType request-element " id="request-element-bloodType-{{i}}">
+        {{ requestItem.bloodType }}
+      </span>
+      <span class="bloodRequest-verbiage-blood"> blood for </span>
+      <span class="request-element-purpose request-element " id="request-element-purpose-{{i}}">
+        {{ requestItem.purpose }}
+      </span>
     </div>
-    <div class="request-element-unitsRequired request-element" id="request-element-unitsRequired-{{i}}">
-      <label class="req-elmenet-label">Units Required: </label>
-      <span>{{ requestItem.unitsRequired }}</span>
+    <div class="bloodRequest-contact-info">
+      <span class="bloodRequest-verbiage-contact">Contact </span>
+      <span class="request-element-attender request-element" id="request-element-attender-name-{{i}}">
+        {{ requestItem.attenderName }}
+      </span>
+      <span class="bloodRequest-verbiage-at">@</span>
+      <span class="request-element-attender request-element" id="request-element-attender-name-{{i}}">
+        {{ requestItem.attenderPhone }}
+      </span>
+      <span class="bloodRequest-verbiage-by"> by </span>
+      <span class="request-element-requiredBy request-element" id="request-element-requiredBy-{{i}}">
+        {{ requestItem.requiredBy }}
+      </span>
     </div>
-    <div class="request-element-purpose request-element " id="request-element-purpose-{{i}}">
-      <label class="req-elmenet-label">Purpose: </label>
-      <span>{{ requestItem.purpose }}</span>
+    <div class="bloodRequest-hospital-details">
+      <span>Kindly reach </span>
+      <span class="request-element-hospitalName request-element" id="request-element-hospitalName-{{i}}">
+        {{ requestItem.hospitalName }}
+      </span>
+      <span> for donation</span>
     </div>
-    <div class="request-element-patientName request-element " id="request-element-patientName-{{i}}">
-      <label class="req-elmenet-label">Patient Name: </label>
-      <span>{{ requestItem.patientName }}</span>
-    </div>
-    <div class="request-element-requiredBy request-element" id="request-element-requiredBy-{{i}}">
-      <label class="req-elmenet-label">Required by: </label>
-      <span>{{ requestItem.requiredBy }}</span>
-    </div>
-    <div class="request-element-hospitalName request-element" id="request-element-hospitalName-{{i}}">
-      <label>Hospital Details: </label>
-      <label class="req-elmenet-label">Name: </label>
-      <span>{{ requestItem.hospitalName }}</span>
-    </div>
-    <div class="request-element-hospitalAddressLine request-element" id="request-element-hospitalAddressLine-{{i}}">
-      <label class="req-elmenet-label"> Address: </label>
-      <span>{{ requestItem.hospitalAddressLine1 }}</span>
-      <span>{{ requestItem.hospitalAddressLine2 }}</span>
-      <span>{{ requestItem.hospitalAddressLine3 }}</span>
-    </div>
-    <div class="request-element-hospitalCity request-element" id="request-element-hospitalCity-{{i}}">
-      <label class="req-elmenet-label">City: </label>
-      <span>{{ requestItem.hospitalCity }}</span>
-    </div>
-    <div class="request-element-hospitalPincode request-element" id="request-element-hospitalPinCode-{{i}}">
-      <label class="req-elmenet-label">Pincode: </label>
-      <span>{{ requestItem.hospitalPincode }}</span>
-    </div>
-    <div class="request-element-hospitalState request-element" id="request-element-hospitalState-{{i}}">
-      <label class="req-elmenet-label">State: </label>
-      <span>{{ requestItem.hospitalState }}</span>
-    </div>
-    <div (click)="showBRform(requestItem,i)" data-toggle="modal" data-target="#bloodRequestModal">
+    <span (click)="showBRform(requestItem,i)" data-toggle="modal" data-target="#bloodRequestModal">
       <mat-icon>create</mat-icon>
-    </div>
+    </span>
     <span>{{ requestItem.status }}</span>
   </li>
 </ul>
 <div class="button">
-  <button mat-mini-fab color="primary" type="button" (click)="showBRform(formData,-1)" 
-    title="Add a blood Request" data-toggle="modal" data-target="#bloodRequestModal">
+  <button mat-mini-fab color="primary" type="button" (click)="showBRform(formData,-1)" title="Add a blood Request"
+    data-toggle="modal" data-target="#bloodRequestModal">
     <mat-icon aria-label="Add a Blood Request">add</mat-icon>
   </button>
 </div>
