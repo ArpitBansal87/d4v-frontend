@@ -55,7 +55,7 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
         '', 1, '', '', mintime,
         '', false, '', 9999999999,
         '', '', '', '',
-        '', '', '', '', '', [''], ''
+        '', '', '', '', '', [''], '',''
       )
     }
     else {
@@ -89,7 +89,8 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
       createdByName: [this.dataValue.createdByName, [Validators.required]],
       createdById: [this.dataValue.createdById, [Validators.required]],
       moderatorsInvolved: [this.dataValue.moderatorsInvolved, []],
-      changeId: [this.dataValue.changeId, []]
+      changeId: [this.dataValue.changeId, []],
+      id: [this.dataValue.id,[Validators.required]]
     })
   }
 

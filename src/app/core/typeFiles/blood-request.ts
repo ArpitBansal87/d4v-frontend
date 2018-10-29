@@ -20,8 +20,8 @@ export class BloodRequest {
         public createdByName:string,
         public createdById: string,
         public moderatorsInvolved: [string],
-        public changeId: string
-        
+        public changeId: string,
+        public id: string
       ) {  }
     
     createEmpty(){
