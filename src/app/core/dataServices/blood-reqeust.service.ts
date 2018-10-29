@@ -18,6 +18,8 @@ export class BloodReqeustService {
   }
 
   addBloodRequest(addRequestForm:any):Observable<any>{
+    let requestId = addRequestForm.id
+    delete addRequestForm.id
     return this.http.post(environment.serverUrl +'bloodRequests'
     ,addRequestForm,this.httpOptions.postHttpOption).pipe(map(response => {
       return response;
