@@ -30,6 +30,7 @@ import { MatDatepickerModule,MatMomentDateModule  } from '@coachcare/datepicker'
 import { BloodReqeustFormComponent } from './blood-reqeust-form/blood-reqeust-form.component'
 import { CredentialsService } from './core/dataServices/credentials.service';
 import { requestConstants } from './core/dataServices/requestConstants';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { requestConstants } from './core/dataServices/requestConstants';
     RequestHomeComponent,
     OnlyNumber,
     InfoBarComponent,
-    BloodReqeustFormComponent
+    BloodReqeustFormComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

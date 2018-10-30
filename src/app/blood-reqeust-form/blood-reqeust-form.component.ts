@@ -41,8 +41,7 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
   }
 
   initiateClose() {
-    this.removeEvent.emit();
-    
+    this.removeEvent.emit();    
   }
 
   ngOnInit() {

@@ -8,6 +8,7 @@ export class UserDetails {
         public email: string,
         public firstName: string,
         public id: string,
-        public lastName: string
+        public lastName: string,
+        public middleName: string
       ) {  }
 }
