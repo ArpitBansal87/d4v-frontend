@@ -1,7 +1,9 @@
+import { userDetailsClass } from './../core/typeFiles/user-details-model-class';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../core/auth.service';
 import { CredentialsService } from '../core/dataServices/credentials.service';
+import { UserDetails } from '../core/typeFiles/user-details';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,6 +14,8 @@ export class SidebarComponent implements OnInit {
 
   currentUrl: string
   loggedIn: boolean
+  doesUserHaveAdminPriv: boolean
+  userObj: UserDetails
 
   constructor(private router: Router, private auth: AuthService, private dataService: CredentialsService) {
     router.events.subscribe(
@@ -22,10 +26,15 @@ export class SidebarComponent implements OnInit {
     )
     this.auth.isUserAvailable.subscribe(isLoggedIn => {
       this.loggedIn = isLoggedIn
+      this.userObj = this.auth.getCurrentUser()
+    this.doesUserHaveAdminPriv = (this.auth.isLoggedIn && this.userObj != null && this.userObj.role == 'member')?true:false
     })
 
-    this.loggedIn = this.auth.isLoggedIn;
+    this.userObj = this.auth.getCurrentUser()
+    this.doesUserHaveAdminPriv = (this.auth.isLoggedIn && this.userObj != null && this.userObj.role == 'member')?true:false
 
+    this.loggedIn = this.auth.isLoggedIn;
+    console.log("inside sidebar component")
   }
 
   ngOnInit() {

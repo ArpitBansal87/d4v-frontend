@@ -15,8 +15,8 @@
         <i class="material-icons">power_settings_new</i>
       </a>
     </li>
-    <li>
-      <a routerLink="users" [class.activated]="currentUrl == '/users'">
+    <li *ngIf="doesUserHaveAdminPriv">
+      <a routerLink="users" routerLink="users" [class.activated]="currentUrl == '/users'">
         <i class="material-icons">supervised_user_circle</i>
       </a>
     </li>
