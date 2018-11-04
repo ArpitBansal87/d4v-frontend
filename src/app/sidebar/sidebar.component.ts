@@ -14,8 +14,8 @@ export class SidebarComponent implements OnInit {
 
   currentUrl: string
   loggedIn: boolean
-  doesUserHaveAdminPriv: boolean
-  userObj: UserDetails
+  isCoreMemebr: boolean
+  private userObj: UserDetails
 
   constructor(private router: Router, private auth: AuthService, private dataService: CredentialsService) {
     router.events.subscribe(
@@ -27,14 +27,9 @@ export class SidebarComponent implements OnInit {
     this.auth.isUserAvailable.subscribe(isLoggedIn => {
       this.loggedIn = isLoggedIn
       this.userObj = this.auth.getCurrentUser()
-    this.doesUserHaveAdminPriv = (this.auth.isLoggedIn && this.userObj != null && this.userObj.role == 'member')?true:false
-    })
-
-    this.userObj = this.auth.getCurrentUser()
-    this.doesUserHaveAdminPriv = (this.auth.isLoggedIn && this.userObj != null && this.userObj.role == 'member')?true:false
-
+      this.isCoreMemebr = (this.auth.isLoggedIn && this.userObj != null && this.userObj.role == 'member')?true:false
+    })    
     this.loggedIn = this.auth.isLoggedIn;
-    console.log("inside sidebar component")
   }
 
   ngOnInit() {
