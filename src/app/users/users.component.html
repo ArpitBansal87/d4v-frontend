@@ -1,3 +1,14 @@
 <h1> User List</h1>
-<p>Puneet says that following is the list of users currently on our database</p>
+<p>Following is the list of users currently on our database</p>
+
+<ul>
+  <li>
+    <div>
+      <h3> User details</h3>
+    </div>
+  </li>
+  <li *ngFor="let userObj of userDetailsList, index as i">
+    {{ userObj.role}}  {{ userObj.firstName}}
+  </li>
+</ul>
 

@@ -1,4 +1,6 @@
+import { UserDetails } from './../core/typeFiles/user-details';
 import { Component, OnInit } from '@angular/core';
+import { CredentialsService } from '../core/dataServices/credentials.service';
 
 @Component({
   selector: 'app-users',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
-  constructor() { }
+  userDetailsList: UserDetails[] = []
+
+  constructor(private data: CredentialsService) { }
 
   ngOnInit() {
+    this.data.getAllUsers().subscribe(dataResponse => {
+      this.userDetailsList = dataResponse as UserDetails[]
+    });
   }
 
 }
