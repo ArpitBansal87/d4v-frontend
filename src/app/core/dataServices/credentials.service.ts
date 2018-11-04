@@ -75,4 +75,8 @@ export class CredentialsService {
     return this.http.get(environment.serverUrl +'credentials/logout');
   }
 
+  getAllUsers(){
+    return this.http.get(environment.serverUrl+'credentials');
+  }
+
 }
