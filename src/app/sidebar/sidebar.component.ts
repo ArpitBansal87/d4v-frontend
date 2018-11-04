@@ -24,11 +24,14 @@ export class SidebarComponent implements OnInit {
           this.currentUrl = _.url;
       }
     )
+
+    if (this.auth.isLoggedIn) {
+      this.verifyUser()
+    }
     this.auth.isUserAvailable.subscribe(isLoggedIn => {
-      this.loggedIn = isLoggedIn
-      this.userObj = this.auth.getCurrentUser()
-      this.isCoreMemebr = (this.auth.isLoggedIn && this.userObj != null && this.userObj.role == 'member')?true:false
-    })    
+      this.verifyUser()      
+    })
+
     this.loggedIn = this.auth.isLoggedIn;
   }
 
@@ -42,6 +45,13 @@ export class SidebarComponent implements OnInit {
   }
 
   setLoggedInUser() {
+
+  }
+
+  verifyUser() {
+    this.loggedIn = this.auth.isLoggedIn
+    this.userObj = this.auth.getCurrentUser()
+    this.isCoreMemebr = (this.auth.isLoggedIn && this.userObj != null && this.userObj.role == 'member') ? true : false
 
   }
 }
