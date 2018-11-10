@@ -1,3 +1,4 @@
+import { CommonDataService } from './../core/dataServices/common-data.service';
 import { BloodReqeustService } from './../core/dataServices/blood-reqeust.service';
 import { AuthService } from './../core/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,12 +18,14 @@ export class RequestHomeComponent implements OnInit {
   openforEdit= false
   public formData:BloodRequest
   
-  constructor(private dataService: BloodReqeustService, private formBuilderObject: FormBuilder, private auth: AuthService) { }
+  constructor(private dataService: BloodReqeustService, 
+    private auth: AuthService, private commonData: CommonDataService) { }
 
   ngOnInit() {
-    this.dataService.getBloodRequestList().subscribe( dataResponse => {
+    this.commonData.bloodRequestList.subscribe(dataResponse => {
       this.bloodRequestList = dataResponse as BloodRequest[]
     })
+    this.commonData.getBloodRequestData()
   }
 
   showBRform(dataFormValue,indexValue){
@@ -34,10 +37,15 @@ export class RequestHomeComponent implements OnInit {
   }
 
   removeDialog(){
-    
     this.dataService.getBloodRequestList().subscribe( dataResponse => {
       this.bloodRequestList = dataResponse as BloodRequest[]
       this.isNewFormVisible = false;    
+    })
+  }
+
+  deleteBloodRequest(requestId,index){
+    this.dataService.deleteBloodRequest(requestId).subscribe( dataResponse => {
+      this.commonData.getBloodRequestData()
     })
   }
 

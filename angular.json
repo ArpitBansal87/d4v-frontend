@@ -34,10 +34,12 @@
               "node_modules/@coachcare/datepicker/prebuilt-themes/indigo-pink.css",
               "node_modules/bootstrap/dist/css/bootstrap-reboot.css",
               "node_modules/bootstrap/dist/css/bootstrap-grid.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"                
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": ["node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"]
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -76,7 +78,7 @@
             "production": {
               "browserTarget": "d4vdemo:build:production"
             },
-            "dev":{
+            "dev": {
               "browserTarget": "d4vdemo:build:dev"
             }
           }
