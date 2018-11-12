@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { constants } from '../core/directives/constants';
 import { UserDetails } from '../core/typeFiles/user-details';
 import { Router } from '@angular/router';
+import { CommonDataService } from '../core/dataServices/common-data.service';
 
 @Component({
   selector: 'app-blood-reqeust-form',
@@ -30,7 +31,7 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
 
   constructor(private dataService: BloodReqeustService, private formBuilderObject: FormBuilder,
     private auth: AuthService, public viewContainerRef: ViewContainerRef,
-    private router: Router) { }
+    private router: Router, private commonData: CommonDataService) { }
 
   removeFunction($event) {
     
@@ -99,7 +100,7 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
     this.addRequestForm.value.createdByName = usrdet.firstName + " " + usrdet.lastName
     this.addRequestForm.value.createdById = usrdet.id
     this.dataService.addBloodRequest(this.addRequestForm.value).subscribe(data => {
-      this.router.navigate(['\home'])
+      this.commonData.getBloodRequestData()
     },
       error => {
         console.log(error)
@@ -110,6 +111,7 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
   submitEditedData() {
     this.dataService.editBloodRequest(this.addRequestForm.value).subscribe(data => {
       this.triggerClick()
+      this.commonData.getBloodRequestData()
       }, 
       error => {
         console.log('Error Value: ' + error)

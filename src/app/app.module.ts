@@ -1,7 +1,8 @@
+import { CommonDataService } from './core/dataServices/common-data.service';
 import { BloodReqeustService } from './core/dataServices/blood-reqeust.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,7 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginmoduleComponent } from './loginmodule/loginmodule.component';
 import { RegisterComponent } from './register/register.component';
 
-import { MatIconModule} from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,11 +27,14 @@ import { RequestHomeComponent } from './request-home/request-home.component'
 import { OnlyNumber } from './core/directives/onlyNumber';
 import { InfoBarComponent } from './info-bar/info-bar.component';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule,MatMomentDateModule  } from '@coachcare/datepicker';
+import { MatDatepickerModule, MatMomentDateModule } from '@coachcare/datepicker';
 import { BloodReqeustFormComponent } from './blood-reqeust-form/blood-reqeust-form.component'
 import { CredentialsService } from './core/dataServices/credentials.service';
 import { requestConstants } from './core/dataServices/requestConstants';
 import { UsersComponent } from './users/users.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -60,9 +64,17 @@ import { UsersComponent } from './users/users.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatMomentDateModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatGridListModule,
+    MatListModule
   ],
-  providers: [CookieService,CredentialsService,BloodReqeustService, requestConstants],
+  providers: [CookieService,
+    CredentialsService,
+    BloodReqeustService,
+    requestConstants,
+    CommonDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -47,4 +47,8 @@ export class BloodReqeustService {
     let whereClause = (filterValue.length == 0)?'':'?where={"status":{"neq":"Edit"}}'
     return this.http.get(environment.serverUrl + 'bloodRequests' + '/count'+whereClause)
   }
+
+  deleteBloodRequest(bloodRequetId){
+    return this.http.delete(environment.serverUrl + 'bloodRequests/' + bloodRequetId) 
+  }
 }
