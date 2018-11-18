@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service'
+import { CookieService } from 'ngx-cookie-service';
+import { Title } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,13 @@ import { CookieService } from 'ngx-cookie-service'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnDestroy{
-  title = 'd4V Blood support';
+  title = 'D4V';
 
-  constructor(private cookieHandler: CookieService ){}
+  constructor(private cookieHandler: CookieService, private titleService: Title ){}
 
+  ngOnInit(){
+    this.titleService.setTitle(this.title)
+  }
   ngOnDestroy(){
     this.cookieHandler.deleteAll();
   }
