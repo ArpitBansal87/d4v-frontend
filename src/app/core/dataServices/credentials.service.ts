@@ -76,7 +76,7 @@ export class CredentialsService {
   }
 
   getAllUsers(){
-    return this.http.get(environment.serverUrl+'credentials');
+    return this.http.get(environment.serverUrl+'credentials?filter[include]=roles');
   }
 
 }

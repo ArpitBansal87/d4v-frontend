@@ -79,7 +79,7 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
       hospitalName: [this.dataValue.hospitalName, [Validators.required]],
       attenderName: [this.dataValue.attenderName, [Validators.required]],
       attenderPhone: [this.dataValue.attenderPhone, [Validators.required]],
-      status: [(this.dataValue.status == '') ? 'New' : 'Edit', [Validators.required]],
+      status: [(this.dataValue.status == '')?'New':'Edit', [Validators.required]],
       hospitalAddressLine1: [this.dataValue.hospitalAddressLine1, [Validators.required]],
       hospitalAddressLine2: [this.dataValue.hospitalAddressLine2],
       hospitalAddressLine3: [this.dataValue.hospitalAddressLine3],

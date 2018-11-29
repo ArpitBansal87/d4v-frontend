@@ -9,13 +9,15 @@ import { CredentialsService } from '../core/dataServices/credentials.service';
 })
 export class UsersComponent implements OnInit {
 
-  userDetailsList: UserDetails[] = []
+  public userDetailsList: UserDetails[] = []
+  isUserDetailsListEmpty: boolean = false
 
   constructor(private data: CredentialsService) { }
 
   ngOnInit() {
     this.data.getAllUsers().subscribe(dataResponse => {
       this.userDetailsList = dataResponse as UserDetails[]
+      this.isUserDetailsListEmpty = true
     });
   }
 
