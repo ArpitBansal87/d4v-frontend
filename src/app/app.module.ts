@@ -35,6 +35,10 @@ import { UsersComponent } from './users/users.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DataTableComponent } from './users/data-table/data-table.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,8 @@ import { MatListModule } from '@angular/material/list';
     OnlyNumber,
     InfoBarComponent,
     BloodReqeustFormComponent,
-    UsersComponent
+    UsersComponent,
+    DataTableComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +72,10 @@ import { MatListModule } from '@angular/material/list';
     MatIconModule,
     MatCardModule,
     MatGridListModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [CookieService,
     CredentialsService,

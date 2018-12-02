@@ -1,14 +1,12 @@
-export class UserDetails {
+export interface UserDetails {
 
-    constructor(
-        public bloodGroup: string,
-        public contactNo: string,
-        public role: string,
-        public areaCode: string,
-        public email: string,
-        public firstName: string,
-        public id: string,
-        public lastName: string,
-        public middleName: string
-      ) {  }
+    bloodGroup: string,
+    contactNo: string,
+    role: string,
+    areaCode: string,
+    email: string,
+    firstName: string,
+    id: string,
+    lastName: string,
+    middleName: string
 }

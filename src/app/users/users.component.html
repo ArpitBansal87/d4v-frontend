@@ -1,6 +1,6 @@
 <h1> User List</h1>
 <p>Following are the list of users currently on our database:</p>
-<div class="card-list d-flex justify-content-start flex-wrap">
+<!--<div class="card-list d-flex justify-content-center flex-wrap">
   <mat-card *ngFor="let userObj of userDetailsList, index as i" class="cell col-md-3 mr-sm-2 mr-md-4 my-5">
     <mat-card-header>
       <mat-card-title>
@@ -16,5 +16,7 @@
     </mat-card-content>
     <mat-card-actions>
     </mat-card-actions>
-  </mat-card>
-</div>
+  </mat-card> -->
+<app-data-table [dataValue]="userDetailsList" *ngIf="isUserDetailsListEmpty"></app-data-table>
+  
+  
