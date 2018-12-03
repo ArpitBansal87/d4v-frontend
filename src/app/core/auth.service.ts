@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { UserDetails } from "./typeFiles/user-details";
 import { isNullOrUndefined } from "util";
@@ -26,8 +27,8 @@ export class AuthService {
 
   setUser(user: UserDetails) {
 
-    console.log("current user setup")
     this.onAuthChange$.next(user)
+    user.roleValue = user.roles.map(role => role.name)
     let userString = JSON.stringify(user)
     this.cookie.set('userSession',userString)
     sessionStorage.setItem('isUserLoggedIn', 'true')

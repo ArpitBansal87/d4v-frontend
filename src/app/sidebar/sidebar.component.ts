@@ -51,7 +51,9 @@ export class SidebarComponent implements OnInit {
   verifyUser() {
     this.loggedIn = this.auth.isLoggedIn
     this.userObj = this.auth.getCurrentUser()
-    this.isCoreMemebr = (this.auth.isLoggedIn && this.userObj != null && this.userObj.role == 'member') ? true : false
+    this.isCoreMemebr = (this.auth.isLoggedIn &&
+      this.userObj != null &&
+      this.userObj.roleValue.includes('D4VMemeber')) ? true : false
 
   }
 }

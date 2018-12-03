@@ -64,7 +64,7 @@ export class CredentialsService {
   getCustomerDetails(user:LoginModelResponseClass):Observable<any>{
     
       return this.http.get(environment.serverUrl +'credentials/'
-          +user.userId+'?access_token='+user.id)
+          +user.userId+'?filter[include]=roles&access_token='+user.id)
       .pipe(map(response => {
         this.$userDetails = response;
         return response;
