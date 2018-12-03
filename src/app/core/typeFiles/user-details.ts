@@ -1,3 +1,5 @@
+import { RolesFormat } from "./returnFormat/roles-format";
+
 export interface UserDetails {
 
     bloodGroup: string,
@@ -8,5 +10,7 @@ export interface UserDetails {
     firstName: string,
     id: string,
     lastName: string,
-    middleName: string
+    middleName: string,
+    roles: [RolesFormat],
+    roleValue: string[]
 }
