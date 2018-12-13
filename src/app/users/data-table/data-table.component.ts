@@ -1,5 +1,6 @@
+import { RolesFormat } from './../../core/typeFiles/returnFormat/roles-format';
 import { UserDetails } from './../../core/typeFiles/user-details';
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { DataTableDataSource } from './data-table-datasource';
 
@@ -13,13 +14,20 @@ export class DataTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @Input()
   public dataValue: UserDetails[];
+  @Input()
+  public dataRoleList: RolesFormat[];
+  @Output() initiateDetailsCard = new EventEmitter<string>();
   
   dataSource: DataTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id','firstName','contactNo', 'bloodGroup' ];
+  displayedColumns = ['id','firstName','contactNo', 'bloodGroup'];
 
   ngOnInit() {
-    this.dataSource = new DataTableDataSource(this.paginator, this.sort,this.dataValue);
+    this.dataSource = new DataTableDataSource(this.paginator, this.sort,this.dataValue,this.dataRoleList);
+  }
+
+  passUserDetails(rowIdValue){
+    this.initiateDetailsCard.emit(rowIdValue)
   }
 }

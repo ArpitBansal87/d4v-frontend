@@ -1,22 +1,28 @@
-<h1> User List</h1>
-<p>Following are the list of users currently on our database:</p>
-<!--<div class="card-list d-flex justify-content-center flex-wrap">
-  <mat-card *ngFor="let userObj of userDetailsList, index as i" class="cell col-md-3 mr-sm-2 mr-md-4 my-5">
-    <mat-card-header>
-      <mat-card-title>
-        <h2>{{ userObj.firstName}} {{ userObj.lastName}}</h2>
-      </mat-card-title>
-      <mat-card-subtitle>{{ userObj.role }}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="" alt="">
-    <mat-card-content>
-      <p>
+<div class="user-component-section">
+  <div class="user-component-heading">
+    <h1> User List</h1>
+    <p class="m-0">Following are the list of users currently on our database:</p>
+  </div>
+  <div class="user-component-data row m-0">
+    <app-data-table [dataValue]="userDetailsList" [dataRoleList]="roleList" *ngIf="isUserDetailsListEmpty"
+      (initiateDetailsCard)="initiateDetailsCard($event)" class="col-md-8 pt-4"></app-data-table>
+    <div class="col-md-4 pt-4" *ngIf="showUserDetails">
+      <mat-card class="">
+        <mat-card-header>
+          <mat-card-title>
+            <h2>{{ userDetailsElement.firstName}} {{ userDetailsElement.lastName}}</h2>
+          </mat-card-title>
+          <mat-card-subtitle>{{ userDetailsElement.role }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="" alt="">
+        <mat-card-content>
+          <p>
 
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-    </mat-card-actions>
-  </mat-card> -->
-<app-data-table [dataValue]="userDetailsList" *ngIf="isUserDetailsListEmpty"></app-data-table>
-  
-  
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
