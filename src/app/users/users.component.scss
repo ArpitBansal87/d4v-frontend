@@ -1,3 +1,6 @@
+@import "../../../node_modules/bootstrap/scss/mixins";
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
 .profile-details{
     max-width: 400px;
   }
@@ -11,3 +14,9 @@
       max-height: 180px;
       max-width: 140px;
   }
+
+@include media-breakpoint-up(sm) {
+  app-data-table td.mat-cell:first-of-type, app-data-table td.mat-footer-cell:first-of-type, app-data-table th.mat-header-cell:first-of-type{
+    padding-left: 15px !important;
+  }
+}

@@ -1,3 +1,4 @@
+import { UserDetails } from './../typeFiles/user-details';
 import { LoginModelResponseClass } from './../typeFiles/login-model-response-class';
 import { Injectable } from '@angular/core';
 import { requestConstants } from './requestConstants';
@@ -75,8 +76,9 @@ export class CredentialsService {
     return this.http.get(environment.serverUrl +'credentials/logout');
   }
 
-  getAllUsers(){
-    return this.http.get(environment.serverUrl+'credentials?filter[include]=roles');
+  getAllUsers(): Observable<[UserDetails]>{
+    return this.http.get<[UserDetails]>(environment.serverUrl+'credentials?filter[include]=roles')
+
   }
 
 }

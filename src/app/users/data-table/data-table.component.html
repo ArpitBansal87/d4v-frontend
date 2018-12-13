@@ -1,5 +1,5 @@
 <div class="mat-elevation-z8">
-  <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
+  <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements" class="w-100">
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>S.No</th>
@@ -25,7 +25,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="passUserDetails(row.id)"></tr>
   </table>
 
   <mat-paginator #paginator

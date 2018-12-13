@@ -4,19 +4,9 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import { RolesFormat } from 'src/app/core/typeFiles/returnFormat/roles-format';
 
-// TODO: Replace this with your own data model type
-// export interface DataTableItem {
-//   bloodGroup: string,
-//   contactNo: string,
-//   role: string,
-//   areaCode: string,
-//   email: string,
-//   firstName: string,
-//   id: string,
-//   lastName: string,
-//   middleName: string
-// }
+
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: UserDetails[] = [];
@@ -29,9 +19,10 @@ const EXAMPLE_DATA: UserDetails[] = [];
 export class DataTableDataSource extends DataSource<UserDetails> {
   data: UserDetails[] = EXAMPLE_DATA;
 
-  constructor(private paginator: MatPaginator, private sort: MatSort, private dataValue: UserDetails[]) {
+  constructor(private paginator: MatPaginator, private sort: MatSort, 
+    private dataValue: UserDetails[], private roleList: RolesFormat[]) {
     super();
-    this.data = this.dataValue 
+    this.data = generateData(this.dataValue,this.roleList) 
   }
 
   /**
@@ -94,4 +85,19 @@ export class DataTableDataSource extends DataSource<UserDetails> {
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
 function compare(a, b, isAsc) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+
+function generateData(dataList:UserDetails[],roleList:RolesFormat[]){
+  let userDataObj: Array<UserDetails> = [];
+  for(var dataObj of dataList){
+    for(var role of roleList){
+      if(dataObj.roles.some((item) => item.id == role.id)){
+        if(dataObj.roleValue == undefined)
+          dataObj.roleValue = []
+        dataObj.roleValue.push(role.id)    
+      }
+    }
+    userDataObj.push(dataObj)
+  }
+  return userDataObj
 }
