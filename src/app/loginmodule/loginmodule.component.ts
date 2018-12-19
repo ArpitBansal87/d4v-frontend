@@ -1,3 +1,4 @@
+import { CommonDataService } from 'src/app/core/dataServices/common-data.service';
 import { CredentialsService } from './../core/dataServices/credentials.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -60,13 +61,17 @@ export class LoginmoduleComponent implements OnInit {
               private auth: AuthService,
               private activeRoute: ActivatedRoute,
               private cookie: CookieService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private commonDataService: CommonDataService) {
+                this.commonDataService.initiateCloseLoadingIcon()
+               }
   
   ngOnInit() {
     this.loginForm = this.fb.group({
       username: ['',[Validators.required]],
       password: ['',[Validators.required]]
     })
+    
     if (sessionStorage.getItem('isUserLoggedIn') === 'true'){
       
       if(this.cookie.get('isLoggedIn') === 'true')

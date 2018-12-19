@@ -45,13 +45,6 @@ export class UsersComponent implements OnInit {
     this.showUserDetails = true
   }
 
-  isRoleSelected(idValue){
-    console.log("No of attempts "+this.userDetailsElement.firstName+" "+this.userDetailsElement.roles.some((element)=>{
-      return (element.id == idValue)
-    }))
-      return (this.userDetailsElement.roles.some((element)=>{
-        return (element.id == idValue)
-      }))
-  }
+ 
 
 }
