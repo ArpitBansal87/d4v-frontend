@@ -3,6 +3,7 @@ import { UserDetails } from './../../core/typeFiles/user-details';
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { DataTableDataSource } from './data-table-datasource';
+import { CommonDataService } from 'src/app/core/dataServices/common-data.service';
 
 @Component({
   selector: 'app-data-table',
@@ -23,8 +24,11 @@ export class DataTableComponent implements OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id','firstName','contactNo', 'bloodGroup'];
 
+  constructor(private dataService:CommonDataService){}
+
   ngOnInit() {
     this.dataSource = new DataTableDataSource(this.paginator, this.sort,this.dataValue,this.dataRoleList);
+    setTimeout(() => {this.dataService.initiateCloseLoadingIcon()});
   }
 
   passUserDetails(rowIdValue){

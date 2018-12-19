@@ -1,6 +1,9 @@
-<div id="container">
+<div id="container" [class.inceraseOpacity]="isLoadingIconReq">
   <app-sidebar></app-sidebar>
   <div id="content" class="p3 p-lg-5">
     <router-outlet></router-outlet>
   </div>
 </div>
+
+  <img *ngIf ="isLoadingIconReq" src="https://media.giphy.com/media/Xi0jXHK6tyUpi/giphy.gif" alt="Loading Icon Slider GIF" style="width: 60px; height: 60px; width: 60px;height: 60px;left: 0px;top: 0px;position:absolute;margin: 0 auto;margin: 0;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+

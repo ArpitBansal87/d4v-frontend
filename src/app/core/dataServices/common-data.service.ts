@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { RoleService } from './role.service';
 import { BloodRequest } from './../typeFiles/blood-request';
 import { BloodReqeustService } from './blood-reqeust.service';
@@ -14,9 +15,12 @@ export class CommonDataService {
   private _roleList: BehaviorSubject<[RolesFormat]> = new BehaviorSubject<any> ([]) ;
   bloodRequestList = this._bloodRequestList.asObservable();
   roleListValue = this._roleList.asObservable();
+  public changeLoadingIcon: Subject <Boolean>;
   
   
-  constructor(private dataService: BloodReqeustService,private roleService: RoleService) { }
+  constructor(private dataService: BloodReqeustService,private roleService: RoleService) {
+    this.changeLoadingIcon = new Subject();
+   }
 
   getBloodRequestData(){
     this.dataService.getBloodRequestList().subscribe( dataResponse => {
@@ -30,5 +34,13 @@ export class CommonDataService {
         this._roleList.next(dataResponse)
       }
     )
+  }
+
+  inititateLoadingIcon(){
+    this.changeLoadingIcon.next(true)
+  }
+
+  initiateCloseLoadingIcon(){
+    this.changeLoadingIcon.next(false)
   }
 }

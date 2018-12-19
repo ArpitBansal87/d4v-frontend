@@ -6,23 +6,6 @@
   <div class="user-component-data row m-0">
     <app-data-table [dataValue]="userDetailsList" [dataRoleList]="roleList" *ngIf="isUserDetailsListEmpty"
       (initiateDetailsCard)="initiateDetailsCard($event)" class="col-md-8 pt-4"></app-data-table>
-    <div class="col-md-4 pt-4" *ngIf="showUserDetails">
-      <mat-card class="">
-        <mat-card-header>
-          <mat-card-title>
-            <h2>{{ userDetailsElement.firstName}} {{ userDetailsElement.lastName}}</h2>
-          </mat-card-title>
-          <mat-card-subtitle>{{ userDetailsElement.role }}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="" alt="">
-        <mat-card-content>
-          <p>
-
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+    <app-user-card [userElement]="userDetailsElement" [roleList]="roleList" *ngIf="showUserDetails" class="col-md-4"></app-user-card>
   </div>
 </div>

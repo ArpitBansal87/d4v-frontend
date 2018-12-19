@@ -39,6 +39,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DataTableComponent } from './users/data-table/data-table.component';
+import { UserCardComponent } from './users/user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { DataTableComponent } from './users/data-table/data-table.component';
     InfoBarComponent,
     BloodReqeustFormComponent,
     UsersComponent,
-    DataTableComponent
+    DataTableComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,8 @@ import { DataTableComponent } from './users/data-table/data-table.component';
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatCheckboxModule
   ],
   providers: [CookieService,
     CredentialsService,

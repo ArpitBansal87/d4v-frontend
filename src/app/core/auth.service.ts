@@ -28,7 +28,7 @@ export class AuthService {
   setUser(user: UserDetails) {
 
     this.onAuthChange$.next(user)
-    user.roleValue = user.roles.map(role => role.name)
+    user.roleValue = user.roles.map(role => role.name).join('-')
     let userString = JSON.stringify(user)
     this.cookie.set('userSession',userString)
     sessionStorage.setItem('isUserLoggedIn', 'true')
