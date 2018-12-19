@@ -1,0 +1,26 @@
+<div class="pt-4" >
+    <mat-card class="">
+      <mat-card-header class="w-100">
+        <mat-card-title>
+          <h2 class="centeralign">{{ userElement.firstName}} {{ userElement.lastName}}</h2>
+        </mat-card-title>
+        <mat-card-subtitle>{{ userElement.role }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="" alt="">
+      <mat-card-content>
+        <p>Role list:</p>
+        {{ userElement.roleValue}}
+        <ul>
+          <li *ngFor="let role of roleList">
+            <div>
+              <mat-checkbox id="{{role.name}}-{{userElement.id}}" [checked] = "isRoleSelected(role.id)">
+                <span>{{ role.name }}</span>
+              </mat-checkbox>
+            </div>
+          </li>
+        </ul>
+      </mat-card-content>
+      <mat-card-actions>
+      </mat-card-actions>
+    </mat-card>
+  </div>

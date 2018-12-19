@@ -14,6 +14,9 @@
       max-height: 180px;
       max-width: 140px;
   }
+.mat-card-header-text{
+  width: 100%;
+}
 
 @include media-breakpoint-up(sm) {
   app-data-table td.mat-cell:first-of-type, app-data-table td.mat-footer-cell:first-of-type, app-data-table th.mat-header-cell:first-of-type{

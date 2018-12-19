@@ -93,8 +93,8 @@ function generateData(dataList:UserDetails[],roleList:RolesFormat[]){
     for(var role of roleList){
       if(dataObj.roles.some((item) => item.id == role.id)){
         if(dataObj.roleValue == undefined)
-          dataObj.roleValue = []
-        dataObj.roleValue.push(role.id)    
+          dataObj.roleValue = ""
+        dataObj.roleValue.concat(role.id+"-")    
       }
     }
     userDataObj.push(dataObj)
