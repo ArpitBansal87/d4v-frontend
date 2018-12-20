@@ -1,4 +1,4 @@
-<div class="pt-4" >
+
     <mat-card class="">
       <mat-card-header class="w-100">
         <mat-card-title>
@@ -6,14 +6,12 @@
         </mat-card-title>
         <mat-card-subtitle>{{ userElement.role }}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="" alt="">
       <mat-card-content>
         <p>Role list:</p>
-        {{ userElement.roleValue}}
         <ul>
-          <li *ngFor="let role of roleList">
+          <li *ngFor="let role of roleList" class="p-1">
             <div>
-              <mat-checkbox id="{{role.name}}-{{userElement.id}}" [checked] = "isRoleSelected(role.id)">
+              <mat-checkbox id="{{role.name}}-{{userElement.id}}" [checked] = "isRoleSelected(role.id,'checked')" [checked] = "isRoleSelected(role.id,'unchecked')">
                 <span>{{ role.name }}</span>
               </mat-checkbox>
             </div>
@@ -23,4 +21,3 @@
       <mat-card-actions>
       </mat-card-actions>
     </mat-card>
-  </div>

@@ -19,13 +19,14 @@ export class UserCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  isRoleSelected(idValue){
-    console.log("No of attempts "+this.userElement.firstName+" "+this.userElement.roles.some((element)=>{
-      return (element.id == idValue)
-    }))
+  isRoleSelected(idValue,source){
+    if(source =='checked')
+      return ((this.userElement.roles.some((element)=>{
+          return (element.id == idValue)
+        })) == true?true:null)
+    else
       return ((this.userElement.roles.some((element)=>{
         return (element.id == idValue)
-      })) == true?true:null)
+      })) == true?null:true)
   }
-
 }

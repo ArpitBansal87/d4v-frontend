@@ -5,7 +5,10 @@
   </div>
   <div class="user-component-data row m-0">
     <app-data-table [dataValue]="userDetailsList" [dataRoleList]="roleList" *ngIf="isUserDetailsListEmpty"
-      (initiateDetailsCard)="initiateDetailsCard($event)" class="col-md-8 pt-4"></app-data-table>
-    <app-user-card [userElement]="userDetailsElement" [roleList]="roleList" *ngIf="showUserDetails" class="col-md-4"></app-user-card>
+      (initiateDetailsCard)="initiateDetailsCard($event)" 
+      class="col-md-8 pt-4 col"></app-data-table>
+    <div class="col-md-4 pt-4 col">
+      <app-user-card [userElement]="userDetailsElement" [roleList]="roleList" *ngIf="showUserDetails" ></app-user-card>
+    </div>
   </div>
 </div>

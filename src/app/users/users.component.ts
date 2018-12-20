@@ -39,10 +39,14 @@ export class UsersComponent implements OnInit {
   initiateDetailsCard(idValue){
     this.userDetailsElement = null;
     this.showUserDetails = false;
-    this.userDetailsElement = this.userDetailsList.filter(function (element,index,array){
-      return (element.id == idValue)
-    })[0]
-    this.showUserDetails = true
+    setTimeout(()=>
+    {
+      this.userDetailsElement = this.userDetailsList.filter(function (element,index,array){
+        return (element.id == idValue)
+      })[0]
+      this.showUserDetails = true
+    },0)
+    
   }
 
  
