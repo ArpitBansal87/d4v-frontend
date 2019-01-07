@@ -1,3 +1,6 @@
+import { CredentialsService } from './../../core/dataServices/credentials.service';
+import { AuthService } from './../../core/auth.service';
+import { CommonDataService } from './../../core/dataServices/common-data.service';
 import { RolesFormat } from './../../core/typeFiles/returnFormat/roles-format';
 import { UserDetails } from './../../core/typeFiles/user-details';
 import { Component, OnInit, Input } from '@angular/core';
@@ -13,13 +16,15 @@ export class UserCardComponent implements OnInit {
   public userElement: UserDetails
   @Input()
   public roleList: RolesFormat[]
+  
 
-  constructor() { console.log("test ine ")}
+  constructor(private commonDataObj: CommonDataService) { }
 
   ngOnInit() {
+    console.log("inside init")
   }
 
-  isRoleSelected(idValue,source){
+  isRoleSelected(idValue:string,source:string){
     if(source =='checked')
       return ((this.userElement.roles.some((element)=>{
           return (element.id == idValue)
@@ -28,5 +33,15 @@ export class UserCardComponent implements OnInit {
       return ((this.userElement.roles.some((element)=>{
         return (element.id == idValue)
       })) == true?null:true)
+  }
+
+  checkboxChangeEvent(e:any){
+    var obj = e.source;
+    if(e.checked){
+      this.commonDataObj.setRoleList(obj.value)
+    }
+    else {
+      this.commonDataObj.removeRoleMapping(obj.value)
+    }
   }
 }

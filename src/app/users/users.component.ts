@@ -22,23 +22,25 @@ export class UsersComponent implements OnInit {
   constructor(private data: CredentialsService, private commonData: CommonDataService ) { }
 
   ngOnInit() {
-    this.data.getAllUsers().subscribe((dataResponse:[UserDetails]) => {
-      console.log("inside subscribe for getallusers")
+    this.commonData.allUsersListValue.subscribe(dataResponse => {
+      console.log("inside all user list: " + dataResponse);
       this.userDetailsList = dataResponse as UserDetails[]
       this.isUserDetailsListEmpty = true
       this.userDetailsElement = this.userDetailsList[0]
-    });
-    this.commonData.roleListValue.subscribe(dataResponse => {
+    })
+     this.commonData.roleListValue.subscribe(dataResponse => {
       console.log("inside rolelist: "+dataResponse);
       this.roleList = dataResponse as RolesFormat[]
     });
     this.commonData.getRolesList()
+    this.commonData.getAllUsersList()
     
   }
 
-  initiateDetailsCard(idValue){
+  initiateDetailsCard(idValue:string){
     this.userDetailsElement = null;
     this.showUserDetails = false;
+    
     setTimeout(()=>
     {
       this.userDetailsElement = this.userDetailsList.filter(function (element,index,array){
@@ -49,6 +51,12 @@ export class UsersComponent implements OnInit {
     
   }
 
- 
-
+  // initializeAllUsers(){
+  //   this.data.getAllUsers().subscribe((dataResponse:[UserDetails]) => {
+  //     console.log("inside subscribe for getallusers")
+  //     this.userDetailsList = dataResponse as UserDetails[]
+  //     this.isUserDetailsListEmpty = true
+  //     this.userDetailsElement = this.userDetailsList[0]
+  //   });
+  // }
 }

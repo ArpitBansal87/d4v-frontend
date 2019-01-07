@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { UserDetails } from './../typeFiles/user-details';
 import { LoginModelResponseClass } from './../typeFiles/login-model-response-class';
 import { Injectable } from '@angular/core';
@@ -13,7 +14,12 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class CredentialsService {
 
-  constructor(private http: HttpClient, private httpOptions: requestConstants) { }
+  accessTokenObj: any
+
+  constructor(private http: HttpClient, private httpOptions: requestConstants, 
+    private authServiceObj: AuthService) {
+      this.accessTokenObj = this.authServiceObj.getToken()
+  }
 
   $userDetails: any;
   
@@ -77,8 +83,45 @@ export class CredentialsService {
   }
 
   getAllUsers(): Observable<[UserDetails]>{
+    console.log("test")
     return this.http.get<[UserDetails]>(environment.serverUrl+'credentials?filter[include]=roles')
-
   }
+
+  deleteRole(idValue: string):Observable<any>{
+    var roleMappingDetails: string[] = idValue.split('-');
+    return this.http.delete(environment.serverUrl + this.httpOptions.CREDENTIAL_PLURAL_MODEL_CONSTANT
+      +this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT +roleMappingDetails[1] +this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT
+      + this.httpOptions.ROLE_PLURAL_MODEL_CONSTANT+ this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT
+      + this.httpOptions.REL_CONSTANTS+this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT+roleMappingDetails[0] 
+      +this.httpOptions.QUESTION_SYMBOL_CONSTANT+this.httpOptions.ACCESS_TOKEN_CONSTANT+this.httpOptions.EQUAL_SYMBOL
+      +this.accessTokenObj)
+    .pipe(map(response => response) ,catchError((err,caught) =>{
+      let errorVariable = err.error
+      console.log(err.error)
+      return throwError(errorVariable)
+    }));
+  }
+
+  setRole(idValue:string): Observable<any>{
+    var roleMappingDetails: string[] = idValue.split('-');
+    var roleMappingObj = {
+      "principalType": "Credential",
+      "principalId": roleMappingDetails[1]
+    }
+    return this.http.put(environment.serverUrl + this.httpOptions.CREDENTIAL_PLURAL_MODEL_CONSTANT
+      +this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT +roleMappingDetails[1] +this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT
+      + this.httpOptions.ROLE_PLURAL_MODEL_CONSTANT+ this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT
+      + this.httpOptions.REL_CONSTANTS+this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT+roleMappingDetails[0]
+      +this.httpOptions.QUESTION_SYMBOL_CONSTANT+this.httpOptions.ACCESS_TOKEN_CONSTANT+this.httpOptions.EQUAL_SYMBOL
+      +this.accessTokenObj,roleMappingObj).pipe(
+        map(reponse => reponse),catchError((err,caught) =>{
+          let errorVariable = err.error
+          console.log(err.error)
+          return throwError(errorVariable)
+        }
+      ))
+  }
+
+
 
 }
