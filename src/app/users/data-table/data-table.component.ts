@@ -1,6 +1,6 @@
 import { RolesFormat } from './../../core/typeFiles/returnFormat/roles-format';
 import { UserDetails } from './../../core/typeFiles/user-details';
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ViewEncapsulation, SimpleChanges } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { DataTableDataSource } from './data-table-datasource';
 import { CommonDataService } from 'src/app/core/dataServices/common-data.service';
@@ -33,5 +33,13 @@ export class DataTableComponent implements OnInit {
 
   passUserDetails(rowIdValue){
     this.initiateDetailsCard.emit(rowIdValue)
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+    console.log("inside ng on changes for data table")
+    if((changes.dataValue != undefined && changes.dataValue.currentValue.length != 0 ) 
+    || (changes.dataRoleList != undefined && changes.dataRoleList.currentValue.length != 0)) {
+      this.dataSource = new DataTableDataSource(this.paginator,this.sort,this.dataValue,this.dataRoleList) 
+    }
   }
 }

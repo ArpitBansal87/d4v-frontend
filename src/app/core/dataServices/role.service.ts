@@ -23,7 +23,8 @@ export class RoleService {
    }
 
   getAllRoles():Observable<[RolesFormat]>{
-    return this.http.get<[RolesFormat]>(environment.serverUrl+this.httpOptions.ROLE_PLURAL_MODEL_CONSTANT)
+    return this.http.get<[RolesFormat]>(environment.serverUrl+
+      this.httpOptions.ROLE_PLURAL_MODEL_CONSTANT)
   }
  
 }

@@ -83,7 +83,6 @@ export class CredentialsService {
   }
 
   getAllUsers(): Observable<[UserDetails]>{
-    console.log("test")
     return this.http.get<[UserDetails]>(environment.serverUrl+'credentials?filter[include]=roles')
   }
 
@@ -121,7 +120,5 @@ export class CredentialsService {
         }
       ))
   }
-
-
 
 }

@@ -14,7 +14,8 @@
           value="{{role.id}}-{{userElement.id}}" 
             [checked]="isRoleSelected(role.id,'checked')" 
             [checked]="isRoleSelected(role.id,'unchecked')"
-            (change)="checkboxChangeEvent($event)">
+            (change)="checkboxChangeEvent($event)"
+            >
             <span>{{ role.name }} </span>
           </mat-checkbox>
         </div>

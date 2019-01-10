@@ -42,9 +42,7 @@ export class CommonDataService {
   }
 
   getAllUsersList(){
-    console.log("testLine")
     this.credentialServiceObj.getAllUsers().subscribe(dataResponse => {
-      console.log("inside subscribe for getallusers")
       this._allUserList.next(dataResponse)
     })
   }
@@ -53,19 +51,15 @@ export class CommonDataService {
     this.credentialServiceObj.setRole(roleString).subscribe(
       dataResponse => {
         console.log("after resposne");
-        // this.credentialServiceObj.getAllUsers().subscribe((dataResponse:[UserDetails]) => {
-        //   console.log("inside setRoleLis for getallusers")
-        //   this._allUserList.next(dataResponse)
-        // });
+        this.getAllUsersList()
       }
     );
-    
   }
 
   removeRoleMapping(roleMappingId:string){
     this.credentialServiceObj.deleteRole(roleMappingId).subscribe(
       dataResponse => {
-        console.log("inside delete rolemapping")
+        this.getAllUsersList()
       }
     );
   }
@@ -76,5 +70,10 @@ export class CommonDataService {
 
   initiateCloseLoadingIcon(){
     this.changeLoadingIcon.next(false)
+  }
+
+  isUserAdmin(){
+    this.credentialServiceObj.deleteRole
+    return true
   }
 }

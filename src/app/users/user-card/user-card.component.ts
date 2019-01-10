@@ -3,14 +3,14 @@ import { AuthService } from './../../core/auth.service';
 import { CommonDataService } from './../../core/dataServices/common-data.service';
 import { RolesFormat } from './../../core/typeFiles/returnFormat/roles-format';
 import { UserDetails } from './../../core/typeFiles/user-details';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
   styleUrls: ['./user-card.component.scss']
 })
-export class UserCardComponent implements OnInit {
+export class UserCardComponent implements OnInit,OnChanges {
 
   @Input() 
   public userElement: UserDetails
@@ -20,9 +20,9 @@ export class UserCardComponent implements OnInit {
 
   constructor(private commonDataObj: CommonDataService) { }
 
-  ngOnInit() {
-    console.log("inside init")
-  }
+  ngOnInit() { }
+
+  ngOnChanges(changes: SimpleChanges) { }
 
   isRoleSelected(idValue:string,source:string){
     if(source =='checked')
@@ -43,5 +43,9 @@ export class UserCardComponent implements OnInit {
     else {
       this.commonDataObj.removeRoleMapping(obj.value)
     }
+  }
+
+  isUserAdmin(){
+    return this.commonDataObj.isUserAdmin()
   }
 }
