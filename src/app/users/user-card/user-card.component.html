@@ -1,26 +1,29 @@
-<div class="pt-4" >
-    <mat-card class="">
-      <mat-card-header class="w-100">
-        <mat-card-title>
-          <h2 class="centeralign">{{ userElement.firstName}} {{ userElement.lastName}}</h2>
-        </mat-card-title>
-        <mat-card-subtitle>{{ userElement.role }}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="" alt="">
-      <mat-card-content>
-        <p>Role list:</p>
-        {{ userElement.roleValue}}
-        <ul>
-          <li *ngFor="let role of roleList">
-            <div>
-              <mat-checkbox id="{{role.name}}-{{userElement.id}}" [checked] = "isRoleSelected(role.id)">
-                <span>{{ role.name }}</span>
-              </mat-checkbox>
-            </div>
-          </li>
-        </ul>
-      </mat-card-content>
-      <mat-card-actions>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+<mat-card class="">
+  <mat-card-header class="w-100">
+    <mat-card-title>
+      <h2 class="centeralign">{{ userElement.firstName}} {{ userElement.lastName}}</h2>
+    </mat-card-title>
+    <mat-card-subtitle>{{ userElement.role }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Role list:</p>
+    <ul>
+      <li *ngFor="let role of roleList" class="p-1">
+        <div>
+          <mat-checkbox name="{{role.id}}-{{userElement.id}}"
+          value="{{role.id}}-{{userElement.id}}" 
+            [checked]="isRoleSelected(role.id,'checked')" 
+            [checked]="isRoleSelected(role.id,'unchecked')"
+            (change)="checkboxChangeEvent($event)"
+            >
+            <span>{{ role.name }} </span>
+          </mat-checkbox>
+        </div>
+      </li>
+    </ul>
+  </mat-card-content>
+  <mat-card-actions class="d-inline-flex" layout="row" layout-align="end center">
+    <div class="col col-6" title="Save changes"><i class="material-icons" >save</i></div>
+    <div class="col col-6" title="Revert changes"><i class="material-icons">cancel</i></div>
+  </mat-card-actions>
+</mat-card>
