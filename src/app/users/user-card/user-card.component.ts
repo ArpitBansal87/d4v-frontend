@@ -17,12 +17,20 @@ export class UserCardComponent implements OnInit,OnChanges {
   @Input()
   public roleList: RolesFormat[]
   
-
+  public roleValue: RolesFormat[]
+  
   constructor(private commonDataObj: CommonDataService) { }
 
   ngOnInit() { }
 
-  ngOnChanges(changes: SimpleChanges) { }
+  ngOnChanges(changes: SimpleChanges) {
+    if(typeof changes['userElement'] != "undefined") {
+      var change = changes['userElement']
+      if (change.isFirstChange()) {
+        this.roleValue = change.currentValue.roles;
+      }
+    }
+   }
 
   isRoleSelected(idValue:string,source:string){
     if(source =='checked')

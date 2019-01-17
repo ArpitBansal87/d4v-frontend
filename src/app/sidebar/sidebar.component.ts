@@ -17,7 +17,8 @@ export class SidebarComponent implements OnInit {
   isCoreMemebr: boolean
   private userObj: UserDetails
 
-  constructor(private router: Router, private auth: AuthService, private dataService: CredentialsService) {
+  constructor(private router: Router, private auth: AuthService,
+     private dataService: CredentialsService) {
     router.events.subscribe(
       (_: NavigationEnd) => {
         if (_.url != undefined)
@@ -54,6 +55,5 @@ export class SidebarComponent implements OnInit {
     this.isCoreMemebr = (this.auth.isLoggedIn &&
       this.userObj != null &&
       this.userObj.roleValue.includes('Admin')) ? true : false
-
-  }
+    }
 }

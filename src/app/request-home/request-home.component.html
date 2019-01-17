@@ -48,10 +48,10 @@ Photo by LuAnn Hunt on Unsplash
       </span>
       <span> for donation</span>
     </div>
-    <span (click)="showBRform(requestItem,i)" data-toggle="modal" data-target="#bloodRequestModal">
+    <span (click)="showBRform(requestItem,i)" *ngIf="isUserOnBRTeam" data-toggle="modal" data-target="#bloodRequestModal">
       <mat-icon>create</mat-icon>
     </span>
-    <span (click)="deleteBloodRequest(requestItem.id,i)" data-toggle="modal" data-target="#bloodRequestModal">
+    <span (click)="deleteBloodRequest(requestItem.id,i)" *ngIf="isUserOnBRTeam" data-toggle="modal" data-target="#bloodRequestModal">
       <mat-icon>delete</mat-icon>
     </span>
     <span>{{ requestItem.status }}</span>

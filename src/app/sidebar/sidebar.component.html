@@ -15,13 +15,13 @@
         <i class="material-icons">power_settings_new</i>
       </a>
     </li>
-    <li *ngIf="isCoreMemebr">
+    <li [hidden]="!loggedIn">
       <a routerLink="users" routerLink="users" [class.activated]="currentUrl == '/users'">
         <i class="material-icons">supervised_user_circle</i>
       </a>
     </li>
     <li>
-      <a routerLink="requestHome" [class.activated]="currentUrl == '/requests'">
+      <a routerLink="requests" [class.activated]="currentUrl == '/requests'">
         <i class="material-icons">list</i>
       </a>
     </li>

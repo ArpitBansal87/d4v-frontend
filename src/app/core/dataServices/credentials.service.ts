@@ -16,14 +16,14 @@ export class CredentialsService {
 
   accessTokenObj: any
 
-  constructor(private http: HttpClient, private httpOptions: requestConstants, 
+  constructor(private http: HttpClient, private httpOptions: requestConstants,
     private authServiceObj: AuthService) {
-      this.accessTokenObj = this.authServiceObj.getToken()
+    this.accessTokenObj = this.authServiceObj.getToken()
   }
 
   $userDetails: any;
-  
-  isUserLoggedIn(){
+
+  isUserLoggedIn() {
     return true;
   }
 
@@ -44,81 +44,80 @@ export class CredentialsService {
   };
 
   getUser(userId) {
-    return this.http.get(environment.serverUrl +userId);
+    return this.http.get(environment.serverUrl + userId);
   }
 
-  getUserDetails(){
+  getUserDetails() {
     return this.$userDetails;
   }
 
-  loginUser(user:loginModel):Observable<any>{
-    return this.http.post(environment.serverUrl +'credentials/login',
-     user, this.httpOptions.postHttpOption).pipe(
-      map(response => response),
-      catchError((err, caught) => {
-        let errorVariable = err.error
-        this.handleError(err)
-        return throwError(errorVariable)
-      })
-    );
+  loginUser(user: loginModel): Observable<any> {
+    return this.http.post(environment.serverUrl + 'credentials/login',
+      user, this.httpOptions.postHttpOption).pipe(
+        map(response => response),
+        catchError((err, caught) => {
+          let errorVariable = err.error
+          this.handleError(err)
+          return throwError(errorVariable)
+        })
+      );
   }
 
-  registerUser(registerForm:any):Observable<any>{
-    return this.http.post(environment.serverUrl +'credentials',
-    registerForm, this.httpOptions.postHttpOption).pipe(map(response => response));
+  registerUser(registerForm: any): Observable<any> {
+    return this.http.post(environment.serverUrl + 'credentials',
+      registerForm, this.httpOptions.postHttpOption).pipe(map(response => response));
   }
 
-  getCustomerDetails(user:LoginModelResponseClass):Observable<any>{
-    
-      return this.http.get(environment.serverUrl +'credentials/'
-          +user.userId+'?filter[include]=roles&access_token='+user.id)
+  getCustomerDetails(user: LoginModelResponseClass): Observable<any> {
+
+    return this.http.get(environment.serverUrl + 'credentials/'
+      + user.userId + '?filter[include]=roles&access_token=' + user.id)
       .pipe(map(response => {
         this.$userDetails = response;
         return response;
       }));
-  }  
-
-  logoutUser(){
-    return this.http.get(environment.serverUrl +'credentials/logout');
   }
 
-  getAllUsers(): Observable<[UserDetails]>{
-    return this.http.get<[UserDetails]>(environment.serverUrl+'credentials?filter[include]=roles')
+  logoutUser() {
+    return this.http.get(environment.serverUrl + 'credentials/logout');
   }
 
-  deleteRole(idValue: string):Observable<any>{
+  getAllUsers(): Observable<[UserDetails]> {
+    return this.http.get<[UserDetails]>(environment.serverUrl + 'credentials?filter[include]=roles')
+  }
+
+  deleteRole(idValue: string): Observable<any> {
     var roleMappingDetails: string[] = idValue.split('-');
     return this.http.delete(environment.serverUrl + this.httpOptions.CREDENTIAL_PLURAL_MODEL_CONSTANT
-      +this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT +roleMappingDetails[1] +this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT
-      + this.httpOptions.ROLE_PLURAL_MODEL_CONSTANT+ this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT
-      + this.httpOptions.REL_CONSTANTS+this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT+roleMappingDetails[0] 
-      +this.httpOptions.QUESTION_SYMBOL_CONSTANT+this.httpOptions.ACCESS_TOKEN_CONSTANT+this.httpOptions.EQUAL_SYMBOL
-      +this.accessTokenObj)
-    .pipe(map(response => response) ,catchError((err,caught) =>{
-      let errorVariable = err.error
-      console.log(err.error)
-      return throwError(errorVariable)
-    }));
+      + this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT + roleMappingDetails[1] + this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT
+      + this.httpOptions.ROLE_PLURAL_MODEL_CONSTANT + this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT
+      + this.httpOptions.REL_CONSTANTS + this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT + roleMappingDetails[0]
+      + this.httpOptions.QUESTION_SYMBOL_CONSTANT + this.httpOptions.ACCESS_TOKEN_CONSTANT + this.httpOptions.EQUAL_SYMBOL
+      + this.accessTokenObj)
+      .pipe(map(response => response), catchError((err, caught) => {
+        let errorVariable = err.error
+        console.log(err.error)
+        return throwError(errorVariable)
+      }));
   }
 
-  setRole(idValue:string): Observable<any>{
+  setRole(idValue: string): Observable<any> {
     var roleMappingDetails: string[] = idValue.split('-');
     var roleMappingObj = {
       "principalType": "Credential",
       "principalId": roleMappingDetails[1]
     }
     return this.http.put(environment.serverUrl + this.httpOptions.CREDENTIAL_PLURAL_MODEL_CONSTANT
-      +this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT +roleMappingDetails[1] +this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT
-      + this.httpOptions.ROLE_PLURAL_MODEL_CONSTANT+ this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT
-      + this.httpOptions.REL_CONSTANTS+this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT+roleMappingDetails[0]
-      +this.httpOptions.QUESTION_SYMBOL_CONSTANT+this.httpOptions.ACCESS_TOKEN_CONSTANT+this.httpOptions.EQUAL_SYMBOL
-      +this.accessTokenObj,roleMappingObj).pipe(
-        map(reponse => reponse),catchError((err,caught) =>{
+      + this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT + roleMappingDetails[1] + this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT
+      + this.httpOptions.ROLE_PLURAL_MODEL_CONSTANT + this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT
+      + this.httpOptions.REL_CONSTANTS + this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT + roleMappingDetails[0]
+      + this.httpOptions.QUESTION_SYMBOL_CONSTANT + this.httpOptions.ACCESS_TOKEN_CONSTANT + this.httpOptions.EQUAL_SYMBOL
+      + this.accessTokenObj, roleMappingObj).pipe(
+        map(reponse => reponse), catchError((err, caught) => {
           let errorVariable = err.error
           console.log(err.error)
           return throwError(errorVariable)
         }
-      ))
+        ))
   }
-
 }
