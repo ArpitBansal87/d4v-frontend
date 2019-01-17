@@ -17,6 +17,7 @@ export class RequestHomeComponent implements OnInit {
   isNewFormVisible = false
   openforEdit= false
   public formData:BloodRequest
+  isUserOnBRTeam: Boolean
   
   constructor(private dataService: BloodReqeustService, 
     private auth: AuthService, private commonData: CommonDataService) { }
@@ -26,6 +27,11 @@ export class RequestHomeComponent implements OnInit {
       this.bloodRequestList = dataResponse as BloodRequest[]
     })
     this.commonData.getBloodRequestData()
+    this.isUserOnBRTeam = this.commonData.isUserOnBRTeam()
+  }
+
+  ngAfterViewChecked() {
+    this.commonData.initiateCloseLoadingIcon()
   }
 
   showBRform(dataFormValue,indexValue){

@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { CredentialsService } from './credentials.service';
 import { Subject } from 'rxjs';
 import { RoleService } from './role.service';
@@ -23,7 +24,7 @@ export class CommonDataService {
   
   
   constructor(private dataService: BloodReqeustService,private roleService: RoleService,
-    private credentialServiceObj: CredentialsService) {
+    private credentialServiceObj: CredentialsService, private authServiceObj: AuthService) {
     this.changeLoadingIcon = new Subject();
    }
 
@@ -73,7 +74,16 @@ export class CommonDataService {
   }
 
   isUserAdmin(){
-    this.credentialServiceObj.deleteRole
-    return true
+    return (this.authServiceObj.isLoggedIn &&
+      this.authServiceObj.getCurrentUser() != null &&
+      this.authServiceObj.getCurrentUser().roleValue.includes('Admin')) ? true : false
+  }
+
+  isUserOnBRTeam(){
+    return (this.authServiceObj.isLoggedIn &&
+      this.authServiceObj.getCurrentUser() != null &&
+      (this.authServiceObj.getCurrentUser().roleValue.includes('Admin') ||
+      this.authServiceObj.getCurrentUser().roleValue.includes('BloodRequestModerator'))) ? true : false
+
   }
 }

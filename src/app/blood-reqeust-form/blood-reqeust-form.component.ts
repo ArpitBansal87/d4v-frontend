@@ -8,6 +8,7 @@ import { UserDetails } from '../core/typeFiles/user-details';
 import { Router } from '@angular/router';
 import { CommonDataService } from '../core/dataServices/common-data.service';
 
+
 @Component({
   selector: 'app-blood-reqeust-form',
   templateUrl: './blood-reqeust-form.component.html',
@@ -95,7 +96,8 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
   }
 
   addData() {
-    this.addRequestForm.value.requiredBy = this.addRequestForm.value.requiredBy.toDate()
+    if(this.addRequestForm.value.requiredBy._isAMomentObject)
+      this.addRequestForm.value.requredBy = this.addRequestForm.value.requiredBy.toDate()
     let usrdet: UserDetails = this.auth.getCurrentUser()
     this.addRequestForm.value.createdByName = usrdet.firstName + " " + usrdet.lastName
     this.addRequestForm.value.createdById = usrdet.id
