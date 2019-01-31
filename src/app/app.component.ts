@@ -1,29 +1,29 @@
 import { CommonDataService } from './core/dataServices/common-data.service';
 import { Component, OnDestroy } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { Title } from '@angular/platform-browser'
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy{
+export class AppComponent implements OnDestroy {
   title = 'D4V';
-  isLoadingIconReq:Boolean = true
+  isLoadingIconReq: Boolean = true;
 
-  constructor(private cookieHandler: CookieService, private titleService: Title, 
-    private commonService: CommonDataService ){
+  constructor(private cookieHandler: CookieService, private titleService: Title,
+    private commonService: CommonDataService ) {
       this.commonService.changeLoadingIcon.subscribe(data => {
-        this.isLoadingIconReq = data
-      })
+        this.isLoadingIconReq = data;
+      });
   }
 
-  ngOnInit(){
-    this.titleService.setTitle(this.title)
+  ngOnInit() {
+    this.titleService.setTitle(this.title);
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.cookieHandler.deleteAll();
   }
-  
+
 }

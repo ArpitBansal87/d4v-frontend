@@ -6,7 +6,7 @@ export class AddressFormat {
         public city: string,
         public pincode: number,
         public state: string,
-        public country: string         
+        public country: string
       ) {  }
 }
 

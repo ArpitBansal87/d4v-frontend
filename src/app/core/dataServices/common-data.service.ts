@@ -21,69 +21,69 @@ export class CommonDataService {
   roleListValue = this._roleList.asObservable();
   allUsersListValue = this._allUserList.asObservable();
   public changeLoadingIcon: Subject <Boolean>;
-  
-  
-  constructor(private dataService: BloodReqeustService,private roleService: RoleService,
+
+
+  constructor(private dataService: BloodReqeustService, private roleService: RoleService,
     private credentialServiceObj: CredentialsService, private authServiceObj: AuthService) {
     this.changeLoadingIcon = new Subject();
    }
 
-  getBloodRequestData(){
+  getBloodRequestData() {
     this.dataService.getBloodRequestList().subscribe( dataResponse => {
-      this._bloodRequestList.next(dataResponse)
-    })
+      this._bloodRequestList.next(dataResponse);
+    });
   }
 
-  getRolesList(){
+  getRolesList() {
     this.roleService.getAllRoles().subscribe(
       dataResponse => {
-        this._roleList.next(dataResponse)
+        this._roleList.next(dataResponse);
       }
-    )
+    );
   }
 
-  getAllUsersList(){
+  getAllUsersList() {
     this.credentialServiceObj.getAllUsers().subscribe(dataResponse => {
-      this._allUserList.next(dataResponse)
-    })
+      this._allUserList.next(dataResponse);
+    });
   }
 
-  setRoleList(roleString:string){
+  setRoleList(roleString: string) {
     this.credentialServiceObj.setRole(roleString).subscribe(
       dataResponse => {
-        console.log("after resposne");
-        this.getAllUsersList()
+        console.log('after resposne');
+        this.getAllUsersList();
       }
     );
   }
 
-  removeRoleMapping(roleMappingId:string){
+  removeRoleMapping(roleMappingId: string) {
     this.credentialServiceObj.deleteRole(roleMappingId).subscribe(
       dataResponse => {
-        this.getAllUsersList()
+        this.getAllUsersList();
       }
     );
   }
 
-  inititateLoadingIcon(){
-    this.changeLoadingIcon.next(true)
+  inititateLoadingIcon() {
+    this.changeLoadingIcon.next(true);
   }
 
-  initiateCloseLoadingIcon(){
-    this.changeLoadingIcon.next(false)
+  initiateCloseLoadingIcon() {
+    this.changeLoadingIcon.next(false);
   }
 
-  isUserAdmin(){
+  isUserAdmin() {
     return (this.authServiceObj.isLoggedIn &&
       this.authServiceObj.getCurrentUser() != null &&
-      this.authServiceObj.getCurrentUser().roleValue.includes('Admin')) ? true : false
+      this.authServiceObj.getCurrentUser().roleValue.includes('Admin')) ? true : false;
   }
 
-  isUserOnBRTeam(){
+  isUserOnBRTeam() {
     return (this.authServiceObj.isLoggedIn &&
       this.authServiceObj.getCurrentUser() != null &&
       (this.authServiceObj.getCurrentUser().roleValue.includes('Admin') ||
-      this.authServiceObj.getCurrentUser().roleValue.includes('BloodRequestModerator'))) ? true : false
+      this.authServiceObj.getCurrentUser().roleValue.includes('BloodRequestModerator'))) ? true : false;
 
   }
 }

@@ -1,5 +1,5 @@
-export class constants{
-    public static bloodGroups=[
+export class constants {
+    public static bloodGroups = [
         'A+',
         'A-',
         'B+',
@@ -8,5 +8,5 @@ export class constants{
         'AB-',
         'O+',
         'O-'
-      ]
+      ];
 }
