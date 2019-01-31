@@ -29,12 +29,10 @@ export class RequestHomeComponent implements OnInit {
     this.commonData.bloodRequestList.subscribe(dataResponse => {
       this.bloodRequestList = dataResponse as BloodRequest[]
       this.bloodRequestList.forEach((element) =>{
-        console.log("inside atest")
         this.dataService.getlatestBloodRequestStatus(element.id).subscribe(dataResponse => {
           var responseObj = dataResponse as BloodRequestStatus
           if(dataResponse.length != 0)
           element.latestStatus = responseObj[0].bloodRequestStatusId+"-"+element.id
-          console.log(element.latestStatus)
       })
       })
       
