@@ -30,7 +30,7 @@ export class BloodReqeustService {
       return response;
     }));
   }
-
+  
   editBloodRequest(editRequestForm:any):Observable<any>{
     let requestId = editRequestForm.id
     delete editRequestForm.id
@@ -39,9 +39,9 @@ export class BloodReqeustService {
     ,editRequestForm,this.httpOptions.postHttpOption).pipe(map(response => {
       return response;
     }),
-    catchError((err,caught) =>{
-      let errorVariable = err.error
-      return throwError(errorVariable)
+    catchError((err, caught) => {
+      const errorVariable = err.error;
+      return throwError(errorVariable);
     }));
   }
 
@@ -99,5 +99,6 @@ export class BloodReqeustService {
           return throwError(errorVariable)
         }
         ))
+
   }
 }

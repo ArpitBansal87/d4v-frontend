@@ -41,27 +41,27 @@ export class RequestHomeComponent implements OnInit {
     this.isUserOnBRTeam = this.commonData.isUserOnBRTeam()
     this.dataService.getBloodRequestStates().subscribe(dataResponse => {
       this.bloodRequestStates = dataResponse as BloodRequestStatus[]
-    })
-    
+    })    
   }
 
   ngAfterViewChecked() {
-    this.commonData.initiateCloseLoadingIcon()
+    this.commonData.initiateCloseLoadingIcon();
   }
 
-  showBRform(dataFormValue,indexValue){
-    if(indexValue == -1)
-      this.formData = <BloodRequest>{}
-    else
-      this.formData = dataFormValue
-    this.isNewFormVisible = !this.isNewFormVisible
+  showBRform(dataFormValue, indexValue) {
+    if (indexValue == -1) {
+      this.formData = <BloodRequest>{};
+    } else {
+      this.formData = dataFormValue;
+    }
+    this.isNewFormVisible = !this.isNewFormVisible;
   }
 
-  removeDialog(){
+  removeDialog() {
     this.dataService.getBloodRequestList().subscribe( dataResponse => {
-      this.bloodRequestList = dataResponse as BloodRequest[]
-      this.isNewFormVisible = false;    
-    })
+      this.bloodRequestList = dataResponse as BloodRequest[];
+      this.isNewFormVisible = false;
+    });
   }
 
   deleteBloodRequest(requestId){

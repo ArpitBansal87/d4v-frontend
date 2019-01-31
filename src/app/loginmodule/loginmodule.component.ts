@@ -1,21 +1,21 @@
 import { CommonDataService } from 'src/app/core/dataServices/common-data.service';
 import { CredentialsService } from './../core/dataServices/credentials.service';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import {Router, ActivatedRoute} from "@angular/router";
+import {Router, ActivatedRoute} from '@angular/router';
 import { AuthService } from '../core/auth.service';
 import { CookieService } from 'ngx-cookie-service';
-import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
+import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 
 
 @Component({
   selector: 'app-loginmodule',
   templateUrl: './loginmodule.component.html',
   styleUrls: ['./loginmodule.component.scss'],
-  animations:[
+  animations: [
     trigger('wasRegistrationSuccess', [
-      transition(':enter', [        
+      transition(':enter', [
         animate('1s ease-in', keyframes([
           style({opacity: 0, transform: 'translate(-50%,-75%)', offset: 0}),
           style({opacity: .5, transform: 'translate(-50%,35px)',  offset: 0.3}),
@@ -31,7 +31,7 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
       ])
     ]),
     trigger('wasLoginFailure', [
-      transition(':enter', [        
+      transition(':enter', [
         animate('1s ease-in', keyframes([
           style({opacity: 0, transform: 'translate(-50%,-75%)', offset: 0}),
           style({opacity: .5, transform: 'translate(-50%,35px)',  offset: 0.3}),
@@ -50,66 +50,67 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
 })
 export class LoginmoduleComponent implements OnInit {
 
-  loginForm:FormGroup
-  model:any
-  wasRegistrationSuccess: boolean = false
-  wasLoginFailure: boolean = false
-  private sub: any
-  
-  constructor(private dataService: CredentialsService, 
+  loginForm: FormGroup;
+  model: any;
+  wasRegistrationSuccess = false;
+  wasLoginFailure = false;
+  private sub: any;
+
+  constructor(private dataService: CredentialsService,
               private router: Router,
               private auth: AuthService,
               private activeRoute: ActivatedRoute,
               private cookie: CookieService,
               private fb: FormBuilder,
               private commonDataService: CommonDataService) {
-                this.commonDataService.initiateCloseLoadingIcon()
+                this.commonDataService.initiateCloseLoadingIcon();
                }
-  
+
   ngOnInit() {
     this.loginForm = this.fb.group({
-      username: ['',[Validators.required]],
-      password: ['',[Validators.required]]
-    })
-    
-    if (sessionStorage.getItem('isUserLoggedIn') === 'true'){
-      
-      if(this.cookie.get('isLoggedIn') === 'true')
-        this.router.navigate(['\home'])
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
+    });
+
+    if (sessionStorage.getItem('isUserLoggedIn') === 'true') {
+
+      if (this.cookie.get('isLoggedIn') === 'true') {
+        this.router.navigate(['\home']);
+      }
 
     }
 
     this.sub = this.activeRoute.params.subscribe((params) => {
-      if(params.hasOwnProperty('registrationStatus')){
-        if(params['registrationStatus'] === 'success'){
-          this.wasRegistrationSuccess = true
+      if (params.hasOwnProperty('registrationStatus')) {
+        if (params['registrationStatus'] === 'success') {
+          this.wasRegistrationSuccess = true;
           setTimeout(() => {
-            this.wasRegistrationSuccess = false
-          },3000)
+            this.wasRegistrationSuccess = false;
+          }, 3000);
         }
+      } else {
+        this.wasRegistrationSuccess = false;
       }
-      else
-        this.wasRegistrationSuccess = false
-    })
+    });
   }
 
-  ngOnDestroy(){
-    this.sub.unsubscribe()
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
-  switchAnimation(){
-    this.wasRegistrationSuccess = this.wasRegistrationSuccess=== true ? false: true
+  switchAnimation() {
+    this.wasRegistrationSuccess = this.wasRegistrationSuccess === true ? false : true;
   }
 
-  submitLoginDetails(){
+  submitLoginDetails() {
     this.dataService.loginUser(this.loginForm.value)
-      .subscribe( 
+      .subscribe(
         data => {
-          if(data != null){
+          if (data != null) {
             this.auth.setToken(data.id);
-            this.auth.setLoggedIn(true)
+            this.auth.setLoggedIn(true);
             this.dataService.getCustomerDetails(data).subscribe(data => {
-              if(data != null){
+              if (data != null) {
                 this.auth.setUser(data);
                 this.router.navigate(['home']);
               }
@@ -117,12 +118,12 @@ export class LoginmoduleComponent implements OnInit {
           }
         },
         error => {
-          this.wasLoginFailure = true
+          this.wasLoginFailure = true;
           setTimeout(() => {
-            this.wasLoginFailure = false
-          },3000)
+            this.wasLoginFailure = false;
+          }, 3000);
         }
-      )
+      );
   }
-  
+
 }

@@ -1,4 +1,4 @@
-import { HttpHeaders } from "@angular/common/http";
+import { HttpHeaders } from '@angular/common/http';
 
 export class requestConstants {
   public postHttpOption = {
@@ -6,6 +6,7 @@ export class requestConstants {
       'Content-Type': 'application/json'
     })
   };
+
   public ACCESS_TOKEN_CONSTANT                            = "access_token"
   public REL_CONSTANTS                                    = "rel"
   
@@ -19,9 +20,9 @@ export class requestConstants {
   // model constants end
 
   // Constant symbols start
-  public QUESTION_SYMBOL_CONSTANT                         = "?"
-  public FORWARD_SLASH_SYMBOL_CONSTANT                    = "/" 
-  public EQUAL_SYMBOL                                     = "=" 
+  public QUESTION_SYMBOL_CONSTANT                         = '?';
+  public FORWARD_SLASH_SYMBOL_CONSTANT                    = '/';
+  public EQUAL_SYMBOL                                     = '=';
   // Constant symbols end
 
 }

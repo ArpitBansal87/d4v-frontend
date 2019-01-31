@@ -12,42 +12,41 @@ import { CredentialsService } from '../core/dataServices/credentials.service';
 })
 export class UsersComponent implements OnInit, OnChanges {
 
-  @ViewChild(DataTableComponent) appDataTable:DataTableComponent
-  public userDetailsList: UserDetails[] = []
-  isUserDetailsListEmpty: boolean = true
-  public roleList: RolesFormat[]= []
-  showUserDetails: boolean = false
-  userDetailsElement: UserDetails 
-  
+  @ViewChild(DataTableComponent) appDataTable: DataTableComponent;
+  public userDetailsList: UserDetails[] = [];
+  isUserDetailsListEmpty = true;
+  public roleList: RolesFormat[] = [];
+  showUserDetails = false;
+  userDetailsElement: UserDetails;
+
   constructor(private data: CredentialsService, private commonData: CommonDataService ) { }
 
   ngOnInit() {
-    this.commonData.getRolesList()
-    this.commonData.getAllUsersList()
+    this.commonData.getRolesList();
+    this.commonData.getAllUsersList();
     this.commonData.allUsersListValue.subscribe(dataResponse => {
-      this.userDetailsList = dataResponse as UserDetails[]
-      this.isUserDetailsListEmpty = false
-    })
+      this.userDetailsList = dataResponse as UserDetails[];
+      this.isUserDetailsListEmpty = false;
+    });
      this.commonData.roleListValue.subscribe(dataResponse => {
-      this.roleList = dataResponse as RolesFormat[]
-    })        
+      this.roleList = dataResponse as RolesFormat[];
+    });
   }
 
-  ngAfterViewInit(){ }
+  ngAfterViewInit() { }
 
-  ngOnChanges(){ }
+  ngOnChanges() { }
 
-  initiateDetailsCard(idValue:string){
+  initiateDetailsCard(idValue: string) {
     this.userDetailsElement = null;
     this.showUserDetails = false;
-    
-    setTimeout(()=>
-    {
-      this.userDetailsElement = this.userDetailsList.filter(function (element,index,array){
-        return (element.id == idValue)
-      })[0]
-      this.showUserDetails = true
-    },0) 
+
+    setTimeout(() => {
+      this.userDetailsElement = this.userDetailsList.filter(function (element, index, array) {
+        return (element.id == idValue);
+      })[0];
+      this.showUserDetails = true;
+    }, 0);
   }
 
 }

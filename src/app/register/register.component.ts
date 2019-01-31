@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators,FormBuilder, FormGroup } from '@angular/forms';
-import {Router} from "@angular/router";
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import {Router} from '@angular/router';
 
 import { constants } from '../core/directives/constants';
 import { CredentialsService } from '../core/dataServices/credentials.service';
@@ -12,38 +12,38 @@ import { CredentialsService } from '../core/dataServices/credentials.service';
 })
 export class RegisterComponent implements OnInit {
 
-  registrationForm: FormGroup; 
-  bloodGroups = constants.bloodGroups
-    
-  constructor(private fb: FormBuilder,private dataService: CredentialsService, private router: Router) { }
+  registrationForm: FormGroup;
+  bloodGroups = constants.bloodGroups;
+
+  constructor(private fb: FormBuilder, private dataService: CredentialsService, private router: Router) { }
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
-      username: ['',[Validators.required]],
-      password: ['',[Validators.required]],
-      firstName: ['',[Validators.required]],
-      
-      lastName: ['',[Validators.required]],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+
+      lastName: ['', [Validators.required]],
       email: ['', [
         Validators.required,
         Validators.email
       ]],
-      bloodGroup: ['AB-',[Validators.required]],
-      areaCode: ['',[Validators.required]],
-      contactNo: ['',[Validators.required]]
-    })
-    
-    //this.registrationForm.valueChanges.subscribe(console.log)
+      bloodGroup: ['AB-', [Validators.required]],
+      areaCode: ['', [Validators.required]],
+      contactNo: ['', [Validators.required]]
+    });
+
+    // this.registrationForm.valueChanges.subscribe(console.log)
   }
-  get username(){
+  get username() {
     return this.registrationForm.get('username');
   }
 
-  get password(){
+  get password() {
     return this.registrationForm.get('password');
   }
 
-  get firstName(){
+  get firstName() {
     return this.registrationForm.get('firstName');
   }
 
@@ -51,32 +51,32 @@ export class RegisterComponent implements OnInit {
   //   return this.registrationForm.get('middleName');
   // }
 
-  get lastName(){
+  get lastName() {
     return this.registrationForm.get('lastName');
   }
 
-  get email(){
+  get email() {
     return this.registrationForm.get('email');
   }
 
-  get bloodGroup(){
+  get bloodGroup() {
     return this.registrationForm.get('bloodGroup');
   }
 
-  get areaCode(){
+  get areaCode() {
     return this.registrationForm.get('areaCode');
   }
 
-  get contactNo(){
+  get contactNo() {
     return this.registrationForm.get('contactNo');
   }
-  registerUser(){
+  registerUser() {
     this.dataService.registerUser(this.registrationForm.value).subscribe( data => {
-      if(data.id != 'undefined'){
+      if (data.id != 'undefined') {
         this.router.navigate(['login/success']);
+      } else {
+        console.log('registration unsuccessfull');
       }
-      else 
-        console.log("registration unsuccessfull");
     });
   }
 }

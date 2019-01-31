@@ -17,57 +17,61 @@ import { CommonDataService } from '../core/dataServices/common-data.service';
 
 export class BloodReqeustFormComponent implements OnInit, OnDestroy {
 
-  @Input()
-  public dataValue: BloodRequest;
-
-  @Output()
-  public removeEvent = new EventEmitter()
-
-  addRequestForm: FormGroup
-  bloodGroups = constants.bloodGroups
-  currentDate = new Date()
-  minDateValue = new Date()
-  isRequestFormVisible = true
-  isEditRequest: Boolean
-
   constructor(private dataService: BloodReqeustService, private formBuilderObject: FormBuilder,
     private auth: AuthService, public viewContainerRef: ViewContainerRef,
     private router: Router, private commonData: CommonDataService) { }
 
+  @Input()
+  public dataValue: BloodRequest;
+
+  @Output()
+  public removeEvent = new EventEmitter();
+
+  addRequestForm: FormGroup;
+  bloodGroups = constants.bloodGroups;
+  currentDate = new Date();
+  minDateValue = new Date();
+  isRequestFormVisible = true;
+  isEditRequest: Boolean;
+
+  @ViewChild('closebutton') closeButton: ElementRef;
+
   removeFunction($event) {
-    
-    if ($event.target.attributes.role != undefined)
+
+    if ($event.target.attributes.role != undefined) {
       if ($event.target.attributes.role.value == 'dialog'
-        || $event.target.attributes.role.value == 'closeModal')
-        this.removeEvent.emit()
+        || $event.target.attributes.role.value == 'closeModal') {
+        this.removeEvent.emit();
+      }
+    }
   }
 
   initiateClose() {
-    this.removeEvent.emit();    
+    this.removeEvent.emit();
   }
 
   ngOnInit() {
     if (Object.keys(this.dataValue).length === 0) {
-      this.isEditRequest = false
-      let mintime = new Date()
-      mintime.setHours(this.currentDate.getHours() + 1)
+      this.isEditRequest = false;
+      const mintime = new Date();
+      mintime.setHours(this.currentDate.getHours() + 1);
       this.minDateValue = mintime;
       this.dataValue = new BloodRequest(
         '', 1, '', '', mintime,
         '', false, '', 9999999999,
         '', '', '', '',
-        '', '', '', '', '', [''], '','',''
+        '', '', '', '', '', [''], '','','';
       )
     }
     else {
-      this.isEditRequest = true
-      this.minDateValue = this.dataValue.requiredBy
+      this.isEditRequest = true;
+      this.minDateValue = this.dataValue.requiredBy;
     }
     this.setDataFormValue();
   }
 
   ngOnDestroy(): void {
-    
+
   }
 
   setDataFormValue(): void {
@@ -80,7 +84,7 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
       hospitalName: [this.dataValue.hospitalName, [Validators.required]],
       attenderName: [this.dataValue.attenderName, [Validators.required]],
       attenderPhone: [this.dataValue.attenderPhone, [Validators.required]],
-      status: [(this.dataValue.status == '')?'New':'Edit', [Validators.required]],
+      status: [(this.dataValue.status == '') ? 'New' : 'Edit', [Validators.required]],
       hospitalAddressLine1: [this.dataValue.hospitalAddressLine1, [Validators.required]],
       hospitalAddressLine2: [this.dataValue.hospitalAddressLine2],
       hospitalAddressLine3: [this.dataValue.hospitalAddressLine3],
@@ -91,39 +95,38 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
       createdById: [this.dataValue.createdById, [Validators.required]],
       moderatorsInvolved: [this.dataValue.moderatorsInvolved, []],
       changeId: [this.dataValue.changeId, []],
-      id: [this.dataValue.id,[Validators.required]]
-    })
+      id: [this.dataValue.id, [Validators.required]]
+    });
   }
 
   addData() {
-    if(this.addRequestForm.value.requiredBy._isAMomentObject)
-      this.addRequestForm.value.requredBy = this.addRequestForm.value.requiredBy.toDate()
-    let usrdet: UserDetails = this.auth.getCurrentUser()
-    this.addRequestForm.value.createdByName = usrdet.firstName + " " + usrdet.lastName
-    this.addRequestForm.value.createdById = usrdet.id
+    if (this.addRequestForm.value.requiredBy._isAMomentObject) {
+      this.addRequestForm.value.requredBy = this.addRequestForm.value.requiredBy.toDate();
+    }
+    const usrdet: UserDetails = this.auth.getCurrentUser();
+    this.addRequestForm.value.createdByName = usrdet.firstName + ' ' + usrdet.lastName;
+    this.addRequestForm.value.createdById = usrdet.id;
     this.dataService.addBloodRequest(this.addRequestForm.value).subscribe(data => {
-      this.commonData.getBloodRequestData()
+      this.commonData.getBloodRequestData();
     },
       error => {
-        console.log(error)
-      })
-    this.triggerClick()
+        console.log(error);
+      });
+    this.triggerClick();
   }
 
   submitEditedData() {
     this.dataService.editBloodRequest(this.addRequestForm.value).subscribe(data => {
-      this.triggerClick()
-      this.commonData.getBloodRequestData()
-      }, 
+      this.triggerClick();
+      this.commonData.getBloodRequestData();
+      },
       error => {
-        console.log('Error Value: ' + error)
-      })
+        console.log('Error Value: ' + error);
+      });
   }
-
-  @ViewChild('closebutton') closeButton: ElementRef;
   triggerClick() {
-    let el: HTMLElement = this.closeButton.nativeElement as HTMLElement
-    el.click()
+    const el: HTMLElement = this.closeButton.nativeElement as HTMLElement;
+    el.click();
   }
 
 }

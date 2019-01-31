@@ -3,7 +3,7 @@ export class RegisterationDetails {
         public username: string,
         public password: string,
         public bloodType: string,
-        public email: string,      
+        public email: string,
         public role: string
       ) { this.role = 'Member'; }
 }
