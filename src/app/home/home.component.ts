@@ -9,11 +9,11 @@ import { AuthService } from '../core/auth.service';
 export class HomeComponent implements OnInit {
 
   constructor(private auth: AuthService) { }
-  isUserLoggedIn: boolean = false
-  model: any
+  isUserLoggedIn = false;
+  model: any;
   ngOnInit() {
     this.model = this.auth.getCurrentUser();
-    this.isUserLoggedIn = this.auth.isLoggedIn
+    this.isUserLoggedIn = this.auth.isLoggedIn;
   }
 
 }

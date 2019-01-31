@@ -18,28 +18,28 @@ export class DataTableComponent implements OnInit {
   @Input()
   public dataRoleList: RolesFormat[];
   @Output() initiateDetailsCard = new EventEmitter<string>();
-  
+
   dataSource: DataTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id','firstName','contactNo', 'bloodGroup'];
+  displayedColumns = ['id', 'firstName', 'contactNo', 'bloodGroup'];
 
-  constructor(private dataService:CommonDataService){}
+  constructor(private dataService: CommonDataService) {}
 
   ngOnInit() {
-    this.dataSource = new DataTableDataSource(this.paginator, this.sort,this.dataValue,this.dataRoleList);
-    setTimeout(() => {this.dataService.initiateCloseLoadingIcon()});
+    this.dataSource = new DataTableDataSource(this.paginator, this.sort, this.dataValue, this.dataRoleList);
+    setTimeout(() => {this.dataService.initiateCloseLoadingIcon(); });
   }
 
-  passUserDetails(rowIdValue){
-    this.initiateDetailsCard.emit(rowIdValue)
+  passUserDetails(rowIdValue) {
+    this.initiateDetailsCard.emit(rowIdValue);
   }
 
-  ngOnChanges(changes: SimpleChanges){
-    console.log("inside ng on changes for data table")
-    if((changes.dataValue != undefined && changes.dataValue.currentValue.length != 0 ) 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('inside ng on changes for data table');
+    if ((changes.dataValue != undefined && changes.dataValue.currentValue.length != 0 )
     || (changes.dataRoleList != undefined && changes.dataRoleList.currentValue.length != 0)) {
-      this.dataSource = new DataTableDataSource(this.paginator,this.sort,this.dataValue,this.dataRoleList) 
+      this.dataSource = new DataTableDataSource(this.paginator, this.sort, this.dataValue, this.dataRoleList);
     }
   }
 }

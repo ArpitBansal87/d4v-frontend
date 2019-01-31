@@ -4,8 +4,8 @@ export class userDetailsClass {
       public username: string,
       public role: string,
       public bloodType: string,
-      public email: string,      
+      public email: string,
       public emailVerified: string
     ) {  }
   }
-  
+

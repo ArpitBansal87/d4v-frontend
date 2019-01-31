@@ -12,47 +12,48 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RequestHomeComponent implements OnInit {
 
-  public bloodRequestList: BloodRequest[] = []
-  public totalBloodRequests: number
-  isNewFormVisible = false
-  openforEdit= false
-  public formData:BloodRequest
-  isUserOnBRTeam: Boolean
-  
-  constructor(private dataService: BloodReqeustService, 
+  public bloodRequestList: BloodRequest[] = [];
+  public totalBloodRequests: number;
+  isNewFormVisible = false;
+  openforEdit = false;
+  public formData: BloodRequest;
+  isUserOnBRTeam: Boolean;
+
+  constructor(private dataService: BloodReqeustService,
     private auth: AuthService, private commonData: CommonDataService) { }
 
   ngOnInit() {
     this.commonData.bloodRequestList.subscribe(dataResponse => {
-      this.bloodRequestList = dataResponse as BloodRequest[]
-    })
-    this.commonData.getBloodRequestData()
-    this.isUserOnBRTeam = this.commonData.isUserOnBRTeam()
+      this.bloodRequestList = dataResponse as BloodRequest[];
+    });
+    this.commonData.getBloodRequestData();
+    this.isUserOnBRTeam = this.commonData.isUserOnBRTeam();
   }
 
   ngAfterViewChecked() {
-    this.commonData.initiateCloseLoadingIcon()
+    this.commonData.initiateCloseLoadingIcon();
   }
 
-  showBRform(dataFormValue,indexValue){
-    if(indexValue == -1)
-      this.formData = <BloodRequest>{}
-    else
-      this.formData = dataFormValue
-    this.isNewFormVisible = !this.isNewFormVisible
+  showBRform(dataFormValue, indexValue) {
+    if (indexValue == -1) {
+      this.formData = <BloodRequest>{};
+    } else {
+      this.formData = dataFormValue;
+    }
+    this.isNewFormVisible = !this.isNewFormVisible;
   }
 
-  removeDialog(){
+  removeDialog() {
     this.dataService.getBloodRequestList().subscribe( dataResponse => {
-      this.bloodRequestList = dataResponse as BloodRequest[]
-      this.isNewFormVisible = false;    
-    })
+      this.bloodRequestList = dataResponse as BloodRequest[];
+      this.isNewFormVisible = false;
+    });
   }
 
-  deleteBloodRequest(requestId,index){
+  deleteBloodRequest(requestId, index) {
     this.dataService.deleteBloodRequest(requestId).subscribe( dataResponse => {
-      this.commonData.getBloodRequestData()
-    })
+      this.commonData.getBloodRequestData();
+    });
   }
 
 }

@@ -1,4 +1,4 @@
-import { RolesFormat } from "./returnFormat/roles-format";
+import { RolesFormat } from './returnFormat/roles-format';
 
 export class UserDetails {
 
@@ -12,5 +12,5 @@ export class UserDetails {
         public lastName: string,
         public middleName: string,
         public roles: [RolesFormat],
-        public roleValue: string){}
+        public roleValue: string) {}
 }

@@ -16,15 +16,15 @@ import { throwError } from 'rxjs';
 })
 export class RoleService {
 
-  accessTokenObj: string
+  accessTokenObj: string;
 
   constructor(private http: HttpClient, private httpOptions: requestConstants, private authServiceObj: AuthService  ) {
-    this.accessTokenObj = this.authServiceObj.getToken()
+    this.accessTokenObj = this.authServiceObj.getToken();
    }
 
-  getAllRoles():Observable<[RolesFormat]>{
-    return this.http.get<[RolesFormat]>(environment.serverUrl+
-      this.httpOptions.ROLE_PLURAL_MODEL_CONSTANT)
+  getAllRoles(): Observable<[RolesFormat]> {
+    return this.http.get<[RolesFormat]>(environment.serverUrl +
+      this.httpOptions.ROLE_PLURAL_MODEL_CONSTANT);
   }
- 
+
 }
