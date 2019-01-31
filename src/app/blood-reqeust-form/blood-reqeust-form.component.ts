@@ -56,7 +56,7 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
         '', 1, '', '', mintime,
         '', false, '', 9999999999,
         '', '', '', '',
-        '', '', '', '', '', [''], '',''
+        '', '', '', '', '', [''], '','',''
       )
     }
     else {
