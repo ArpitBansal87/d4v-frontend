@@ -3,7 +3,7 @@ export class LoginModelResponseClass {
         public id: string,
         public ttl: number,
         public created: string,
-        public userId: string,      
-        
+        public userId: string,
+
       ) {  }
 }

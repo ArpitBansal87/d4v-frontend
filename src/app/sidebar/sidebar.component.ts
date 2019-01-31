@@ -12,26 +12,27 @@ import { UserDetails } from '../core/typeFiles/user-details';
 })
 export class SidebarComponent implements OnInit {
 
-  currentUrl: string
-  loggedIn: boolean
-  isCoreMemebr: boolean
-  private userObj: UserDetails
+  currentUrl: string;
+  loggedIn: boolean;
+  isCoreMemebr: boolean;
+  private userObj: UserDetails;
 
   constructor(private router: Router, private auth: AuthService,
      private dataService: CredentialsService) {
     router.events.subscribe(
       (_: NavigationEnd) => {
-        if (_.url != undefined)
+        if (_.url != undefined) {
           this.currentUrl = _.url;
+        }
       }
-    )
+    );
 
     if (this.auth.isLoggedIn) {
-      this.verifyUser()
+      this.verifyUser();
     }
     this.auth.isUserAvailable.subscribe(isLoggedIn => {
-      this.verifyUser()      
-    })
+      this.verifyUser();
+    });
 
     this.loggedIn = this.auth.isLoggedIn;
   }
@@ -40,9 +41,9 @@ export class SidebarComponent implements OnInit {
   }
 
   logoutUser() {
-    this.auth.logout()
-    this.dataService.logoutUser()
-    this.loggedIn = this.auth.isLoggedIn
+    this.auth.logout();
+    this.dataService.logoutUser();
+    this.loggedIn = this.auth.isLoggedIn;
   }
 
   setLoggedInUser() {
@@ -50,10 +51,10 @@ export class SidebarComponent implements OnInit {
   }
 
   verifyUser() {
-    this.loggedIn = this.auth.isLoggedIn
-    this.userObj = this.auth.getCurrentUser()
+    this.loggedIn = this.auth.isLoggedIn;
+    this.userObj = this.auth.getCurrentUser();
     this.isCoreMemebr = (this.auth.isLoggedIn &&
       this.userObj != null &&
-      this.userObj.roleValue.includes('Admin')) ? true : false
+      this.userObj.roleValue.includes('Admin')) ? true : false;
     }
 }

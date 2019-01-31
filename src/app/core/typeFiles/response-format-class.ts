@@ -8,4 +8,4 @@ export class responseFormat {
       public stack: string
     ) {  }
   }
-  
+

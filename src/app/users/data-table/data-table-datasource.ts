@@ -19,10 +19,10 @@ const EXAMPLE_DATA: UserDetails[] = [];
 export class DataTableDataSource extends DataSource<UserDetails> {
   data: UserDetails[] = EXAMPLE_DATA;
 
-  constructor(private paginator: MatPaginator, private sort: MatSort, 
+  constructor(private paginator: MatPaginator, private sort: MatSort,
     private dataValue: UserDetails[], private roleList: RolesFormat[]) {
     super();
-    this.data = generateData(this.dataValue,this.roleList) 
+    this.data = generateData(this.dataValue, this.roleList);
   }
 
   /**
@@ -87,17 +87,18 @@ function compare(a, b, isAsc) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
 
-function generateData(dataList:UserDetails[],roleList:RolesFormat[]){
-  let userDataObj: Array<UserDetails> = [];
-  for(var dataObj of dataList){
-    for(var role of roleList){
-      if(dataObj.roles.some((item) => item.id == role.id)){
-        if(dataObj.roleValue == undefined)
-          dataObj.roleValue = ""
-        dataObj.roleValue.concat(role.id+"-")    
+function generateData(dataList: UserDetails[], roleList: RolesFormat[]) {
+  const userDataObj: Array<UserDetails> = [];
+  for (const dataObj of dataList) {
+    for (const role of roleList) {
+      if (dataObj.roles.some((item) => item.id == role.id)) {
+        if (dataObj.roleValue == undefined) {
+          dataObj.roleValue = '';
+        }
+        dataObj.roleValue.concat(role.id + '-');
       }
     }
-    userDataObj.push(dataObj)
+    userDataObj.push(dataObj);
   }
-  return userDataObj
+  return userDataObj;
 }
