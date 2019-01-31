@@ -60,9 +60,10 @@ export class BloodReqeustFormComponent implements OnInit, OnDestroy {
         '', 1, '', '', mintime,
         '', false, '', 9999999999,
         '', '', '', '',
-        '', '', '', '', '', [''], '', ''
-      );
-    } else {
+        '', '', '', '', '', [''], '','','';
+      )
+    }
+    else {
       this.isEditRequest = true;
       this.minDateValue = this.dataValue.requiredBy;
     }

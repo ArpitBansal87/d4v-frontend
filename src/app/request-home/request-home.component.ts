@@ -1,9 +1,10 @@
+import { BloodRequestStatus } from './../core/typeFiles/returnFormat/bloodRequestStates-reponse';
 import { CommonDataService } from './../core/dataServices/common-data.service';
 import { BloodReqeustService } from './../core/dataServices/blood-reqeust.service';
 import { AuthService } from './../core/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { BloodRequest } from '../core/typeFiles/blood-request';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-request-home',
@@ -12,22 +13,35 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RequestHomeComponent implements OnInit {
 
-  public bloodRequestList: BloodRequest[] = [];
-  public totalBloodRequests: number;
-  isNewFormVisible = false;
-  openforEdit = false;
-  public formData: BloodRequest;
-  isUserOnBRTeam: Boolean;
-
+  public bloodRequestList: BloodRequest[] = []
+  public totalBloodRequests: number
+  isNewFormVisible = false
+  openforEdit= false
+  public formData:BloodRequest
+  isUserOnBRTeam: Boolean
+  bloodRequestStates: BloodRequestStatus[] = []
+  
+  
   constructor(private dataService: BloodReqeustService,
-    private auth: AuthService, private commonData: CommonDataService) { }
+    private commonData: CommonDataService) { }
 
   ngOnInit() {
     this.commonData.bloodRequestList.subscribe(dataResponse => {
-      this.bloodRequestList = dataResponse as BloodRequest[];
-    });
-    this.commonData.getBloodRequestData();
-    this.isUserOnBRTeam = this.commonData.isUserOnBRTeam();
+      this.bloodRequestList = dataResponse as BloodRequest[]
+      this.bloodRequestList.forEach((element) =>{
+        this.dataService.getlatestBloodRequestStatus(element.id).subscribe(dataResponse => {
+          var responseObj = dataResponse as BloodRequestStatus
+          if(dataResponse.length != 0)
+          element.latestStatus = responseObj[0].bloodRequestStatusId+"-"+element.id
+      })
+      })
+      
+    })
+    this.commonData.getBloodRequestData()
+    this.isUserOnBRTeam = this.commonData.isUserOnBRTeam()
+    this.dataService.getBloodRequestStates().subscribe(dataResponse => {
+      this.bloodRequestStates = dataResponse as BloodRequestStatus[]
+    })    
   }
 
   ngAfterViewChecked() {
@@ -50,10 +64,17 @@ export class RequestHomeComponent implements OnInit {
     });
   }
 
-  deleteBloodRequest(requestId, index) {
-    this.dataService.deleteBloodRequest(requestId).subscribe( dataResponse => {
-      this.commonData.getBloodRequestData();
-    });
+  deleteBloodRequest(requestId){
+    this.dataService.deleteBloodRequest(requestId).subscribe( () => {
+      this.commonData.getBloodRequestData()
+    })
+  }
+  
+  setBloodRequestStatus(event): void{
+    const newVal = event.target.value
+    this.dataService.setBloodRequestStatus(newVal).subscribe( dataResponse => {
+      console.log("test: "+dataResponse);
+    })
   }
 
 }
