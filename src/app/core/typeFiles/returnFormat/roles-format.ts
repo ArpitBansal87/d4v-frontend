@@ -1,9 +1,9 @@
 export interface RolesFormat {
 
-    id: string;
-    name: string;
-    description: string;
-    created: Date;
-    modified: Date;
+    id: string,
+    name: string,
+    description: string,
+    created: Date,
+    modified: Date
 
 }
