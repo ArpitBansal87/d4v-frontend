@@ -79,7 +79,10 @@ export class BloodReqeustService {
       + this.httpOptions.REL_CONSTANTS + this.httpOptions.FORWARD_SLASH_SYMBOL_CONSTANT + bloodMappingDetails[0]
       + this.httpOptions.QUESTION_SYMBOL_CONSTANT + this.httpOptions.ACCESS_TOKEN_CONSTANT + this.httpOptions.EQUAL_SYMBOL
       + this.accessTokenObj, bloodMappingObj).pipe(
-        map(reponse => reponse), catchError((err, caught) => {
+        map(reponse => {
+          console.log("test line");
+          return reponse;
+        }), catchError((err, caught) => {
           const errorVariable = err.error;
           console.log(err.error);
           return throwError(errorVariable);

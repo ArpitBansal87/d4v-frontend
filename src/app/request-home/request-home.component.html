@@ -1,5 +1,4 @@
-Photo by LuAnn Hunt on Unsplash
-<ul class="blood-request-list row justify-content-between">
+ <ul class="blood-request-list row justify-content-between">
   <li class="blood-request-list-element col-sm-5 mx-sm-2" *ngFor="let requestItem of bloodRequestList; index as i">
     <div class="bloodRequest-patient-info">
       <span class="request-element-patientName request-element font-weight-bold" id="request-element-patientName-{{i}}">
@@ -47,12 +46,13 @@ Photo by LuAnn Hunt on Unsplash
       <mat-icon>delete</mat-icon>
     </span>
     <div class="float-right"> 
-      <select name="test" [value]="requestItem.latestStatus" (change)= "setBloodRequestStatus($event)">
-        <option *ngFor=" let statusValue of bloodRequestStates" value="{{statusValue.id}}-{{requestItem.id}}" >
-          <span> {{statusValue.statusName}}</span>
-        </option>
-      </select> 
-      
+      <mat-form-field>
+        <mat-select name="test" color="primary" [value]="requestItem.latestStatus" (selectionChange)= "setBloodRequestStatus($event)">
+          <mat-option color="primary" *ngFor=" let statusValue of bloodRequestStates" value="{{statusValue.id}}-{{requestItem.id}}" >
+            <span> {{statusValue.statusName}}</span>
+          </mat-option>
+        </mat-select> 
+      </mat-form-field>      
     </div>
     <div class="statusIndicator h-100 position-absolute"></div>
   </li>

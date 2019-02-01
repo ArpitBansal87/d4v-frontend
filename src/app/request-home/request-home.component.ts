@@ -72,7 +72,7 @@ export class RequestHomeComponent implements OnInit {
   }
 
   setBloodRequestStatus(event): void {
-    const newVal = event.target.value;
+    const newVal = event.value;
     this.dataService.setBloodRequestStatus(newVal).subscribe( dataResponse => {
       console.log('test: ' + dataResponse);
     });
