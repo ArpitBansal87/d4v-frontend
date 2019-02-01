@@ -13,35 +13,36 @@ import { BloodRequest } from '../core/typeFiles/blood-request';
 })
 export class RequestHomeComponent implements OnInit {
 
-  public bloodRequestList: BloodRequest[] = []
-  public totalBloodRequests: number
-  isNewFormVisible = false
-  openforEdit= false
-  public formData:BloodRequest
-  isUserOnBRTeam: Boolean
-  bloodRequestStates: BloodRequestStatus[] = []
-  
-  
+  public bloodRequestList: BloodRequest[] = [];
+  public totalBloodRequests: number;
+  isNewFormVisible = false;
+  openforEdit = false;
+  public formData: BloodRequest;
+  isUserOnBRTeam: Boolean;
+  bloodRequestStates: BloodRequestStatus[] = [];
+
+
   constructor(private dataService: BloodReqeustService,
     private commonData: CommonDataService) { }
 
   ngOnInit() {
     this.commonData.bloodRequestList.subscribe(dataResponse => {
-      this.bloodRequestList = dataResponse as BloodRequest[]
-      this.bloodRequestList.forEach((element) =>{
+      this.bloodRequestList = dataResponse as BloodRequest[];
+      this.bloodRequestList.forEach((element) => {
         this.dataService.getlatestBloodRequestStatus(element.id).subscribe(dataResponse => {
-          var responseObj = dataResponse as BloodRequestStatus
-          if(dataResponse.length != 0)
-          element.latestStatus = responseObj[0].bloodRequestStatusId+"-"+element.id
-      })
-      })
-      
-    })
-    this.commonData.getBloodRequestData()
-    this.isUserOnBRTeam = this.commonData.isUserOnBRTeam()
+          let responseObj = dataResponse as BloodRequestStatus;
+          if (dataResponse.length != 0) {
+          element.latestStatus = responseObj[0].bloodRequestStatusId + '-' + element.id;
+          }
+      });
+      });
+
+    });
+    this.commonData.getBloodRequestData();
+    this.isUserOnBRTeam = this.commonData.isUserOnBRTeam();
     this.dataService.getBloodRequestStates().subscribe(dataResponse => {
-      this.bloodRequestStates = dataResponse as BloodRequestStatus[]
-    })    
+      this.bloodRequestStates = dataResponse as BloodRequestStatus[];
+    });
   }
 
   ngAfterViewChecked() {
@@ -64,17 +65,17 @@ export class RequestHomeComponent implements OnInit {
     });
   }
 
-  deleteBloodRequest(requestId){
+  deleteBloodRequest(requestId) {
     this.dataService.deleteBloodRequest(requestId).subscribe( () => {
-      this.commonData.getBloodRequestData()
-    })
+      this.commonData.getBloodRequestData();
+    });
   }
-  
-  setBloodRequestStatus(event): void{
-    const newVal = event.target.value
+
+  setBloodRequestStatus(event): void {
+    const newVal = event.target.value;
     this.dataService.setBloodRequestStatus(newVal).subscribe( dataResponse => {
-      console.log("test: "+dataResponse);
-    })
+      console.log('test: ' + dataResponse);
+    });
   }
 
 }
