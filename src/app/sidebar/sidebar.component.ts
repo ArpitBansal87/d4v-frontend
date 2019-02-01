@@ -1,4 +1,3 @@
-import { userDetailsClass } from './../core/typeFiles/user-details-model-class';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../core/auth.service';
