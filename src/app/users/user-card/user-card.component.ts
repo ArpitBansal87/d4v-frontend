@@ -25,7 +25,7 @@ export class UserCardComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (typeof changes['userElement'] != 'undefined') {
-      let change = changes['userElement'];
+      const change = changes['userElement'];
       if (change.isFirstChange()) {
         this.roleValue = change.currentValue.roles;
       }
@@ -45,7 +45,7 @@ export class UserCardComponent implements OnInit, OnChanges {
   }
 
   checkboxChangeEvent(e: any) {
-    let obj = e.source;
+    const obj = e.source;
     if (e.checked) {
       this.commonDataObj.setRoleList(obj.value);
     } else {
