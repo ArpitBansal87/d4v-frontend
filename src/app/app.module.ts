@@ -2,6 +2,7 @@ import { CommonDataService } from './core/dataServices/common-data.service';
 import { BloodReqeustService } from './core/dataServices/blood-reqeust.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -78,7 +79,8 @@ import { UserCardComponent } from './users/user-card/user-card.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgbModule
   ],
   providers: [CookieService,
     CredentialsService,

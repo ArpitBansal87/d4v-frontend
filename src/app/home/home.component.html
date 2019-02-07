@@ -1,7 +1,37 @@
-<div class="informationBar" *ngIf='isUserLoggedIn'>
-  <!-- <app-info-bar></app-info-bar> -->
-</div>
-<section class="home-component-section">
-  <p>UserDetails: {{model.firstName}}  {{model.lastName}}</p>
-  <app-request-home></app-request-home>
+<section style="max-width:100%">
+  <ngb-carousel>
+    <ng-template ngbSlide>
+      <img src="https://s3.ap-south-1.amazonaws.com/d4vi/slides/1920%20x%20770%20px%20school%20Renovation.jpg">
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="https://s3.ap-south-1.amazonaws.com/d4vi/slides/cvr%20web.jpg">
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="https://s3.ap-south-1.amazonaws.com/d4vi/slides/rsz_fbcoverd4vfinall.jpg  ">
+    </ng-template>
+  </ngb-carousel>
+</section>
+
+<section class="home-component-section container">
+  <p>Welcome {{model.firstName}}  {{model.lastName}}</p>
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="text-center py-3"><span class=" border border-d4v border-top-0 border-left-0 border-right-0" style="border-bottom-width: 5px !important;">About</span> us</h2>
+      <p class="font-weight-normal text-justify">Nature has a strange way to unite people. Direction for
+        volunteers is one of them where like-minded team of volunteers gathered to help people<span class="d-inline d-sm-none">...</span><span class="d-none d-sm-inline">who were expecting for helping hands rather than praying lips during
+        flood occurred in Chennai and Cuddalore early December
+        2015. People from various corners of the world joined together through social networks and provided
+        invaluable support which
+        lead to the creation of D4V. Our deeds started with just sharing the needs of people who are
+        suffering during the floods,
+        then we started bridging the donors who were seeking direction to reach the people in real need.
+        Our volunteers themselves
+        entered the field, collected relief materials from various sources and distributed to people, most
+        of whom lost hope about
+        their future. We have also organized medical camps for victims and volunteers to stay healthy.</span></p>
+    </div>
+    <div class="col-md-4">
+        <img src="/assets/images/d4v_group_new.jpg" alt="" class="img-fluid">
+    </div>
+  </div>
 </section>

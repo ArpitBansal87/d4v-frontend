@@ -1,12 +1,14 @@
+@import "../../../node_modules/bootstrap/scss/mixins";
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+
 nav {
     background: #2D2E2E;
-    height: 100%;
-    position: fixed;
     ul {
         list-style-type: none;
         padding: 0;
         margin: 0;
-
+        display: flex;
         li {
 
             a {
@@ -20,9 +22,26 @@ nav {
             }
         }
         li.logout-link{
-            position:absolute;
-            bottom: 0;
+            float: right;
         }
     }
 
+}
+
+@include media-breakpoint-up(md){
+    
+        nav{
+            height: 100%;
+            position: fixed;
+            ul{
+                display: inline;
+                li.logout-link{
+                    position: absolute;
+                    bottom: 0;
+                }
+                
+            }
+        }
+    
+   
 }
