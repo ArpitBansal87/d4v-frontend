@@ -10,7 +10,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class AppComponent implements OnDestroy {
   title = 'D4V';
-  isLoadingIconReq: Boolean = true;
+  isLoadingIconReq: Boolean = false;
 
   constructor(private cookieHandler: CookieService, private titleService: Title,
     private commonService: CommonDataService ) {
@@ -21,7 +21,9 @@ export class AppComponent implements OnDestroy {
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
+    this.commonService.inititateLoadingIcon();
   }
+
   ngOnDestroy() {
     this.cookieHandler.deleteAll();
   }

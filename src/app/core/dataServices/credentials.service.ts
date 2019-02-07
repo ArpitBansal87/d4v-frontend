@@ -120,4 +120,8 @@ export class CredentialsService {
         }
         ));
   }
+
+  resetPassword(idValue:String, passwordValue:String){
+    
+  }
 }

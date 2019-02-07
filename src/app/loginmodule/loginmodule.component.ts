@@ -63,6 +63,7 @@ export class LoginmoduleComponent implements OnInit {
               private cookie: CookieService,
               private fb: FormBuilder,
               private commonDataService: CommonDataService) {
+                console.log("inside testing constructor")
                 this.commonDataService.initiateCloseLoadingIcon();
                }
 
