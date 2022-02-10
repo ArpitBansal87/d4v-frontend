@@ -36,7 +36,7 @@
     "moment": ">= 2.18.1",
     "moment-timezone": ">= 0.5.14",
     "ngx-cookie-service": "^1.0.10",
-    "node-sass": "^4.9.4",
+    "node-sass": "^7.0.0",
     "path": "^0.12.7",
     "popper.js": "^1.14.4",
     "rxjs": "^6.3.2",
